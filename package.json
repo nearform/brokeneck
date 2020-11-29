@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": "nearform/brokeneck",
+  "author": {
+    "name": "Simone Busoli",
+    "email": "simone.busoli@nearform.com"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}

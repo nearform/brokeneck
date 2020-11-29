@@ -1,0 +1,30 @@
+{
+  "name": "brokeneck-desktop",
+  "version": "0.1.0",
+  "author": {
+    "name": "Simone Busoli",
+    "email": "simone.busoli@nearform.com"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "electron": "^11.0.3",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "brokeneck-fastify": "^0.1.0",
+    "dotenv": "^8.2.0",
+    "electron-store": "^6.0.1",
+    "electron-util": "^0.14.2",
+    "fastify": "^3.8.0",
+    "pkg-dir": "^5.0.0"
+  }
+}
