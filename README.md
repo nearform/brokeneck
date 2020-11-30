@@ -1,6 +1,8 @@
 # codename brokeneck
 
-![ci](https://github.com/nearform/brokeneck/workflows/ci/badge.svg)
+[![ci](https://github.com/nearform/brokeneck/workflows/ci/badge.svg)](https://github.com/nearform/brokeneck/actions?query=workflow%3Aci)
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+
 
 This monorepo contains packages and applications which provide a way to manage users and groups in:
 
@@ -19,10 +21,24 @@ The easiest way to try this out is to run the standalone server via `brokeneck-f
 - `cd packages/brokeneck-fastify`
 - `cp .env.sample .env`. 
 - configure `.env` based on the authentication provider you want to use
-- `npm start`
+- `yarn start`
 - browse to [`http://localhost:5001`](http://localhost:5001)
 
 > ⚠️ The packages in this monorepo are currently built to work when run inside the monorepo, they are not yet ready to be used and deployed independently.
+
+## Development
+
+To easily develop the packages of this repo you can execute:
+
+```sh
+yarn dev
+```
+
+This will run:
+
+- `brokeneck-react` build in watch mode so you can change the React components and see the result immediately
+- `brokeneck-html` in standalone mode to have a Web UI to access
+- `brokeneck-fastify` in standalone mode to have a server running
 
 ## Providers
 

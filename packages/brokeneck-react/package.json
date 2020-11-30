@@ -14,13 +14,14 @@
     "src/"
   ],
   "scripts": {
+    "dev": "yarn build:watch",
     "_build:commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir cjs --copy-files",
     "_build:es": "babel src --out-dir es --copy-files",
-    "_build_watch:commonjs": "npm run _build:commonjs -- --watch",
-    "_build_watch:es": "npm run _build:es -- --watch",
+    "_build_watch:commonjs": "yarn _build:commonjs --watch",
+    "_build_watch:es": "yarn _build:es --watch",
     "clean": "rimraf cjs es",
-    "prepare": "npm run build",
-    "prebuild": "npm run clean",
+    "prepare": "yarn build",
+    "prebuild": "yarn clean",
     "build": "run-p _build:*",
     "build:watch": "run-p _build_watch:*",
     "lint": "eslint .",

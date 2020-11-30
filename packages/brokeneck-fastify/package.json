@@ -8,9 +8,10 @@
   },
   "main": "lib/plugin.js",
   "scripts": {
+    "dev": "yarn start",
+    "start": "fastify start index.js -p 5001 -l debug -w -P",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "start": "fastify start index.js -p 5001 -l debug -w -P"
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@azure/graph": "^5.0.1",
