@@ -2,6 +2,7 @@
   "parser": "babel-eslint",
   "extends": [
     "react-app",
+    "react-app/jest",
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
