@@ -1,0 +1,9 @@
+{
+  "extends": ["config:base", "schedule:earlyMondays"],
+  "rangeStrategy": "replace",
+  "labels": ["renovate"],
+  "automerge": true,
+  "lockFileMaintenance": {
+    "enabled": true
+  }
+}
