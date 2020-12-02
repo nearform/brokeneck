@@ -1,8 +1,6 @@
 'use strict'
 
-const fp = require('fastify-plugin')
 const AWS = require('aws-sdk')
-const { default: gql } = require('graphql-tag')
 
 function CognitoProvider(options, logger) {
   const cognito = new AWS.CognitoIdentityServiceProvider({
@@ -131,30 +129,5 @@ function CognitoProvider(options, logger) {
     }
   }
 }
-async function cognito(fastify, options) {
-  const logger = fastify.log.child({ module: 'cognito' })
 
-  fastify.graphql.extendSchema(gql`
-    extend type User {
-      Username: ID!
-    }
-
-    extend type Group {
-      GroupName: ID!
-      Description: String
-    }
-
-    extend input UserInput {
-      Username: String!
-    }
-
-    extend input GroupInput {
-      GroupName: String!
-      Description: String
-    }
-  `)
-
-  fastify.decorate('provider', new CognitoProvider(options, logger))
-}
-
-module.exports = fp(cognito)
+module.exports = CognitoProvider

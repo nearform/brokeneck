@@ -6,10 +6,12 @@ const sinon = require('sinon')
 const Fastify = require('fastify')
 
 tap.test('cognito', async t => {
-  const awsCognito = sinon.stub()
+  const provider = sinon.stub()
 
-  const cognito = proxyquire('./cognito', {
-    AWS: { CognitoIdentityServiceProvider: () => awsCognito }
+  const cognito = proxyquire('./', {
+    './provider': function () {
+      return provider
+    }
   })
 
   t.tearDown(() => {
@@ -23,7 +25,8 @@ tap.test('cognito', async t => {
     }
 
     await t.resolves(fastify.register(cognito))
-    t.ok(fastify.graphql.extendSchema.calledOnce)
-    t.ok(fastify.provider)
+
+    sinon.assert.calledOnce(fastify.graphql.extendSchema)
+    t.equal(fastify.provider, provider)
   })
 })
