@@ -5,14 +5,12 @@ const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 const Fastify = require('fastify')
 
-tap.test('auth', t => {
-  t.plan(3)
-
+tap.test('auth', async t => {
   const auth0 = sinon.stub().resolves()
   const azure = sinon.stub().resolves()
   const cognito = sinon.stub().resolves()
 
-  const auth = proxyquire('../lib/plugins/auth', {
+  const auth = proxyquire('./', {
     './auth0': auth0,
     './azure': azure,
     './cognito': cognito
@@ -23,8 +21,6 @@ tap.test('auth', t => {
   })
 
   t.test('auth0', async t => {
-    t.plan(2)
-
     await t.resolves(
       Fastify().register(auth, { provider: 'auth0', auth0: { some: 'config' } })
     )
@@ -33,8 +29,6 @@ tap.test('auth', t => {
   })
 
   t.test('azure', async t => {
-    t.plan(2)
-
     await t.resolves(
       Fastify().register(auth, { provider: 'azure', azure: { some: 'config' } })
     )
@@ -43,8 +37,6 @@ tap.test('auth', t => {
   })
 
   t.test('cognito', async t => {
-    t.plan(2)
-
     await t.resolves(
       Fastify().register(auth, {
         provider: 'cognito',

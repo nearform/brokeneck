@@ -5,12 +5,10 @@ const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 const Fastify = require('fastify')
 
-tap.test('cognito', t => {
-  t.plan(1)
-
+tap.test('cognito', async t => {
   const awsCognito = sinon.stub()
 
-  const cognito = proxyquire('../lib/plugins/auth/cognito', {
+  const cognito = proxyquire('./cognito', {
     AWS: { CognitoIdentityServiceProvider: () => awsCognito }
   })
 
@@ -19,8 +17,6 @@ tap.test('cognito', t => {
   })
 
   t.test('registers the plugin', async t => {
-    t.plan(3)
-
     const fastify = Fastify()
     fastify.graphql = {
       extendSchema: sinon.stub()
