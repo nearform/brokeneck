@@ -38,7 +38,6 @@ const pluginSchema = S.object()
   )
   .ifThen(S.object().prop('provider', S.const('azure')), S.required(['azure']))
   .prop('mercurius', S.object())
-// .required()
 
 function validateConfig(data, schema) {
   return envSchema({
