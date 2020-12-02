@@ -8,8 +8,11 @@ const authProviders = {
   azure: require('./azure')
 }
 
-async function auth(server, options) {
-  server.register(authProviders[options.provider], options[options.provider])
+function auth(server, options) {
+  return server.register(
+    authProviders[options.provider],
+    options[options.provider]
+  )
 }
 
 module.exports = fp(auth)
