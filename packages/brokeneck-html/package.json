@@ -1,14 +1,19 @@
 {
   "name": "brokeneck-html",
   "version": "0.1.0",
-  "private": true,
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
   },
+  "files": [
+    "build"
+  ],
   "scripts": {
     "dev": "yarn start",
     "start": "cross-env PORT=3001 react-scripts start",
+    "clean": "rimraf build",
+    "prepare": "yarn build",
+    "prebuild": "yarn clean",
     "build": "cross-env INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint .",

@@ -4,7 +4,12 @@
   "version": "independent",
   "command": {
     "version": {
+      "allowBranch": "master",
+      "message": "chore(release): 🦢",
       "conventionalCommits": true
+    },
+    "publish": {
+      "registry": "http://localhost:4873/"
     }
   }
 }

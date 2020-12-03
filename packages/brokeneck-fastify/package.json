@@ -1,7 +1,6 @@
 {
   "name": "brokeneck-fastify",
   "version": "0.1.0",
-  "private": true,
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
