@@ -25,7 +25,7 @@ tap.test('auth', async t => {
       Fastify().register(auth, { provider: 'auth0', auth0: { some: 'config' } })
     )
 
-    sinon.assert.calledOnceWith(auth0, sinon.match.any, { some: 'config' })
+    sinon.assert.calledOnceWithMatch(auth0, sinon.match.any, { some: 'config' })
   })
 
   t.test('azure', async t => {
@@ -33,7 +33,7 @@ tap.test('auth', async t => {
       Fastify().register(auth, { provider: 'azure', azure: { some: 'config' } })
     )
 
-    sinon.assert.calledOnceWith(azure, sinon.match.any, { some: 'config' })
+    sinon.assert.calledOnceWithMatch(azure, sinon.match.any, { some: 'config' })
   })
 
   t.test('cognito', async t => {
@@ -44,6 +44,8 @@ tap.test('auth', async t => {
       })
     )
 
-    sinon.assert.calledOnceWith(cognito, sinon.match.any, { some: 'config' })
+    sinon.assert.calledOnceWithMatch(cognito, sinon.match.any, {
+      some: 'config'
+    })
   })
 })
