@@ -36,7 +36,6 @@ function AzureProvider(options, credentials, logger) {
       return group
     },
     createUser({ password, forceChangePasswordNextLogin, ...input }) {
-      // TODO: allow providing these options from UI
       return azure.users.create({
         ...input,
         accountEnabled: !!input.accountEnabled,

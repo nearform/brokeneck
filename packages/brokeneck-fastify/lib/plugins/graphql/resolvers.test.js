@@ -74,4 +74,82 @@ tap.test('resolvers', async t => {
       t.equal(result, name)
     })
   })
+
+  t.test('Mutation', async t => {
+    t.test('createUser', async t => {
+      const user = { id: faker.random.uuid() }
+
+      fastify.provider.createUser = sinon.stub().resolves(user)
+
+      const result = await resolvers.Mutation.createUser(null, { input: user })
+
+      t.equal(result, user)
+      sinon.assert.calledWith(fastify.provider.createUser, user)
+    })
+
+    t.test('createGroup', async t => {
+      const group = { id: faker.random.uuid() }
+
+      fastify.provider.createGroup = sinon.stub().resolves(group)
+
+      const result = await resolvers.Mutation.createGroup(null, {
+        input: group
+      })
+
+      t.equal(result, group)
+      sinon.assert.calledWith(fastify.provider.createGroup, group)
+    })
+
+    t.test('addUserToGroup', async t => {
+      const input = { id: faker.random.uuid() }
+
+      fastify.provider.addUserToGroup = sinon.stub().resolves(input)
+
+      const result = await resolvers.Mutation.addUserToGroup(null, {
+        input
+      })
+
+      t.equal(result, true)
+      sinon.assert.calledWith(fastify.provider.addUserToGroup, input)
+    })
+
+    t.test('removeUserFromGroup', async t => {
+      const input = { id: faker.random.uuid() }
+
+      fastify.provider.removeUserFromGroup = sinon.stub().resolves(input)
+
+      const result = await resolvers.Mutation.removeUserFromGroup(null, {
+        input
+      })
+
+      t.equal(result, true)
+      sinon.assert.calledWith(fastify.provider.removeUserFromGroup, input)
+    })
+
+    t.test('deleteUser', async t => {
+      const input = { id: faker.random.uuid() }
+
+      fastify.provider.deleteUser = sinon.stub().resolves(input)
+
+      const result = await resolvers.Mutation.deleteUser(null, {
+        input
+      })
+
+      t.equal(result, true)
+      sinon.assert.calledWith(fastify.provider.deleteUser, input)
+    })
+
+    t.test('deleteGroup', async t => {
+      const input = { id: faker.random.uuid() }
+
+      fastify.provider.deleteGroup = sinon.stub().resolves(input)
+
+      const result = await resolvers.Mutation.deleteGroup(null, {
+        input
+      })
+
+      t.equal(result, true)
+      sinon.assert.calledWith(fastify.provider.deleteGroup, input)
+    })
+  })
 })

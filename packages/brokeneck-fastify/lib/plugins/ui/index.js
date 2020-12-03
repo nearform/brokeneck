@@ -6,7 +6,7 @@ const util = require('util')
 const fp = require('fastify-plugin')
 const pkgDir = require('pkg-dir')
 
-const pluginConfig = require('../pluginConfig')
+const pluginConfig = require('../../pluginConfig')
 
 async function ui(fastify, options) {
   const logger = fastify.log.child({ module: 'uiPlugin' })
