@@ -1,6 +1,6 @@
 {
   "name": "brokeneck-desktop",
-  "version": "0.1.0",
+  "version": "1.0.0-spinal.0",
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
@@ -13,7 +13,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "brokeneck-fastify": "^0.1.0",
+    "brokeneck-fastify": "^1.0.0-spinal.0",
     "dotenv": "^8.2.0",
     "electron-store": "^6.0.1",
     "electron-util": "^0.14.2",
