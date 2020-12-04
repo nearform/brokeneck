@@ -2,7 +2,11 @@ import React from 'react'
 import T from 'prop-types'
 import { Box, Checkbox, FormControlLabel, TextField } from '@material-ui/core'
 
-export default function FormField({ field, handleChange, formValues }) {
+export default function FormField({
+  field: { initialValue, ...field },
+  handleChange,
+  formValues
+}) {
   switch (field.type) {
     case 'checkbox':
       return (
@@ -12,7 +16,11 @@ export default function FormField({ field, handleChange, formValues }) {
             label={field.label}
             control={
               <Checkbox
-                checked={field.value}
+                checked={
+                  field.name in formValues
+                    ? formValues[field.name]
+                    : initialValue
+                }
                 onChange={handleChange}
                 {...field}
               />
@@ -29,7 +37,9 @@ export default function FormField({ field, handleChange, formValues }) {
             fullWidth
             margin="dense"
             onChange={handleChange}
-            value={formValues[field.name] || ''}
+            value={
+              field.name in formValues ? formValues[field.name] : initialValue
+            }
             {...field}
           />
         </Box>
@@ -42,7 +52,7 @@ FormField.propTypes = {
     name: T.string.isRequired,
     label: T.string.isRequired,
     type: T.string.isRequired,
-    value: T.any
+    initialValue: T.any.isRequired
   }).isRequired,
   handleChange: T.func.isRequired,
   formValues: T.object.isRequired

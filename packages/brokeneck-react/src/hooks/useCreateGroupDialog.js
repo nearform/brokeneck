@@ -31,8 +31,7 @@ export default function useCreateGroupDialog(onConfirm) {
     fields: inputFields.all.map(field => ({
       name: field,
       label: field,
-      required: inputFields.metadata[field].required,
-      type: inputFields.metadata[field].type
+      ...inputFields.metadata[field]
     }))
   })
 }

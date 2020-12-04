@@ -4,8 +4,10 @@ function getFieldTypeName(field) {
   return field.type.ofType?.name || field.type.name
 }
 
+const CHECKBOX = 'checkbox'
+
 function getMetadataFieldType(field) {
-  if (getFieldTypeName(field) === 'Boolean') return 'checkbox'
+  if (getFieldTypeName(field) === 'Boolean') return CHECKBOX
   if (/password/i.test(field.name)) return 'password'
 
   return 'text'
@@ -30,16 +32,18 @@ export default function useFields(typeName) {
 
   const all = [id, ...strings, ...booleans].filter(Boolean)
 
-  const metadata = all.reduce(
-    (acc, field) => ({
+  const metadata = all.reduce((acc, field) => {
+    const type = getMetadataFieldType(field)
+
+    return {
       ...acc,
       [field.name]: {
-        required: field.type.kind === 'NON_NULL',
-        type: getMetadataFieldType(field)
+        required: type !== CHECKBOX && field.type.kind === 'NON_NULL',
+        type,
+        initialValue: type === CHECKBOX ? false : ''
       }
-    }),
-    {}
-  )
+    }
+  }, {})
 
   // description is either the first string field, if mandatory, or the id
   // this is to cope with auth0 which has a non-readable id field and a mandatory additional field

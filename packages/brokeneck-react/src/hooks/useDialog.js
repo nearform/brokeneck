@@ -28,8 +28,13 @@ export default function useDialog({
     onClose()
   }
 
-  const handleChange = e =>
-    setFormValues(s => ({ ...s, [e.target.name]: e.target.value }))
+  const handleChange = e => {
+    return setFormValues(s => ({
+      ...s,
+      [e.target.name]:
+        e.target[e.target.type === 'checkbox' ? 'checked' : 'value']
+    }))
+  }
 
   const handleConfirm = async e => {
     e.preventDefault()
@@ -56,6 +61,7 @@ export default function useDialog({
         <DialogContent>
           {text && <DialogContentText>{text}</DialogContentText>}
           {fields.map(field => {
+            console.log(field)
             return (
               <FormField
                 key={field.name}

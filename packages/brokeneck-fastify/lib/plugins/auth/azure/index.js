@@ -26,8 +26,8 @@ async function azure(fastify, options) {
       userPrincipalName: String!
       mailNickname: String!
       password: String!
-      accountEnabled: Boolean
-      forceChangePasswordNextLogin: Boolean
+      accountEnabled: Boolean!
+      forceChangePasswordNextLogin: Boolean!
     }
 
     extend input GroupInput {

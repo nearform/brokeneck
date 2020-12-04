@@ -38,7 +38,7 @@ export default function useAddUserToGroupDialog(userId, onConfirm) {
         name: groupFields.id,
         label: groupFields.description,
         select: true,
-        required: true,
+        ...groupFields.metadata[groupFields.id],
         children: loading ? (
           <CircularProgress />
         ) : (

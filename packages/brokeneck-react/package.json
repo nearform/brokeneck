@@ -65,7 +65,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4"
   },
   "lint-staged": {
-    "**/*.{js}": [
+    "**/*.js": [
       "eslint --fix"
     ]
   }
