@@ -1,0 +1,21 @@
+{
+  "name": "custom-path",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "fastify start -w -P -l debug -p 4001 .",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "fastify-cli": "^2.5.1",
+    "pkg-dir": "^5.0.0"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix"
+    ]
+  }
+}
