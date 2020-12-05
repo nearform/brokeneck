@@ -1,4 +1,5 @@
 import { useMutation } from 'graphql-hooks'
+import startCase from 'lodash.startcase'
 
 import { CREATE_GROUP } from '../graphql'
 import GraphQLError from '../GraphQLError'
@@ -30,7 +31,7 @@ export default function useCreateGroupDialog(onConfirm) {
     action: 'Create',
     fields: inputFields.all.map(field => ({
       name: field,
-      label: field,
+      label: startCase(field),
       ...inputFields.metadata[field]
     }))
   })

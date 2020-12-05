@@ -1,6 +1,7 @@
 import React from 'react'
 import { useQuery, useMutation } from 'graphql-hooks'
 import { CircularProgress, MenuItem } from '@material-ui/core'
+import startCase from 'lodash.startcase'
 
 import { ADD_USER_TO_GROUP, LOAD_USERS } from '../graphql'
 import GraphQLError from '../GraphQLError'
@@ -36,7 +37,7 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
     fields: [
       {
         name: userFields.id,
-        label: userFields.description,
+        label: startCase(userFields.description),
         select: true,
         ...userFields.metadata[userFields.id],
         children: loading ? (

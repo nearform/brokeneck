@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
+import startCase from 'lodash.startcase'
 
 import useCreateUserDialog from '../hooks/useCreateUserDialog'
 import { LOAD_USERS } from '../graphql'
@@ -54,7 +55,7 @@ export default function Users() {
           <TableHead>
             <TableRow>
               {userFields.all.map(field => (
-                <TableCell key={field}>{field}</TableCell>
+                <TableCell key={field}>{startCase(field)}</TableCell>
               ))}
             </TableRow>
           </TableHead>

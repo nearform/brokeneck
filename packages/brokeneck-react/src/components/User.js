@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core'
 import { Link as RouterLink, useHistory } from 'react-router-dom'
 import { useQuery, useMutation } from 'graphql-hooks'
+import startCase from 'lodash.startcase'
 
 import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
 import { DELETE_USER, LOAD_USER, REMOVE_USER_FROM_GROUP } from '../graphql'
@@ -144,7 +145,7 @@ export default function User({ userId }) {
           {userFields.all.map(field => (
             <ListItem key={field}>
               <ListItemText
-                primary={field}
+                primary={startCase(field)}
                 secondary={data.user[field] || '-'}
               ></ListItemText>
             </ListItem>

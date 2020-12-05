@@ -21,6 +21,7 @@ import {
 import T from 'prop-types'
 import { Link as RouterLink, useHistory } from 'react-router-dom'
 import { useQuery, useMutation } from 'graphql-hooks'
+import startCase from 'lodash.startcase'
 
 import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
 import { DELETE_GROUP, LOAD_GROUP, REMOVE_USER_FROM_GROUP } from '../graphql'
@@ -146,7 +147,7 @@ export default function Group({ groupId }) {
           {groupFields.all.map(field => (
             <ListItem key={field}>
               <ListItemText
-                primary={field}
+                primary={startCase(field)}
                 secondary={data.group[field] || '-'}
               ></ListItemText>
             </ListItem>
@@ -160,7 +161,7 @@ export default function Group({ groupId }) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>{userFields.description}</TableCell>
+              <TableCell>{startCase(userFields.description)}</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>

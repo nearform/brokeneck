@@ -14,6 +14,7 @@ import {
 import React from 'react'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
+import startCase from 'lodash.startcase'
 
 import useCreateGroupDialog from '../hooks/useCreateGroupDialog'
 import { LOAD_GROUPS } from '../graphql'
@@ -54,7 +55,7 @@ export default function Groups() {
           <TableHead>
             <TableRow>
               {groupFields.all.map(field => (
-                <TableCell key={field}>{field}</TableCell>
+                <TableCell key={field}>{startCase(field)}</TableCell>
               ))}
             </TableRow>
           </TableHead>

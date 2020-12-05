@@ -16,8 +16,7 @@
   "scripts": {
     "dev": "yarn build:watch",
     "clean": "rimraf cjs es",
-    "prepare": "yarn build",
-    "prebuild": "yarn clean",
+    "prepare": "yarn clean && yarn build",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
     "lint": "eslint .",
@@ -26,6 +25,7 @@
   },
   "dependencies": {
     "graphql-hooks": "^5.0.0",
+    "lodash.startcase": "^4.4.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
