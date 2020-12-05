@@ -1,10 +1,11 @@
 {
-  "name": "brokeneck-fastify",
+  "name": "@nearform/brokeneck-fastify",
   "version": "1.0.0-spinal.0",
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
   },
+  "repository": "nearform/brokeneck",
   "main": "lib/plugin.js",
   "scripts": {
     "dev": "yarn start",
@@ -17,9 +18,9 @@
   "dependencies": {
     "@azure/graph": "^5.0.1",
     "@azure/ms-rest-nodeauth": "^3.0.6",
+    "@nearform/brokeneck-html": "^1.0.0-spinal.0",
     "auth0": "^2.30.0",
     "aws-sdk": "^2.793.0",
-    "brokeneck-html": "^1.0.0-spinal.0",
     "ejs": "^3.1.5",
     "env-schema": "^2.0.1",
     "fastify": "^3.8.0",

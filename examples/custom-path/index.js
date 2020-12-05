@@ -3,11 +3,11 @@
 const path = require('path')
 
 const pkgDir = require('pkg-dir')
-const brokeneck = require('brokeneck-fastify')
+const brokeneck = require('@nearform/brokeneck-fastify')
 
 async function customPath(fastify, options) {
   const envPath = path.join(
-    pkgDir.sync(require.resolve('brokeneck-fastify')),
+    pkgDir.sync(require.resolve('@nearform/brokeneck-fastify')),
     '.env'
   )
 

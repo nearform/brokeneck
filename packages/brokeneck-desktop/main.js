@@ -4,7 +4,7 @@ const path = require('path')
 
 const { app, BrowserWindow } = require('electron')
 const Fastify = require('fastify')
-const brokeneck = require('brokeneck-fastify')
+const brokeneck = require('@nearform/brokeneck-fastify')
 const pkgDir = require('pkg-dir')
 const dotenv = require('dotenv')
 const { setContentSecurityPolicy } = require('electron-util')
@@ -22,7 +22,7 @@ async function start() {
 
 async function startServer() {
   const envPath = path.join(
-    pkgDir.sync(require.resolve('brokeneck-fastify')),
+    pkgDir.sync(require.resolve('@nearform/brokeneck-fastify')),
     '.env'
   )
   dotenv.config({ path: envPath })

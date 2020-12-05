@@ -1,6 +1,6 @@
 import '.'
 
-jest.mock('brokeneck-react', () => jest.fn())
+jest.mock('@nearform/brokeneck-react', () => jest.fn())
 
 describe('index', () => {
   it('should export the Brokeneck object on the window', () => {
@@ -11,7 +11,7 @@ describe('index', () => {
   it('should render the Brokeneck component on root element when init is called', () => {
     const config = { some: 'config' }
 
-    const Brokeneck = jest.requireMock('brokeneck-react')
+    const Brokeneck = jest.requireMock('@nearform/brokeneck-react')
     Brokeneck.mockReturnValue('dummy render output')
 
     const root = document.createElement('div')

@@ -1,10 +1,11 @@
 {
-  "name": "brokeneck-react",
+  "name": "@nearform/brokeneck-react",
   "version": "1.0.0-spinal.0",
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
   },
+  "repository": "nearform/brokeneck",
   "main": "cjs/index.js",
   "module": "es/index.js",
   "files": [

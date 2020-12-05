@@ -15,7 +15,7 @@ async function ui(fastify, options) {
   logger.debug(`ui options: ${util.inspect(uiOptions)}`)
 
   const root = path.join(
-    pkgDir.sync(require.resolve('brokeneck-html')),
+    pkgDir.sync(require.resolve('@nearform/brokeneck-html')),
     'build'
   )
 

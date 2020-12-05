@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Brokeneck from 'brokeneck-react'
+import Brokeneck from '@nearform/brokeneck-react'
 
 window.Brokeneck = {
   init(config) {

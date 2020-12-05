@@ -11,7 +11,8 @@
     "email": "simone.busoli@nearform.com"
   },
   "scripts": {
-    "dev": "lerna run dev --parallel"
+    "dev": "lerna run dev --parallel",
+    "publish:safe": "lerna publish --no-git-tag-version --no-push --no-git-reset"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
