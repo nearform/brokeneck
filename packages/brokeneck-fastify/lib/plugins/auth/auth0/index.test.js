@@ -14,7 +14,7 @@ tap.test('auth0', async t => {
     }
   })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

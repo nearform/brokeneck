@@ -25,7 +25,7 @@ test('config from env', async t => {
     processEnv = { ...process.env }
   })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     process.env = processEnv
   })
 
@@ -59,6 +59,11 @@ test('config from env', async t => {
   })
 
   t.test('ui', async t => {
+    // to satisfy other required options
+    process.env.BROKENECK_PROVIDER = 'cognito'
+    process.env.BROKENECK_COGNITO_REGION = 'region'
+    process.env.BROKENECK_COGNITO_USER_POOL_ID = 'user pool id'
+
     process.env.BROKENECK_UI = true
 
     t.resolves(Fastify().register(plugin))

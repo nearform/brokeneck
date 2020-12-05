@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "yarn start",
     "start": "fastify start index.js -p 5001 -l debug -w -P",
-    "test": "tap **/**/*.test.js",
+    "test": "tap",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "precommit": "lint-staged"

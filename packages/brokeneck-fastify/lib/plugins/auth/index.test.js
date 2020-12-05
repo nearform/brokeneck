@@ -16,7 +16,7 @@ tap.test('auth', async t => {
     './cognito': cognito
   })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

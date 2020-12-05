@@ -25,7 +25,7 @@ tap.test('azure provider', async t => {
 
   const provider = new AzureProvider(options, null, { debug: sinon.stub() })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

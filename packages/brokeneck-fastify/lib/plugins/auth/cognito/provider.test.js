@@ -22,7 +22,7 @@ tap.test('cognito provider', async t => {
 
   const provider = new CognitoProvider({}, { debug: sinon.stub() })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

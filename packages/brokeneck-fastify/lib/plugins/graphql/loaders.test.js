@@ -13,7 +13,7 @@ tap.test('loaders', async t => {
 
   const loaders = makeLoaders(fastify)
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

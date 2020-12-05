@@ -14,7 +14,7 @@ tap.test('cognito', async t => {
     }
   })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

@@ -12,7 +12,7 @@ tap.test('graphql', async t => {
     mercurius
   })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

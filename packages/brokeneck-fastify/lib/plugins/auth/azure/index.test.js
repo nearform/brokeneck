@@ -17,7 +17,7 @@ tap.test('azure', async t => {
     }
   })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

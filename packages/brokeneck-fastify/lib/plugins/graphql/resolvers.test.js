@@ -13,7 +13,7 @@ tap.test('resolvers', async t => {
 
   const resolvers = makeResolvers(fastify)
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

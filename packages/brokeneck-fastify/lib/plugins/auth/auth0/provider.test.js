@@ -18,7 +18,7 @@ tap.test('auth0 provider', async t => {
 
   const provider = new Auth0Provider({}, { debug: sinon.stub() })
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 

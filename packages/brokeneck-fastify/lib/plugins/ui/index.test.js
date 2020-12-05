@@ -8,7 +8,7 @@ const Fastify = require('fastify')
 tap.test('ui', async t => {
   const ui = proxyquire('./', {})
 
-  t.tearDown(() => {
+  t.afterEach(async () => {
     sinon.restore()
   })
 
