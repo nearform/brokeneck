@@ -60,17 +60,14 @@ export default function useDialog({
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           {text && <DialogContentText>{text}</DialogContentText>}
-          {fields.map(field => {
-            console.log(field)
-            return (
-              <FormField
-                key={field.name}
-                field={field}
-                handleChange={handleChange}
-                formValues={formValues}
-              />
-            )
-          })}
+          {fields.map(field => (
+            <FormField
+              key={field.name}
+              field={field}
+              handleChange={handleChange}
+              formValues={formValues}
+            />
+          ))}
           {error && <FormHelperText error>{error.message}</FormHelperText>}
         </DialogContent>
         <DialogActions>

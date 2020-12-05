@@ -55,7 +55,16 @@ export default function Groups() {
           <TableHead>
             <TableRow>
               {groupFields.all.map(field => (
-                <TableCell key={field}>{startCase(field)}</TableCell>
+                <TableCell
+                  align={
+                    groupFields.metadata[field].type === 'checkbox'
+                      ? 'center'
+                      : undefined
+                  }
+                  key={field}
+                >
+                  {startCase(field)}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
@@ -72,6 +81,12 @@ export default function Groups() {
                       >
                         <Typography>{group[field]}</Typography>
                       </Link>
+                    ) : groupFields.metadata[field].type === 'checkbox' ? (
+                      <Typography align="center">
+                        <span role="img" aria-label={field}>
+                          {group[field] ? '✅' : '❌'}
+                        </span>
+                      </Typography>
                     ) : (
                       <Typography>{group[field]}</Typography>
                     )}

@@ -55,7 +55,16 @@ export default function Users() {
           <TableHead>
             <TableRow>
               {userFields.all.map(field => (
-                <TableCell key={field}>{startCase(field)}</TableCell>
+                <TableCell
+                  align={
+                    userFields.metadata[field].type === 'checkbox'
+                      ? 'center'
+                      : undefined
+                  }
+                  key={field}
+                >
+                  {startCase(field)}
+                </TableCell>
               ))}
             </TableRow>
           </TableHead>
