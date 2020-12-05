@@ -1,6 +1,6 @@
 {
   "name": "custom-path",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "start": "fastify start -w -P -l debug -p 4001 .",
