@@ -39,12 +39,12 @@ const pluginSchema = S.object()
   .ifThen(S.object().prop('provider', S.const('azure')), S.required(['azure']))
   .prop('mercurius', S.object())
 
-function validateConfig(data, schema) {
+function pluginConfig(data, schema) {
   return envSchema({
-    data,
+    data: typeof data === 'object' ? data : {},
     schema: schema || pluginSchema
   })
 }
 
-module.exports = validateConfig
+module.exports = pluginConfig
 module.exports.uiSchema = uiSchema

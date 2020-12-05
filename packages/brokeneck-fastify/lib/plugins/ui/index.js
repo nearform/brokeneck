@@ -10,6 +10,7 @@ const pluginConfig = require('../../pluginConfig')
 
 async function ui(fastify, options) {
   const logger = fastify.log.child({ module: 'uiPlugin' })
+
   const uiOptions = pluginConfig(options.ui, pluginConfig.uiSchema)
 
   logger.debug(`ui options: ${util.inspect(uiOptions)}`)
