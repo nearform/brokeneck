@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "lerna run dev --parallel",
-    "publish:safe": "lerna publish --no-git-tag-version --no-push --no-git-reset"
+    "version:safe": "lerna version --no-git-tag-version --no-push"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
