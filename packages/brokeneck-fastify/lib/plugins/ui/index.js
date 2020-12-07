@@ -3,7 +3,6 @@
 const path = require('path')
 const util = require('util')
 
-const fp = require('fastify-plugin')
 const pkgDir = require('pkg-dir')
 
 const pluginConfig = require('../../pluginConfig')
@@ -26,7 +25,12 @@ async function ui(fastify, options) {
     engine: {
       ejs: require('ejs')
     },
-    defaultContext: { config: uiOptions },
+    defaultContext: {
+      config: {
+        basename: fastify.prefix || uiOptions.basename,
+        serverUrl: `${fastify.prefix}${uiOptions.serverUrl}`
+      }
+    },
     root
   })
 
@@ -37,8 +41,7 @@ async function ui(fastify, options) {
     prefix: uiOptions.basename
   })
 
-  // todo: how to do this only for the basename instead of the whole app?
   fastify.setNotFoundHandler((_, reply) => reply.view('index.ejs'))
 }
 
-module.exports = fp(ui)
+module.exports = ui
