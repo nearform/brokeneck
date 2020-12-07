@@ -13,7 +13,8 @@
     "test": "tap",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "prepare": "node -e \"fs.existsSync('.env') ? '' : fs.writeFileSync('.env', fs.readFileSync('.env.sample'))\""
   },
   "dependencies": {
     "@azure/graph": "^5.0.1",

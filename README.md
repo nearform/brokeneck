@@ -19,10 +19,11 @@ You'll need yarn and lerna installed globally:
 
 The easiest way to try this out is to run the standalone server via `brokeneck-fastify`:
 
+> You'll need yarn and lerna installed as global packages: `npm i -g yarn lerna`, as well as [node.js](https://nodejs.org/en/download) of course
+
 - `lerna bootstrap`
 - `lerna run build`
 - `cd packages/brokeneck-fastify`
-- `cp .env.sample .env`
 - configure `.env` based on the authentication provider you want to use
 - `yarn start`
 - browse to [`http://localhost:5001`](http://localhost:5001)
