@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.3](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-fastify@1.0.0-spinal.2...@nearform/brokeneck-fastify@1.0.0-spinal.3) (2020-12-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fastify-cors to v5 ([#9](https://github.com/nearform/brokeneck/issues/9)) ([dc3513b](https://github.com/nearform/brokeneck/commit/dc3513b329bc832e7826af8672d4a39e9c36d177))
+
+
+
+
+
 # [1.0.0-spinal.2](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-fastify@1.0.0-spinal.1...@nearform/brokeneck-fastify@1.0.0-spinal.2) (2020-12-05)
 
 **Note:** Version bump only for package @nearform/brokeneck-fastify
