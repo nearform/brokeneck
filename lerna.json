@@ -7,9 +7,6 @@
       "allowBranch": "master",
       "message": "chore(release): 🦢",
       "conventionalCommits": true
-    },
-    "publish": {
-      "registry": "https://npm.pkg.github.com/nearform"
     }
   }
 }
