@@ -42,7 +42,7 @@ This will run:
 
 ## Providers
 
-Each provider requires its own configuration, as specified in `breakeck-fastify`'s `.env.sample` file.
+Each provider requires its own configuration, as specified in `brokeneck-fastify`'s `.env.sample` file.
 
 Such configuration can be obtained when configuring the respective service using the provider's usual tooling.
 
