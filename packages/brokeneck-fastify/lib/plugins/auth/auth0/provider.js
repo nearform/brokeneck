@@ -11,8 +11,19 @@ function Auth0Provider(options, logger) {
 
   return {
     name: 'auth0',
-    async listUsers() {
-      const users = await auth0.getUsers({})
+    async listUsers({ pageNumber, pageSize }) {
+      const page = pageNumber ? Number(pageNumber) - 1 : 0
+
+      const data = await auth0.getUsers({
+        page: page,
+        per_page: pageSize,
+        include_totals: true
+      })
+
+      const users = {
+        data: data.users,
+        nextPage: data.length === data.limit ? (page + 2).toString() : ''
+      }
 
       logger.debug({ users }, 'loaded users')
 

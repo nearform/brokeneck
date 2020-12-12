@@ -3,8 +3,8 @@
 module.exports = function makeResolvers(fastify) {
   return {
     Query: {
-      users() {
-        return fastify.provider.listUsers()
+      users(_, { pageNumber, pageSize, search }) {
+        return fastify.provider.listUsers({ pageNumber, pageSize, search })
       },
       user(_, { id }) {
         return fastify.provider.getUser(id)

@@ -11,14 +11,16 @@ function CognitoProvider(options, logger) {
 
   return {
     name: 'cognito',
-    async listUsers() {
+    async listUsers({ pageNumber, pageSize }) {
       const result = await cognito
         .listUsers({
-          UserPoolId
+          UserPoolId,
+          Limit: pageSize,
+          PaginationToken: pageNumber || undefined
         })
         .promise()
 
-      const users = result.Users
+      const users = { data: result.Users, nextPage: result.PaginationToken }
 
       logger.debug({ users })
 
