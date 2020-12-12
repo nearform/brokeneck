@@ -24,8 +24,11 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "graphql-hooks": "^5.0.0",
+    "lodash.debounce": "^4.0.8",
     "lodash.startcase": "^4.4.0",
+    "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {

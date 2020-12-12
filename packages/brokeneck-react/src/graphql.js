@@ -26,9 +26,13 @@ query LoadUser($id: String!) {
 }
 `
 
-export const LOAD_USERS = fields => `{ 
-  users { 
-    ${fields.join('\n')} 
+export const LOAD_USERS = fields => `
+query LoadUsers($pageNumber: String, $pageSize: Int, $search: String) { 
+  users(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) { 
+    data {
+      ${fields.join('\n')} 
+    }
+    nextPage
   } 
 }`
 

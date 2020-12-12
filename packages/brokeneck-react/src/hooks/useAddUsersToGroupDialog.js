@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useQuery, useMutation } from 'graphql-hooks'
-import { CircularProgress, MenuItem } from '@material-ui/core'
+import { CircularProgress, TextField } from '@material-ui/core'
 import startCase from 'lodash.startcase'
+import debounce from 'lodash.debounce'
 
 import { ADD_USER_TO_GROUP, LOAD_USERS } from '../graphql'
 import GraphQLError from '../GraphQLError'
@@ -11,7 +12,19 @@ import useFields from './useFields'
 
 export default function useAddUsersToGroupDialog(groupId, onConfirm) {
   const userFields = useFields('User')
-  const { data, loading } = useQuery(LOAD_USERS(userFields.all))
+  const [search, setSearch] = useState()
+
+  const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
+    setSearch
+  ])
+
+  useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch])
+
+  const { data, loading } = useQuery(LOAD_USERS(userFields.all), {
+    variables: {
+      search
+    }
+  })
   const [addUserToGroup] = useMutation(ADD_USER_TO_GROUP)
 
   const handleConfirm = async input => {
@@ -29,6 +42,10 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
     onConfirm()
   }
 
+  function handleAutocompleteChange(e, search) {
+    debouncedSetSearch(search)
+  }
+
   return useDialog({
     onConfirm: handleConfirm,
     title: `Add users to group ${groupId}`,
@@ -38,17 +55,39 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
       {
         name: userFields.id,
         label: startCase(userFields.description),
-        select: true,
+        autocomplete: true,
+        options: data?.users.data || [],
+        getOptionLabel: option => option[userFields.description],
+        loading,
+        renderInput: function Input(params) {
+          // eslint-disable-next-line no-unused-vars
+          const { initialValue, ...metadata } = userFields.metadata[
+            userFields.id
+          ]
+
+          return (
+            <TextField
+              {...params}
+              {...metadata}
+              label={startCase(userFields.description)}
+              variant="outlined"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {loading ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                )
+              }}
+            />
+          )
+        },
         ...userFields.metadata[userFields.id],
-        children: loading ? (
-          <CircularProgress />
-        ) : (
-          data.users.map(user => (
-            <MenuItem key={user[userFields.id]} value={user[userFields.id]}>
-              {user[userFields.description]}
-            </MenuItem>
-          ))
-        )
+        getValueFromObject: o => o[userFields.id],
+        onInputChange: handleAutocompleteChange
       }
     ]
   })

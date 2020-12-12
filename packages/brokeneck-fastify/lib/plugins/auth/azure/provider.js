@@ -2,13 +2,25 @@
 
 const { GraphRbacManagementClient } = require('@azure/graph')
 
+const { listNextOperationSpec, listOperationSpec } = require('./operations')
+
 function AzureProvider(options, credentials, logger) {
   const azure = new GraphRbacManagementClient(credentials, options.tenantId)
 
   return {
     name: 'azure',
-    async listUsers() {
-      const users = await azure.users.list()
+    async listUsers({ pageNumber, pageSize, search }) {
+      const result = await (pageNumber
+        ? azure.sendOperationRequest(
+            { nextLink: pageNumber, options: { top: pageSize, search } },
+            listNextOperationSpec
+          )
+        : azure.sendOperationRequest(
+            { options: { top: pageSize, search } },
+            listOperationSpec
+          ))
+
+      const users = { data: result, nextPage: result.odatanextLink }
 
       logger.debug({ users }, 'loaded users')
 
