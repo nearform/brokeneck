@@ -10,15 +10,17 @@ function AzureProvider(options, credentials, logger) {
   return {
     name: 'azure',
     async listUsers({ pageNumber, pageSize, search }) {
+      const options = { top: pageSize, search: `"displayName:${search}"` }
+
       const result = await (pageNumber
         ? azure.sendOperationRequest(
-            { nextLink: pageNumber, options: { top: pageSize, search } },
+            {
+              nextLink: pageNumber,
+              options
+            },
             listNextOperationSpec
           )
-        : azure.sendOperationRequest(
-            { options: { top: pageSize, search } },
-            listOperationSpec
-          ))
+        : azure.sendOperationRequest({ options }, listOperationSpec))
 
       const users = { data: result, nextPage: result.odatanextLink }
 
