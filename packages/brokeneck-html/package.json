@@ -13,7 +13,7 @@
     "dev": "yarn start",
     "start": "cross-env PORT=3001 react-scripts start",
     "clean": "rimraf build",
-    "prepare": "node -e \"fs.existsSync('.env') ? '' : fs.writeFileSync('.env', fs.readFileSync('.env.sample'))\" && yarn build",
+    "prepare": "yarn build",
     "prebuild": "yarn clean",
     "build": "cross-env INLINE_RUNTIME_CHUNK=false react-scripts build",
     "test": "react-scripts test",
