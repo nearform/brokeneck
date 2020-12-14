@@ -1,7 +1,5 @@
 'use strict'
 
-const fp = require('fastify-plugin')
-
 const envConfig = require('./envConfig')
 const pluginConfig = require('./pluginConfig')
 
@@ -16,4 +14,4 @@ async function plugin(fastify, pluginOptions) {
   await fastify.register(require('./plugins/auth'), options)
 }
 
-module.exports = fp(plugin)
+module.exports = plugin
