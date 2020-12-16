@@ -23,7 +23,14 @@ tap.test('resolvers', async t => {
 
       fastify.provider.listUsers = sinon.stub().resolves(users)
 
-      const result = await resolvers.Query.users()
+      const args = {
+        pageNumber: 1,
+        pageSize: 2,
+        search: 'search'
+      }
+      const result = await resolvers.Query.users(null, args)
+
+      sinon.assert.calledWith(fastify.provider.listUsers, args)
 
       t.equal(result, users)
     })
