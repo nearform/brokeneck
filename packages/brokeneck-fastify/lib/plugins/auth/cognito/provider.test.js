@@ -30,13 +30,42 @@ tap.test('cognito provider', async t => {
     t.equal(provider.name, 'cognito')
   })
 
-  t.test('returns users', async t => {
-    const users = faker.random.arrayElements()
-    awsCognito.listUsers = stubAws(p => p.resolves({ Users: users }))
+  t.test('users', async t => {
+    t.test('without page', async t => {
+      const users = faker.random.arrayElements()
+      awsCognito.listUsers = stubAws(p => p.resolves({ Users: users }))
 
-    const result = await provider.listUsers()
+      const result = await provider.listUsers({
+        pageSize: 2,
+        search: 'search'
+      })
 
-    t.equal(result, users)
+      t.deepEqual(result, { data: users, nextPage: undefined })
+    })
+
+    t.test('without search', async t => {
+      const users = faker.random.arrayElements()
+      awsCognito.listUsers = stubAws(p => p.resolves({ Users: users }))
+
+      const result = await provider.listUsers({
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: users, nextPage: undefined })
+    })
+
+    t.test('returns users', async t => {
+      const users = faker.random.arrayElements()
+      awsCognito.listUsers = stubAws(p => p.resolves({ Users: users }))
+
+      const result = await provider.listUsers({
+        pageNumber: 1,
+        pageSize: 2,
+        search: 'search'
+      })
+
+      t.deepEqual(result, { data: users, nextPage: undefined })
+    })
   })
 
   t.test('returns user', async t => {
