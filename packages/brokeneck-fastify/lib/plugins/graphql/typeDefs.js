@@ -39,8 +39,13 @@ const typeDefs = gql`
     id: String!
   }
 
+  type PaginatedUsers {
+    data: [User]!
+    nextPage: String
+  }
+
   type Query {
-    users: [User]
+    users(pageNumber: String, pageSize: Int, search: String): PaginatedUsers
     user(id: String!): User
     groups: [Group]
     group(id: String!): Group

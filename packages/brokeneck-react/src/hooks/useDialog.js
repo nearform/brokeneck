@@ -28,11 +28,12 @@ export default function useDialog({
     onClose()
   }
 
-  const handleChange = e => {
+  const handleChange = field => (e, value) => {
     return setFormValues(s => ({
       ...s,
-      [e.target.name]:
-        e.target[e.target.type === 'checkbox' ? 'checked' : 'value']
+      [field.name]: field.getValueFromObject
+        ? field.getValueFromObject(value)
+        : e.target[e.target.type === 'checkbox' ? 'checked' : 'value']
     }))
   }
 
@@ -64,7 +65,7 @@ export default function useDialog({
             <FormField
               key={field.name}
               field={field}
-              handleChange={handleChange}
+              handleChange={handleChange(field)}
               formValues={formValues}
             />
           ))}
