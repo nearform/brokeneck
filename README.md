@@ -3,7 +3,6 @@
 [![ci](https://github.com/nearform/brokeneck/workflows/ci/badge.svg)](https://github.com/nearform/brokeneck/actions?query=workflow%3Aci)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
-
 This monorepo contains packages and applications which provide a way to manage users and groups in:
 
 - Auth0
@@ -14,12 +13,16 @@ This monorepo contains packages and applications which provide a way to manage u
 
 ## Getting started
 
+You'll need yarn and lerna installed globally:
+
+- `npm i -g yarn lerna`
+
 The easiest way to try this out is to run the standalone server via `brokeneck-fastify`:
 
 - `lerna bootstrap`
 - `lerna run build`
 - `cd packages/brokeneck-fastify`
-- `cp .env.sample .env`. 
+- `cp .env.sample .env`
 - configure `.env` based on the authentication provider you want to use
 - `yarn start`
 - browse to [`http://localhost:5001`](http://localhost:5001)
@@ -54,10 +57,9 @@ The configured client should be authorized to access the built-in `Auth0 Managem
 
 ### AWS Cognito
 
-When using AWS cognito you must make sure that you have IAM credentials configured for the SDK in the machine running the application, for instance in the `.aws/credentials` file. 
+When using AWS cognito you must make sure that you have IAM credentials configured for the SDK in the machine running the application, for instance in the `.aws/credentials` file.
 
 The configured IAM user must have access to Cognito. The simplest way to do this is to add the `AmazonCognitoPowerUser` _AWS managed policy_ to the user.
-
 
 ### Azure AD
 
@@ -67,7 +69,7 @@ These basically include all the combinations of the permissions:
 
 - API: `Azure Active Directory Graph` and `Microsoft Graph`
 - Objects: `Directory`, `Users`, `Groups` and `GroupMember`
-- Permissions: `Read.All`, `ReadWrite.All`, `Create`, 
+- Permissions: `Read.All`, `ReadWrite.All`, `Create`,
 
 Not all combinations exists, but you should enabled them when they do.
 

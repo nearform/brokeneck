@@ -1,21 +1,25 @@
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   Box,
   Button,
   CircularProgress,
   IconButton,
+  InputAdornment,
   Link,
+  makeStyles,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography
 } from '@material-ui/core'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
+import debounce from 'lodash.debounce'
 
 import useCreateUserDialog from '../hooks/useCreateUserDialog'
 import useFields from '../hooks/useFields'
@@ -24,26 +28,54 @@ import { LOAD_USERS } from '../graphql'
 
 import Square from './Square'
 
+const useStyles = makeStyles(theme => ({
+  spacing: {
+    display: 'flex',
+    alignItems: 'center',
+    '& > * + *': {
+      marginLeft: theme.spacing(2)
+    }
+  },
+  right: {
+    marginLeft: 'auto'
+  }
+}))
+
 export default function Users() {
   const match = useRouteMatch()
   const userFields = useFields('User')
+  const [search, setSearch] = useState({ immediate: '', debounced: '' })
+  const classes = useStyles()
+
+  const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
+    setSearch
+  ])
+
+  useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch])
 
   const {
     pageSize,
     surrogatePageNumber,
     useUpdateSurrogatePageNumber,
     useTablePagination
-  } = useSurrogatePagination({ pageSizeOptions: [2, 3, 4] })
+  } = useSurrogatePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
 
   const { data, loading, refetch: loadUsers } = useQuery(
     LOAD_USERS(userFields.all),
     {
       variables: {
         pageNumber: surrogatePageNumber,
-        pageSize
+        pageSize,
+        search: search.debounced
       }
     }
   )
+
+  const handleSearchChange = search => {
+    setSearch(s => ({ ...s, immediate: search }))
+    debouncedSetSearch(s => ({ ...s, debounced: search }))
+  }
+
   const [dialog, openDialog] = useCreateUserDialog(loadUsers)
 
   useUpdateSurrogatePageNumber(data?.users.nextPage)
@@ -54,22 +86,39 @@ export default function Users() {
     <>
       {dialog}
       <Square mb={3}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="space-between"
-          mb={3}
-        >
+        <Box className={classes.spacing} mb={3}>
           <Button variant="contained" color="primary" onClick={openDialog}>
             Create User
           </Button>
-          <IconButton onClick={loadUsers} title="reload users">
-            <Typography>
-              <span role="img" aria-label="reload users">
-                🔃
-              </span>
-            </Typography>
-          </IconButton>
+          <TextField
+            label="Search"
+            variant="outlined"
+            size="small"
+            value={search.immediate}
+            onChange={e => handleSearchChange(e.target.value)}
+            InputProps={{
+              endAdornment: search.immediate && (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => handleSearchChange('')}>
+                    <Typography>
+                      <span role="img" aria-label="clear">
+                        ❌
+                      </span>
+                    </Typography>
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+          <div className={classes.right}>
+            <IconButton onClick={loadUsers} title="reload users">
+              <Typography>
+                <span role="img" aria-label="reload users">
+                  🔃
+                </span>
+              </Typography>
+            </IconButton>
+          </div>
         </Box>
         <TableContainer>
           <Table>
