@@ -9,8 +9,8 @@ module.exports = function makeResolvers(fastify) {
       user(_, { id }) {
         return fastify.provider.getUser(id)
       },
-      groups() {
-        return fastify.provider.listGroups()
+      groups(_, { pageNumber, pageSize }) {
+        return fastify.provider.listGroups({ pageNumber, pageSize })
       },
       group(_, { id }) {
         return fastify.provider.getGroup(id)
