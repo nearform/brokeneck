@@ -36,8 +36,6 @@ tap.test('auth0 provider', async t => {
         search: 'search'
       })
 
-      console.log(result)
-
       t.deepEqual(result, { data: users, nextPage: 2 })
     })
 
@@ -49,8 +47,6 @@ tap.test('auth0 provider', async t => {
         pageSize: 2
       })
 
-      console.log(result)
-
       t.deepEqual(result, { data: users, nextPage: 2 })
     })
 
@@ -61,8 +57,6 @@ tap.test('auth0 provider', async t => {
       const result = await provider.listUsers({
         pageSize: 2
       })
-
-      console.log(result)
 
       t.deepEqual(result, { data: users, nextPage: '' })
     })
@@ -76,8 +70,6 @@ tap.test('auth0 provider', async t => {
         pageSize: 2,
         search: 'search'
       })
-
-      console.log(result)
 
       t.deepEqual(result, { data: users, nextPage: 2 })
     })
@@ -99,7 +91,7 @@ tap.test('auth0 provider', async t => {
   t.test('groups', async t => {
     t.test('no page', async t => {
       const groups = faker.random.arrayElements()
-      console.log(groups, 'groups fake', groups.length)
+
       auth0.getRoles = sinon
         .stub()
         .resolves({ roles: groups, limit: groups.length })
@@ -107,8 +99,6 @@ tap.test('auth0 provider', async t => {
       const result = await provider.listGroups({
         pageSize: 2
       })
-
-      console.log(result)
 
       t.deepEqual(result, { data: groups, nextPage: 2 })
     })
@@ -124,8 +114,6 @@ tap.test('auth0 provider', async t => {
         pageSize: 2
       })
 
-      console.log(result)
-
       t.deepEqual(result, { data: groups, nextPage: '' })
     })
 
@@ -139,8 +127,6 @@ tap.test('auth0 provider', async t => {
         pageNumber: 1,
         pageSize: 2
       })
-
-      console.log(result)
 
       t.deepEqual(result, { data: groups, nextPage: 2 })
     })
