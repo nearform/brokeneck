@@ -9,14 +9,14 @@ query LoadGroup($id: String!) {
 }
 `
 
-export const LOAD_GROUPS = fields => `
-query LoadGroups($pageNumber: String, $pageSize: Int) {
-  groups(pageNumber: $pageNumber, pageSize: $pageSize) {
+export const LOAD_GROUPS = fields => ` 
+query LoadGroups($pageNumber: String, $pageSize: Int, $search: String) { 
+  groups(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) { 
     data {
-      ${fields.join('\n')}
+      ${fields.join('\n')} 
     }
     nextPage
-  }
+  } 
 }`
 
 export const LOAD_USER = (fields, groupFields) => `

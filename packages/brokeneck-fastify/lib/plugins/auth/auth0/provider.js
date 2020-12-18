@@ -37,13 +37,14 @@ function Auth0Provider(options, logger) {
 
       return user
     },
-    async listGroups({ pageNumber, pageSize }) {
+    async listGroups({ pageNumber, pageSize, search }) {
       const page = pageNumber ? Number(pageNumber) - 1 : 0
 
       const data = await auth0.getRoles({
         page: page,
         per_page: pageSize,
-        include_totals: true
+        include_totals: true,
+        name_filter: search || undefined
       })
 
       const groups = {
