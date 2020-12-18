@@ -52,11 +52,7 @@ const typeDefs = gql`
   type Query {
     users(pageNumber: String, pageSize: Int, search: String): PaginatedUsers
     user(id: String!): User
-<<<<<<< HEAD
     groups(pageNumber: String, pageSize: Int, search: String): PaginatedGroups
-=======
-    groups(pageNumber: String, pageSize: Int): PaginatedGroups
->>>>>>> master
     group(id: String!): Group
     provider: String!
   }
