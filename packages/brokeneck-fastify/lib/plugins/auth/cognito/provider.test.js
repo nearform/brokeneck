@@ -84,13 +84,29 @@ tap.test('cognito provider', async t => {
     )
   })
 
-  t.test('returns groups', async t => {
-    const groups = faker.random.arrayElements()
-    awsCognito.listGroups = stubAws(p => p.resolves({ Groups: groups }))
+  t.test('groups', async t => {
+    t.test('without page', async t => {
+      const groups = faker.random.arrayElements()
+      awsCognito.listGroups = stubAws(p => p.resolves({ Groups: groups }))
 
-    const result = await provider.listGroups()
+      const result = await provider.listGroups({
+        pageSize: 2
+      })
 
-    t.equal(result, groups)
+      t.deepEqual(result, { data: groups, nextPage: undefined })
+    })
+
+    t.test('returns users', async t => {
+      const groups = faker.random.arrayElements()
+      awsCognito.listGroups = stubAws(p => p.resolves({ Groups: groups }))
+
+      const result = await provider.listGroups({
+        pageNumber: 1,
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: groups, nextPage: undefined })
+    })
   })
 
   t.test('returns group', async t => {

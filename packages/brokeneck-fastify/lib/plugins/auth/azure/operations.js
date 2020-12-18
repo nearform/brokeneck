@@ -7,7 +7,7 @@ const Parameters = require('./parameters')
 
 const serializer = new Serializer(Mappers)
 
-const listOperationSpec = {
+const listUsersOperationSpec = {
   httpMethod: 'GET',
   path: '{tenantID}/users',
   urlParameters: [Parameters.tenantID],
@@ -29,7 +29,7 @@ const listOperationSpec = {
   serializer
 }
 
-const listNextOperationSpec = {
+const listUsersNextOperationSpec = {
   httpMethod: 'GET',
   path: '{tenantID}/{nextLink}',
   urlParameters: [Parameters.nextLink, Parameters.tenantID],
@@ -46,7 +46,48 @@ const listNextOperationSpec = {
   serializer
 }
 
+const listGroupsOperationSpec = {
+  httpMethod: 'GET',
+  path: '{tenantID}/groups',
+  urlParameters: [Parameters.tenantID],
+  queryParameters: [
+    Parameters.filter,
+    Parameters.top,
+    Parameters.apiVersion,
+    Parameters.search
+  ],
+  headerParameters: [Parameters.acceptLanguage],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.GraphError
+    }
+  },
+  serializer
+}
+
+const listGroupsNextOperationSpec = {
+  httpMethod: 'GET',
+  path: '{tenantID}/{nextLink}',
+  urlParameters: [Parameters.nextLink, Parameters.tenantID],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
+  headerParameters: [Parameters.acceptLanguage],
+  responses: {
+    200: {
+      bodyMapper: Mappers.GroupListResult
+    },
+    default: {
+      bodyMapper: Mappers.GraphError
+    }
+  },
+  serializer
+}
+
 module.exports = {
-  listOperationSpec,
-  listNextOperationSpec
+  listUsersOperationSpec,
+  listUsersNextOperationSpec,
+  listGroupsOperationSpec,
+  listGroupsNextOperationSpec
 }

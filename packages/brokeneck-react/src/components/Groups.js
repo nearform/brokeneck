@@ -82,8 +82,6 @@ export default function Groups() {
 
   const tablePagination = useTablePagination(data?.groups)
 
-  console.log(search)
-
   return (
     <>
       {dialog}

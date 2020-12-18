@@ -73,13 +73,29 @@ tap.test('azure provider', async t => {
     sinon.assert.calledWith(azure.users.get, id)
   })
 
-  t.test('returns groups', async t => {
-    const groups = faker.random.arrayElements()
-    azure.groups.list = sinon.stub().resolves(groups)
+  t.test('groups', async t => {
+    t.test('without page', async t => {
+      const groups = faker.random.arrayElements()
+      azure.sendOperationRequest = sinon.stub().resolves(groups)
 
-    const result = await provider.listGroups()
+      const result = await provider.listGroups({
+        pageSize: 2
+      })
 
-    t.equal(result, groups)
+      t.deepEqual(result, { data: groups, nextPage: undefined })
+    })
+
+    t.test('returns groups', async t => {
+      const groups = faker.random.arrayElements()
+      azure.sendOperationRequest = sinon.stub().resolves(groups)
+
+      const result = await provider.listGroups({
+        pageNumber: 1,
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: groups, nextPage: undefined })
+    })
   })
 
   t.test('returns group', async t => {

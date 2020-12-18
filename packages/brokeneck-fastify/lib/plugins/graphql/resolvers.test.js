@@ -53,7 +53,13 @@ tap.test('resolvers', async t => {
 
       fastify.provider.listGroups = sinon.stub().resolves(groups)
 
-      const result = await resolvers.Query.groups()
+      const args = {
+        pageNumber: 1,
+        pageSize: 2
+      }
+      const result = await resolvers.Query.groups(null, args)
+
+      sinon.assert.calledWith(fastify.provider.listGroups, args)
 
       t.equal(result, groups)
     })

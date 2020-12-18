@@ -43,7 +43,7 @@ export default function useAddUserToGroupDialog(userId, onConfirm) {
         children: loading ? (
           <CircularProgress />
         ) : (
-          data.groups.map(group => (
+          data.groups.data.map(group => (
             <MenuItem key={group[groupFields.id]} value={group[groupFields.id]}>
               {group[groupFields.description]}
             </MenuItem>

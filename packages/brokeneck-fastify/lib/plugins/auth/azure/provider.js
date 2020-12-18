@@ -2,7 +2,12 @@
 
 const { GraphRbacManagementClient } = require('@azure/graph')
 
-const { listNextOperationSpec, listOperationSpec } = require('./operations')
+const {
+  listUsersNextOperationSpec,
+  listUsersOperationSpec,
+  listGroupsOperationSpec,
+  listGroupsNextOperationSpec
+} = require('./operations')
 
 function AzureProvider(options, credentials, logger) {
   const azure = new GraphRbacManagementClient(credentials, options.tenantId)
@@ -18,9 +23,9 @@ function AzureProvider(options, credentials, logger) {
               nextLink: pageNumber,
               options
             },
-            listNextOperationSpec
+            listUsersNextOperationSpec
           )
-        : azure.sendOperationRequest({ options }, listOperationSpec))
+        : azure.sendOperationRequest({ options }, listUsersOperationSpec))
 
       const users = { data: result, nextPage: result.odatanextLink }
 
@@ -35,8 +40,20 @@ function AzureProvider(options, credentials, logger) {
 
       return user
     },
-    async listGroups() {
-      const groups = await azure.groups.list()
+    async listGroups({ pageNumber, pageSize }) {
+      const options = { top: pageSize }
+
+      const result = await (pageNumber
+        ? azure.sendOperationRequest(
+            {
+              nextLink: pageNumber,
+              options
+            },
+            listGroupsNextOperationSpec
+          )
+        : azure.sendOperationRequest({ options }, listGroupsOperationSpec))
+
+      const groups = { data: result, nextPage: result.odatanextLink }
 
       logger.debug({ groups }, 'loaded groups')
 
