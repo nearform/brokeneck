@@ -105,13 +105,13 @@ tap.test('auth0 provider', async t => {
 
     t.test('no search', async t => {
       const groups = faker.random.arrayElements()
-      auth0.getGroups = sinon.stub().resolves({ groups })
+      auth0.getRoles = sinon.stub().resolves({ roles: groups })
 
       const result = await provider.listGroups({
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: 2 })
+      t.deepEqual(result, { data: groups, nextPage: '' })
     })
 
     t.test('pagination', async t => {
