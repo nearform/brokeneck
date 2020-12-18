@@ -37,9 +37,11 @@ function CognitoProvider(options, logger) {
 
       return user
     },
-    async listGroups() {
+    async listGroups({ pageNumber, pageSize, search }) {
       const result = await cognito
         .listGroups({
+          Limit: pageSize,
+          // NextToken:
           UserPoolId
         })
         .promise()

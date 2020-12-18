@@ -44,10 +44,15 @@ const typeDefs = gql`
     nextPage: String
   }
 
+  type PaginatedGroups {
+    data: [Group]!
+    nextPage: String
+  }
+
   type Query {
     users(pageNumber: String, pageSize: Int, search: String): PaginatedUsers
     user(id: String!): User
-    groups: [Group]
+    groups(pageNumber: String, pageSize: Int, search: String): PaginatedGroups
     group(id: String!): Group
     provider: String!
   }

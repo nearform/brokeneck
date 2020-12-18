@@ -36,8 +36,6 @@ tap.test('auth0 provider', async t => {
         search: 'search'
       })
 
-      console.log(result)
-
       t.deepEqual(result, { data: users, nextPage: 2 })
     })
 
@@ -49,8 +47,6 @@ tap.test('auth0 provider', async t => {
         pageSize: 2
       })
 
-      console.log(result)
-
       t.deepEqual(result, { data: users, nextPage: 2 })
     })
 
@@ -61,8 +57,6 @@ tap.test('auth0 provider', async t => {
       const result = await provider.listUsers({
         pageSize: 2
       })
-
-      console.log(result)
 
       t.deepEqual(result, { data: users, nextPage: '' })
     })
@@ -76,8 +70,6 @@ tap.test('auth0 provider', async t => {
         pageSize: 2,
         search: 'search'
       })
-
-      console.log(result)
 
       t.deepEqual(result, { data: users, nextPage: 2 })
     })
@@ -96,13 +88,59 @@ tap.test('auth0 provider', async t => {
     sinon.assert.calledWith(auth0.getUser, sinon.match({ id }))
   })
 
-  t.test('returns groups', async t => {
-    const groups = faker.random.arrayElements()
-    auth0.getRoles = sinon.stub().resolves(groups)
+  t.test('groups', async t => {
+    t.test('no page', async t => {
+      const groups = faker.random.arrayElements()
 
-    const result = await provider.listGroups()
+      auth0.getRoles = sinon
+        .stub()
+        .resolves({ roles: groups, limit: groups.length })
 
-    t.equal(result, groups)
+      const result = await provider.listGroups({
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: groups, nextPage: 2 })
+    })
+
+    t.test('no search', async t => {
+      const groups = faker.random.arrayElements()
+      auth0.getGroups = sinon.stub().resolves({ groups })
+
+      const result = await provider.listGroups({
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: groups, nextPage: 2 })
+    })
+
+    t.test('pagination', async t => {
+      const groups = faker.random.arrayElements()
+      auth0.getRoles = sinon.stub().resolves({
+        roles: groups,
+        length: groups.length
+      })
+
+      const result = await provider.listGroups({
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: groups, nextPage: '' })
+    })
+
+    t.test('page 1', async t => {
+      const groups = faker.random.arrayElements()
+      auth0.getRoles = sinon
+        .stub()
+        .resolves({ roles: groups, limit: groups.length })
+
+      const result = await provider.listGroups({
+        pageNumber: 1,
+        pageSize: 2
+      })
+
+      t.deepEqual(result, { data: groups, nextPage: 2 })
+    })
   })
 
   t.test('returns group', async t => {

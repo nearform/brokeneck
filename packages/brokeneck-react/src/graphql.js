@@ -9,9 +9,13 @@ query LoadGroup($id: String!) {
 }
 `
 
-export const LOAD_GROUPS = fields => `{ 
-  groups { 
-    ${fields.join('\n')} 
+export const LOAD_GROUPS = fields => ` 
+query LoadGroups($pageNumber: String, $pageSize: Int, $search: String) { 
+  groups(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) { 
+    data {
+      ${fields.join('\n')} 
+    }
+    nextPage
   } 
 }`
 
