@@ -37,10 +37,21 @@ function Auth0Provider(options, logger) {
 
       return user
     },
-    async listGroups() {
-      const groups = await auth0.getRoles()
+    async listGroups({ pageNumber, pageSize }) {
+      const page = pageNumber ? Number(pageNumber) - 1 : 0
 
-      logger.debug({ groups })
+      const data = await auth0.getRoles({
+        page: page,
+        per_page: pageSize,
+        include_totals: true
+      })
+
+      const groups = {
+        data: data.roles,
+        nextPage: data.roles.length === data.limit ? (page + 2).toString() : ''
+      }
+
+      logger.debug({ groups }, 'loaded groups')
 
       return groups
     },

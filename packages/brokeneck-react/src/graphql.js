@@ -1,39 +1,43 @@
 export const LOAD_GROUP = (fields, userFields) => `
-query LoadGroup($id: String!) { 
-  group(id: $id) { 
-    ${fields.join('\n')} 
-    users { 
+query LoadGroup($id: String!) {
+  group(id: $id) {
+    ${fields.join('\n')}
+    users {
       ${userFields.join('\n')}
-    } 
-  } 
+    }
+  }
 }
 `
 
-export const LOAD_GROUPS = fields => `{ 
-  groups { 
-    ${fields.join('\n')} 
-  } 
+export const LOAD_GROUPS = fields => `
+query LoadGroups($pageNumber: String, $pageSize: Int) {
+  groups(pageNumber: $pageNumber, pageSize: $pageSize) {
+    data {
+      ${fields.join('\n')}
+    }
+    nextPage
+  }
 }`
 
 export const LOAD_USER = (fields, groupFields) => `
-query LoadUser($id: String!) { 
-  user(id: $id) { 
-    ${fields.join('\n')} 
-    groups { 
-      ${groupFields.join('\n')} 
-    }  
-  } 
+query LoadUser($id: String!) {
+  user(id: $id) {
+    ${fields.join('\n')}
+    groups {
+      ${groupFields.join('\n')}
+    }
+  }
 }
 `
 
 export const LOAD_USERS = fields => `
-query LoadUsers($pageNumber: String, $pageSize: Int, $search: String) { 
-  users(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) { 
+query LoadUsers($pageNumber: String, $pageSize: Int, $search: String) {
+  users(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) {
     data {
-      ${fields.join('\n')} 
+      ${fields.join('\n')}
     }
     nextPage
-  } 
+  }
 }`
 
 export const ADD_USER_TO_GROUP = `
@@ -63,7 +67,7 @@ mutation DeleteUser($input: DeleteUserInput!) {
 export const CREATE_GROUP = fields => `
 mutation CreateGroup($input: GroupInput!) {
   createGroup(input: $input) {
-    ${fields.join('\n')} 
+    ${fields.join('\n')}
   }
 }
 `
@@ -71,7 +75,7 @@ mutation CreateGroup($input: GroupInput!) {
 export const CREATE_USER = fields => `
 mutation CreateUser($input: UserInput!) {
   createUser(input: $input) {
-    ${fields.join('\n')} 
+    ${fields.join('\n')}
   }
 }
 `
