@@ -86,8 +86,20 @@ function Auth0Provider(options, logger) {
 
       return groups
     },
-    async listUsersForGroup(group) {
-      const users = await auth0.getUsersInRole({ id: group.id })
+    async listUsersForGroup({ group, pageSize, pageNumber }) {
+      const page = pageNumber ? Number(pageNumber) - 1 : 0
+
+      const data = await auth0.getUsersInRole({
+        id: group.id,
+        page,
+        per_page: pageSize,
+        include_totals: true
+      })
+
+      const users = {
+        data: data.users,
+        nextPage: data.users.length === data.limit ? (page + 2).toString() : ''
+      }
 
       logger.debug({ users })
 
