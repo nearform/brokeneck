@@ -1,9 +1,12 @@
 export const LOAD_GROUP = (fields, userFields) => `
-query LoadGroup($id: String!) {
-  group(id: $id) {
+query LoadGroup($id: String!, $pageNumber: String, $pageSize: Int) {
+  group(id: $id, pageNumberUsers: $pageNumber, pageSizeUsers: $pageSize) {
     ${fields.join('\n')}
     users {
-      ${userFields.join('\n')}
+      data {
+        ${userFields.join('\n')}
+      }
+      nextPage
     }
   }
 }
