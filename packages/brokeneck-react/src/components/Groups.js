@@ -1,8 +1,10 @@
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   Box,
   Button,
   CircularProgress,
   IconButton,
+  InputAdornment,
   Link,
   makeStyles,
   Table,
@@ -11,17 +13,18 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography
 } from '@material-ui/core'
-import React from 'react'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
+import debounce from 'lodash.debounce'
 
 import useCreateGroupDialog from '../hooks/useCreateGroupDialog'
-import { LOAD_GROUPS } from '../graphql'
 import useFields from '../hooks/useFields'
 import useSurrogatePagination from '../hooks/useSurrogatePagination'
+import { LOAD_GROUPS } from '../graphql'
 
 import Square from './Square'
 
@@ -41,7 +44,14 @@ const useStyles = makeStyles(theme => ({
 export default function Groups() {
   const match = useRouteMatch()
   const groupFields = useFields('Group')
+  const [search, setSearch] = useState({ immediate: '', debounced: '' })
   const classes = useStyles()
+
+  const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
+    setSearch
+  ])
+
+  useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch])
 
   const {
     pageSize,
@@ -55,10 +65,16 @@ export default function Groups() {
     {
       variables: {
         pageNumber: surrogatePageNumber,
-        pageSize
+        pageSize,
+        search: search.debounced
       }
     }
   )
+
+  const handleSearchChange = search => {
+    setSearch(s => ({ ...s, immediate: search }))
+    debouncedSetSearch(s => ({ ...s, debounced: search }))
+  }
 
   const [dialog, openDialog] = useCreateGroupDialog(loadGroups)
 
@@ -74,6 +90,26 @@ export default function Groups() {
           <Button variant="contained" color="primary" onClick={openDialog}>
             Create Group
           </Button>
+          <TextField
+            label="Search"
+            variant="outlined"
+            size="small"
+            value={search.immediate}
+            onChange={e => handleSearchChange(e.target.value)}
+            InputProps={{
+              endAdornment: search.immediate && (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => handleSearchChange('')}>
+                    <Typography>
+                      <span role="img" aria-label="clear">
+                        ❌
+                      </span>
+                    </Typography>
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
           <div className={classes.right}>
             <IconButton onClick={loadGroups} title="reload groups">
               <Typography>

@@ -55,7 +55,8 @@ tap.test('resolvers', async t => {
 
       const args = {
         pageNumber: 1,
-        pageSize: 2
+        pageSize: 2,
+        search: 'search'
       }
       const result = await resolvers.Query.groups(null, args)
 
