@@ -39,7 +39,9 @@ tap.test('loaders', async t => {
     fastify.provider.listUsersForGroup = sinon.stub()
 
     queries.forEach((q, i) => {
-      fastify.provider.listUsersForGroup.withArgs(q.obj).resolves(users[i])
+      fastify.provider.listUsersForGroup
+        .withArgs({ group: q.obj, pageSize: undefined, pageNumber: undefined })
+        .resolves(users[i])
     })
 
     const result = await loaders.Group.users(queries)

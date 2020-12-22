@@ -18,6 +18,12 @@ tap.test('auth0 provider', async t => {
 
   const provider = new Auth0Provider({}, { debug: sinon.stub() })
 
+  const alphabetArray = [...new Array(26)].map((_, i) =>
+    String.fromCharCode(97 + i)
+  )
+  const makeArrayOfRandomElements = count =>
+    faker.random.arrayElements(alphabetArray, count)
+
   t.afterEach(async () => {
     sinon.restore()
   })
@@ -28,8 +34,8 @@ tap.test('auth0 provider', async t => {
 
   t.test('users', async t => {
     t.test('no page', async t => {
-      const users = faker.random.arrayElements()
-      auth0.getUsers = sinon.stub().resolves({ users })
+      const users = makeArrayOfRandomElements(2)
+      auth0.getUsers = sinon.stub().resolves({ users, start: 0, total: 10 })
 
       const result = await provider.listUsers({
         pageSize: 2,
@@ -40,8 +46,8 @@ tap.test('auth0 provider', async t => {
     })
 
     t.test('no search', async t => {
-      const users = faker.random.arrayElements()
-      auth0.getUsers = sinon.stub().resolves({ users })
+      const users = makeArrayOfRandomElements(2)
+      auth0.getUsers = sinon.stub().resolves({ users, start: 0, total: 10 })
 
       const result = await provider.listUsers({
         pageSize: 2
@@ -51,8 +57,8 @@ tap.test('auth0 provider', async t => {
     })
 
     t.test('pagination', async t => {
-      const users = faker.random.arrayElements()
-      auth0.getUsers = sinon.stub().resolves({ users, length: users.length })
+      const users = makeArrayOfRandomElements(2)
+      auth0.getUsers = sinon.stub().resolves({ users, start: 0, total: 2 })
 
       const result = await provider.listUsers({
         pageSize: 2
@@ -62,8 +68,8 @@ tap.test('auth0 provider', async t => {
     })
 
     t.test('page 1', async t => {
-      const users = faker.random.arrayElements()
-      auth0.getUsers = sinon.stub().resolves({ users })
+      const users = makeArrayOfRandomElements(2)
+      auth0.getUsers = sinon.stub().resolves({ users, start: 0, total: 10 })
 
       const result = await provider.listUsers({
         pageNumber: 1,
@@ -90,11 +96,11 @@ tap.test('auth0 provider', async t => {
 
   t.test('groups', async t => {
     t.test('no page', async t => {
-      const groups = faker.random.arrayElements()
+      const groups = makeArrayOfRandomElements(2)
 
       auth0.getRoles = sinon
         .stub()
-        .resolves({ roles: groups, limit: groups.length })
+        .resolves({ roles: groups, start: 0, total: 10 })
 
       const result = await provider.listGroups({
         pageSize: 2
@@ -104,8 +110,10 @@ tap.test('auth0 provider', async t => {
     })
 
     t.test('no search', async t => {
-      const groups = faker.random.arrayElements()
-      auth0.getRoles = sinon.stub().resolves({ roles: groups })
+      const groups = makeArrayOfRandomElements(2)
+      auth0.getRoles = sinon
+        .stub()
+        .resolves({ roles: groups, start: 0, total: 2 })
 
       const result = await provider.listGroups({
         pageSize: 2
@@ -115,10 +123,11 @@ tap.test('auth0 provider', async t => {
     })
 
     t.test('pagination', async t => {
-      const groups = faker.random.arrayElements()
+      const groups = makeArrayOfRandomElements(2)
       auth0.getRoles = sinon.stub().resolves({
         roles: groups,
-        length: groups.length
+        start: 0,
+        total: 2
       })
 
       const result = await provider.listGroups({
@@ -129,14 +138,14 @@ tap.test('auth0 provider', async t => {
     })
 
     t.test('page 1', async t => {
-      const groups = faker.random.arrayElements()
+      const groups = makeArrayOfRandomElements(4)
       auth0.getRoles = sinon
         .stub()
-        .resolves({ roles: groups, limit: groups.length })
+        .resolves({ roles: groups, start: 0, total: 20 })
 
       const result = await provider.listGroups({
         pageNumber: 1,
-        pageSize: 2
+        pageSize: 4
       })
 
       t.deepEqual(result, { data: groups, nextPage: 2 })
@@ -199,13 +208,52 @@ tap.test('auth0 provider', async t => {
   t.test('lists users for group', async t => {
     const groupId = faker.random.uuid()
     const group = { id: groupId }
-    const users = faker.random.arrayElements()
+    const users = makeArrayOfRandomElements(2)
 
-    auth0.getUsersInRole = sinon.stub().resolves(users)
+    auth0.getUsersInRole = sinon.stub().resolves({ users, start: 0, total: 10 })
 
-    const result = await provider.listUsersForGroup(group)
+    const result = await provider.listUsersForGroup({
+      group,
+      pageSize: 2
+    })
 
-    t.equal(result, users)
+    t.deepEqual(result, { data: users, nextPage: 2 })
+
+    sinon.assert.calledWith(auth0.getUsersInRole, sinon.match(group))
+  })
+
+  t.test('lists users for group pagination: more pages', async t => {
+    const groupId = faker.random.uuid()
+    const group = { id: groupId }
+    const users = makeArrayOfRandomElements(2)
+
+    auth0.getUsersInRole = sinon.stub().resolves({ users, start: 0, total: 10 })
+
+    const result = await provider.listUsersForGroup({
+      group,
+      pageSize: 2,
+      pageNumber: 1
+    })
+
+    t.deepEqual(result, { data: users, nextPage: 2 })
+
+    sinon.assert.calledWith(auth0.getUsersInRole, sinon.match(group))
+  })
+
+  t.test('lists users for group pagination: no more pages', async t => {
+    const groupId = faker.random.uuid()
+    const group = { id: groupId }
+    const users = makeArrayOfRandomElements(2)
+
+    auth0.getUsersInRole = sinon.stub().resolves({ users, start: 0, total: 2 })
+
+    const result = await provider.listUsersForGroup({
+      group,
+      pageSize: 2,
+      pageNumber: 1
+    })
+
+    t.deepEqual(result, { data: users, nextPage: undefined })
 
     sinon.assert.calledWith(auth0.getUsersInRole, sinon.match(group))
   })

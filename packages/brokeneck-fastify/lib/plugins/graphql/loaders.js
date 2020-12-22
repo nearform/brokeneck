@@ -10,15 +10,13 @@ module.exports = function makeLoaders(fastify) {
       }
     },
     Group: {
-      users(queries, { reply }) {
-        const { pageSizeUsers, pageNumberUsers } = reply.request.body.variables
-
+      users(queries, res) {
         return Promise.all(
           queries.map(({ obj }) =>
             fastify.provider.listUsersForGroup({
               group: obj,
-              pageSize: pageSizeUsers,
-              pageNumber: pageNumberUsers
+              pageSize: res?.reply.request.body.variables.pageSizeUsers,
+              pageNumber: res?.reply.request.body.variables.pageNumberUsers
             })
           )
         )

@@ -174,9 +174,9 @@ tap.test('cognito provider', async t => {
 
     awsCognito.listUsersInGroup = stubAws(p => p.resolves({ Users: users }))
 
-    const result = await provider.listUsersForGroup(group)
+    const result = await provider.listUsersForGroup({ group })
 
-    t.equal(result, users)
+    t.deepEqual(result, { data: users, nextPage: undefined })
 
     sinon.assert.calledWith(awsCognito.listUsersInGroup, sinon.match(group))
   })
