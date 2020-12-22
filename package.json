@@ -11,6 +11,8 @@
     "email": "simone.busoli@nearform.com"
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap --concurrency=2",
+    "clean": "lerna clean",
     "dev": "lerna run dev --parallel",
     "version:safe": "lerna version --no-git-tag-version --no-push"
   },
