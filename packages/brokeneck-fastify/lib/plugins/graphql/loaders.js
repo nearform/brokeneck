@@ -15,8 +15,8 @@ module.exports = function makeLoaders(fastify) {
           queries.map(({ obj }) =>
             fastify.provider.listUsersForGroup({
               group: obj,
-              pageSize: res?.reply.request.body.variables.pageSizeUsers,
-              pageNumber: res?.reply.request.body.variables.pageNumberUsers
+              pageSize: res?.reply.request.body.variables.pageSize,
+              pageNumber: res?.reply.request.body.variables.pageNumber
             })
           )
         )

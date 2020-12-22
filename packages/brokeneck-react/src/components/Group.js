@@ -58,8 +58,8 @@ export default function Group({ groupId }) {
     {
       variables: {
         id: groupId,
-        pageSizeUsers: pageSize,
-        pageNumberUsers: surrogatePageNumber
+        pageSize,
+        pageNumber: surrogatePageNumber
       }
     }
   )

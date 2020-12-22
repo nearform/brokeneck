@@ -10,7 +10,7 @@ const typeDefs = gql`
   }
 
   type Group {
-    users: PaginatedUsers!
+    users(pageNumber: String, pageSize: Int, search: String): PaginatedUsers!
   }
 
   input UserInput {
@@ -53,7 +53,7 @@ const typeDefs = gql`
     users(pageNumber: String, pageSize: Int, search: String): PaginatedUsers
     user(id: String!): User
     groups(pageNumber: String, pageSize: Int, search: String): PaginatedGroups
-    group(id: String!, pageNumberUsers: String, pageSizeUsers: Int): Group
+    group(id: String!): Group
     provider: String!
   }
 
