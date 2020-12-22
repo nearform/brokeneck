@@ -63,9 +63,7 @@ export default function useSurrogatePagination({
             rowsPerPage={pageSize}
             page={pageNumber - 1}
             nextIconButtonProps={{
-              style: {
-                display: data?.nextPage ? '' : 'none'
-              }
+              disabled: !data?.nextPage
             }}
             labelDisplayedRows={({ from, to }) => {
               const total =

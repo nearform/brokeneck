@@ -58,7 +58,7 @@ tap.test('auth0 provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: users, nextPage: '' })
+      t.deepEqual(result, { data: users, nextPage: undefined })
     })
 
     t.test('page 1', async t => {
@@ -111,7 +111,7 @@ tap.test('auth0 provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: '' })
+      t.deepEqual(result, { data: groups, nextPage: undefined })
     })
 
     t.test('pagination', async t => {
@@ -125,7 +125,7 @@ tap.test('auth0 provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: '' })
+      t.deepEqual(result, { data: groups, nextPage: undefined })
     })
 
     t.test('page 1', async t => {

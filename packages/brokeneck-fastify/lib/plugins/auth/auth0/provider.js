@@ -23,7 +23,10 @@ function Auth0Provider(options, logger) {
 
       const users = {
         data: data.users,
-        nextPage: data.length === data.limit ? (page + 2).toString() : ''
+        nextPage:
+          data.users.length + data.start < data.total
+            ? (page + 2).toString()
+            : undefined
       }
 
       logger.debug({ users }, 'loaded users')
@@ -49,7 +52,10 @@ function Auth0Provider(options, logger) {
 
       const groups = {
         data: data.roles,
-        nextPage: data.roles.length === data.limit ? (page + 2).toString() : ''
+        nextPage:
+          data.roles.length + data.start < data.total
+            ? (page + 2).toString()
+            : undefined
       }
 
       logger.debug({ groups }, 'loaded groups')
@@ -99,7 +105,10 @@ function Auth0Provider(options, logger) {
 
       const users = {
         data: data.users,
-        nextPage: data.users.length === data.limit ? (page + 2).toString() : ''
+        nextPage:
+          data.users.length + data.start < data.total
+            ? (page + 2).toString()
+            : undefined
       }
 
       logger.debug({ users })
