@@ -28,7 +28,7 @@ const listUsersOperationSpec = {
   },
   serializer
 }
-// 123456789abcdefg
+
 const listUsersNextOperationSpec = {
   httpMethod: 'GET',
   path: '{tenantID}/{nextLink}',

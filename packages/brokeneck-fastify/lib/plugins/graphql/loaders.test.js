@@ -44,7 +44,15 @@ tap.test('loaders', async t => {
         .resolves(users[i])
     })
 
-    const result = await loaders.Group.users(queries)
+    const reply = {
+      request: {
+        body: {
+          variables: {}
+        }
+      }
+    }
+
+    const result = await loaders.Group.users(queries, { reply })
 
     t.deepEqual(result, users)
   })
