@@ -15,7 +15,12 @@ function AzureProvider(options, credentials, logger) {
   const azure = new GraphRbacManagementClient(credentials, options.tenantId)
 
   return {
-    name: 'azure',
+    meta: {
+      name: 'azure',
+      capabilities: {
+        canSearchGroups: false
+      }
+    },
     async listUsers({ pageNumber, pageSize, search }) {
       const options = { top: pageSize, search: `"displayName:${search}"` }
 

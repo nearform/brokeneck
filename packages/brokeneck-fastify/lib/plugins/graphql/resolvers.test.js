@@ -78,14 +78,14 @@ tap.test('resolvers', async t => {
       sinon.assert.calledOnceWithMatch(fastify.provider.getGroup, id)
     })
 
-    t.test('name', async t => {
+    t.test('provider', async t => {
       const name = faker.random.word()
 
-      fastify.provider.name = name
+      fastify.provider.meta = { name }
 
       const result = await resolvers.Query.provider()
 
-      t.equal(result, name)
+      t.deepEqual(result, { name })
     })
   })
 

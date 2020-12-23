@@ -16,7 +16,7 @@ module.exports = function makeResolvers(fastify) {
         return fastify.provider.getGroup(id)
       },
       provider() {
-        return fastify.provider.name
+        return fastify.provider.meta
       }
     },
     Mutation: {

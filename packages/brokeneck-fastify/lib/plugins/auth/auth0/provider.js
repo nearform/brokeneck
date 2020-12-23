@@ -16,7 +16,12 @@ function Auth0Provider(options, logger) {
   })
 
   return {
-    name: 'auth0',
+    meta: {
+      name: 'auth0',
+      capabilities: {
+        canSearchGroups: true
+      }
+    },
     async listUsers({ pageNumber, pageSize, search }) {
       const page = pageNumber ? Number(pageNumber) - 1 : 0
 

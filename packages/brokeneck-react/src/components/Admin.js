@@ -3,14 +3,14 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { Box, CircularProgress, makeStyles } from '@material-ui/core'
 import { useQuery } from 'graphql-hooks'
 
-import { LOAD_SCHEMA } from '../graphql'
+import { LOAD_ROOT } from '../graphql'
 
 import Users from './Users'
 import Groups from './Groups'
 import User from './User'
 import Group from './Group'
 import Navigation from './Navigation'
-import SchemaContext from './SchemaContext'
+import RootContext from './RootContext'
 import Footer from './Footer'
 
 const useGlobalStyles = makeStyles({
@@ -29,16 +29,18 @@ const useGlobalStyles = makeStyles({
 export default function Admin() {
   useGlobalStyles()
   const { pathname } = useLocation()
-  const { data, loading } = useQuery(LOAD_SCHEMA)
+  const { data, loading } = useQuery(LOAD_ROOT)
+
+  console.log(data)
 
   return (
     <Box display="flex" flexDirection="column" flex={1}>
-      <Navigation />
       {loading ? (
         <CircularProgress />
       ) : (
-        <Box mx={2}>
-          <SchemaContext.Provider value={data.__schema}>
+        <RootContext.Provider value={data}>
+          <Navigation />
+          <Box mx={2}>
             <Switch>
               {/* trim trailing slashes */}
               <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
@@ -56,8 +58,8 @@ export default function Admin() {
                 {({ match }) => <Group groupId={match.params.groupId} />}
               </Route>
             </Switch>
-          </SchemaContext.Provider>
-        </Box>
+          </Box>
+        </RootContext.Provider>
       )}
       <Box mt="auto">
         <Footer />

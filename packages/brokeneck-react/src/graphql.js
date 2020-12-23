@@ -83,10 +83,14 @@ mutation CreateUser($input: UserInput!) {
 }
 `
 
-export const LOAD_PROVIDER = `{ provider }`
-
-export const LOAD_SCHEMA = `
+export const LOAD_ROOT = `
 {
+  provider {
+    name
+    capabilities {
+      canSearchGroups
+    }
+  }
   __schema {
     types {
       name

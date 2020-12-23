@@ -25,6 +25,7 @@ import useCreateGroupDialog from '../hooks/useCreateGroupDialog'
 import useFields from '../hooks/useFields'
 import useSurrogatePagination from '../hooks/useSurrogatePagination'
 import { LOAD_GROUPS } from '../graphql'
+import useProvider from '../hooks/useProvider'
 
 import Square from './Square'
 
@@ -46,6 +47,9 @@ export default function Groups() {
   const groupFields = useFields('Group')
   const [search, setSearch] = useState({ immediate: '', debounced: '' })
   const classes = useStyles()
+  const {
+    capabilities: { canSearchGroups }
+  } = useProvider()
 
   const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
     setSearch
@@ -90,26 +94,28 @@ export default function Groups() {
           <Button variant="contained" color="primary" onClick={openDialog}>
             Create Group
           </Button>
-          <TextField
-            label="Search"
-            variant="outlined"
-            size="small"
-            value={search.immediate}
-            onChange={e => handleSearchChange(e.target.value)}
-            InputProps={{
-              endAdornment: search.immediate && (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => handleSearchChange('')}>
-                    <Typography>
-                      <span role="img" aria-label="clear">
-                        ❌
-                      </span>
-                    </Typography>
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-          />
+          {canSearchGroups && (
+            <TextField
+              label="Search"
+              variant="outlined"
+              size="small"
+              value={search.immediate}
+              onChange={e => handleSearchChange(e.target.value)}
+              InputProps={{
+                endAdornment: search.immediate && (
+                  <InputAdornment position="end">
+                    <IconButton onClick={() => handleSearchChange('')}>
+                      <Typography>
+                        <span role="img" aria-label="clear">
+                          ❌
+                        </span>
+                      </Typography>
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />
+          )}
           <div className={classes.right}>
             <IconButton onClick={loadGroups} title="reload groups">
               <Typography>
