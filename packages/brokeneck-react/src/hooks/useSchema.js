@@ -1,9 +1,9 @@
 import { useContext } from 'react'
 
-import SchemaContext from '../components/SchemaContext'
+import RootContext from '../components/RootContext'
 
 export default function useSchema(typeName) {
-  const schema = useContext(SchemaContext)
+  const { __schema } = useContext(RootContext)
 
-  return schema.types.find(type => type.name === typeName)
+  return __schema.types.find(type => type.name === typeName)
 }

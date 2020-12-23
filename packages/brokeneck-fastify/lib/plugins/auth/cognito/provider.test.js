@@ -26,8 +26,13 @@ tap.test('cognito provider', async t => {
     sinon.restore()
   })
 
-  t.test('returns the name', async t => {
-    t.equal(provider.name, 'cognito')
+  t.test('returns the meta', async t => {
+    t.deepEqual(provider.meta, {
+      name: 'cognito',
+      capabilities: {
+        canSearchGroups: false
+      }
+    })
   })
 
   t.test('users', async t => {

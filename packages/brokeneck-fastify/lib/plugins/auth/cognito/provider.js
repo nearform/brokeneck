@@ -10,7 +10,12 @@ function CognitoProvider(options, logger) {
   const UserPoolId = options.userPoolId
 
   return {
-    name: 'cognito',
+    meta: {
+      name: 'cognito',
+      capabilities: {
+        canSearchGroups: false
+      }
+    },
     async listUsers({ pageNumber, pageSize, search }) {
       const result = await cognito
         .listUsers({

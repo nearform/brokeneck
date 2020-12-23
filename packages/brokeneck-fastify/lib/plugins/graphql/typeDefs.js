@@ -49,12 +49,21 @@ const typeDefs = gql`
     nextPage: String
   }
 
+  type Capabilities {
+    canSearchGroups: Boolean!
+  }
+
+  type Provider {
+    name: String!
+    capabilities: Capabilities!
+  }
+
   type Query {
     users(pageNumber: String, pageSize: Int, search: String): PaginatedUsers
     user(id: String!): User
     groups(pageNumber: String, pageSize: Int, search: String): PaginatedGroups
     group(id: String!): Group
-    provider: String!
+    provider: Provider!
   }
 
   type Mutation {
