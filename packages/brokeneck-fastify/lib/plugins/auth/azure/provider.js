@@ -1,35 +1,91 @@
 'use strict'
 
+const { Client } = require('@microsoft/microsoft-graph-client')
+const fetch = require('node-fetch')
 const { GraphRbacManagementClient } = require('@azure/graph')
 
 const {
-  listUsersNextOperationSpec,
-  listUsersOperationSpec,
   listGroupsOperationSpec,
   listGroupsNextOperationSpec,
   listGroupsUsersOperationSpec,
   listGroupsUsersNextOperationSpec
 } = require('./operations')
 
+function ClientCredentialsProvider(options) {
+  let cachedToken
+
+  function getStoredToken() {
+    if (cachedToken && cachedToken.expiry > Date.now()) {
+      return cachedToken.token
+    }
+  }
+
+  function storeToken(token) {
+    cachedToken = {
+      token,
+      expiry: Date.now() + token.expires_in * 1000
+    }
+  }
+
+  return {
+    async getAccessToken() {
+      const storedToken = getStoredToken()
+
+      if (storedToken) {
+        return storedToken.access_token
+      }
+
+      const tokenRes = await fetch(
+        `https://login.microsoftonline.com/${options.tenantId}/oauth2/v2.0/token`,
+        {
+          method: 'POST',
+          body: new URLSearchParams({
+            client_id: options.clientId,
+            client_secret: options.secret,
+            grant_type: 'client_credentials',
+            scope: 'https://graph.microsoft.com/.default'
+          })
+        }
+      )
+
+      if (!tokenRes.ok) {
+        throw new Error('could not get an access token')
+      }
+
+      const token = await tokenRes.json()
+
+      storeToken(token)
+
+      return token.access_token
+    }
+  }
+}
+
 function AzureProvider(options, credentials, logger) {
+  const authProvider = new ClientCredentialsProvider(options)
   const azure = new GraphRbacManagementClient(credentials, options.tenantId)
+  const client = Client.initWithMiddleware({ authProvider })
 
   return {
     name: 'azure',
     async listUsers({ pageNumber, pageSize, search }) {
-      const options = { top: pageSize, search: `"displayName:${search}"` }
+      const api = client.api('/users').top(pageSize).count(true)
 
-      const result = await (pageNumber
-        ? azure.sendOperationRequest(
-            {
-              nextLink: pageNumber,
-              options
-            },
-            listUsersNextOperationSpec
-          )
-        : azure.sendOperationRequest({ options }, listUsersOperationSpec))
+      if (search) api.search(`"displayName:${search}"`)
+      if (pageNumber) api.skipToken(pageNumber)
 
-      const users = { data: result, nextPage: result.odatanextLink }
+      const result = await api.get()
+
+      const searchParams =
+        result['@odata.nextLink'] &&
+        new URL(result['@odata.nextLink']).searchParams
+
+      const users = {
+        data: result.value,
+        nextPage: searchParams
+          ? searchParams.get('$skiptoken') || searchParams.get('$skipToken')
+          : null
+      }
 
       logger.debug({ users }, 'loaded users')
 

@@ -11,7 +11,7 @@ async function azure(fastify, options) {
 
   fastify.graphql.extendSchema(gql`
     extend type User {
-      objectId: ID!
+      id: ID!
       displayName: String!
       accountEnabled: Boolean
     }
