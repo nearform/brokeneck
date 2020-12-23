@@ -14,6 +14,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
   Typography
@@ -27,6 +28,7 @@ import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
 import { DELETE_GROUP, LOAD_GROUP, REMOVE_USER_FROM_GROUP } from '../graphql'
 import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
+import useSurrogatePagination from '../hooks/useSurrogatePagination'
 
 import Square from './Square'
 
@@ -44,12 +46,28 @@ export default function Group({ groupId }) {
   const groupFields = useFields('Group')
   const userFields = useFields('User')
 
+  const {
+    pageSize,
+    surrogatePageNumber,
+    useUpdateSurrogatePageNumber,
+    useTablePagination
+  } = useSurrogatePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+
   const { data, loading, refetch: loadGroup } = useQuery(
     LOAD_GROUP(groupFields.all, userFields.all),
     {
-      variables: { id: groupId }
+      variables: {
+        id: groupId,
+        pageSize,
+        pageNumber: surrogatePageNumber
+      }
     }
   )
+
+  useUpdateSurrogatePageNumber(data?.group.users.nextPage)
+
+  const tablePagination = useTablePagination(data?.group.users)
+
   const [addUsersToGroupDialog, openAddUsersToGroup] = useAddUsersToGroupDialog(
     groupId,
     loadGroup
@@ -158,43 +176,46 @@ export default function Group({ groupId }) {
         <Typography variant="h6" gutterBottom>
           Users
         </Typography>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>{startCase(userFields.description)}</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.group.users?.map(user => (
-              <TableRow key={user[userFields.id]}>
-                <TableCell>
-                  <Link
-                    color="secondary"
-                    component={RouterLink}
-                    to={`../users/${user[userFields.id]}`}
-                  >
-                    <Typography>{user[userFields.description]}</Typography>
-                  </Link>
-                </TableCell>
-                <TableCell align="right">
-                  <IconButton
-                    title="remove user from group"
-                    onClick={() =>
-                      handleRemoveUserFromGroup(user[userFields.id])
-                    }
-                  >
-                    <Typography>
-                      <span role="img" aria-label="remove from group">
-                        ❌
-                      </span>
-                    </Typography>
-                  </IconButton>
-                </TableCell>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>{startCase(userFields.description)}</TableCell>
+                <TableCell></TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHead>
+            <TableBody>
+              {data.group.users.data?.map(user => (
+                <TableRow key={user[userFields.id]}>
+                  <TableCell>
+                    <Link
+                      color="secondary"
+                      component={RouterLink}
+                      to={`../users/${user[userFields.id]}`}
+                    >
+                      <Typography>{user[userFields.description]}</Typography>
+                    </Link>
+                  </TableCell>
+                  <TableCell align="right">
+                    <IconButton
+                      title="remove user from group"
+                      onClick={() =>
+                        handleRemoveUserFromGroup(user[userFields.id])
+                      }
+                    >
+                      <Typography>
+                        <span role="img" aria-label="remove from group">
+                          ❌
+                        </span>
+                      </Typography>
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {tablePagination}
       </Square>
     </>
   )

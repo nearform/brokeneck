@@ -71,6 +71,16 @@ const tenantID = {
     }
   }
 }
+const groupId = {
+  parameterPath: 'groupId',
+  mapper: {
+    required: true,
+    serializedName: 'groupId',
+    type: {
+      name: 'String'
+    }
+  }
+}
 
 module.exports = {
   tenantID,
@@ -79,5 +89,6 @@ module.exports = {
   apiVersion,
   top,
   search,
-  nextLink
+  nextLink,
+  groupId
 }

@@ -1,22 +1,25 @@
 export const LOAD_GROUP = (fields, userFields) => `
-query LoadGroup($id: String!) {
+query LoadGroup($id: String!, $pageNumber: String, $pageSize: Int) {
   group(id: $id) {
     ${fields.join('\n')}
-    users {
-      ${userFields.join('\n')}
+    users(pageNumber: $pageNumber, pageSize: $pageSize) {
+      data {
+        ${userFields.join('\n')}
+      }
+      nextPage
     }
   }
 }
 `
 
-export const LOAD_GROUPS = fields => ` 
-query LoadGroups($pageNumber: String, $pageSize: Int, $search: String) { 
-  groups(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) { 
+export const LOAD_GROUPS = fields => `
+query LoadGroups($pageNumber: String, $pageSize: Int, $search: String) {
+  groups(pageNumber: $pageNumber, pageSize: $pageSize, search: $search) {
     data {
-      ${fields.join('\n')} 
+      ${fields.join('\n')}
     }
     nextPage
-  } 
+  }
 }`
 
 export const LOAD_USER = (fields, groupFields) => `

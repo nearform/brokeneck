@@ -2,6 +2,12 @@
 
 const ManagementClient = require('auth0').ManagementClient
 
+function getNextPage(data, property, page) {
+  return data[property].length + data.start < data.total
+    ? (page + 2).toString()
+    : undefined
+}
+
 function Auth0Provider(options, logger) {
   const auth0 = new ManagementClient({
     domain: options.domain,
@@ -23,7 +29,7 @@ function Auth0Provider(options, logger) {
 
       const users = {
         data: data.users,
-        nextPage: data.length === data.limit ? (page + 2).toString() : ''
+        nextPage: getNextPage(data, 'users', page)
       }
 
       logger.debug({ users }, 'loaded users')
@@ -49,7 +55,7 @@ function Auth0Provider(options, logger) {
 
       const groups = {
         data: data.roles,
-        nextPage: data.roles.length === data.limit ? (page + 2).toString() : ''
+        nextPage: getNextPage(data, 'roles', page)
       }
 
       logger.debug({ groups }, 'loaded groups')
@@ -87,8 +93,20 @@ function Auth0Provider(options, logger) {
 
       return groups
     },
-    async listUsersForGroup(group) {
-      const users = await auth0.getUsersInRole({ id: group.id })
+    async listUsersForGroup({ group, pageSize, pageNumber }) {
+      const page = pageNumber ? Number(pageNumber) - 1 : 0
+
+      const data = await auth0.getUsersInRole({
+        id: group.id,
+        page,
+        per_page: pageSize,
+        include_totals: true
+      })
+
+      const users = {
+        data: data.users,
+        nextPage: getNextPage(data, 'users', page)
+      }
 
       logger.debug({ users })
 

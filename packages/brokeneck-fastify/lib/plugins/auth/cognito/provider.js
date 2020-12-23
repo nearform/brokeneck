@@ -92,15 +92,17 @@ function CognitoProvider(options, logger) {
 
       return userGroups.Groups
     },
-    async listUsersForGroup(group) {
-      const groupUsers = await cognito
+    async listUsersForGroup({ group, pageSize, pageNumber }) {
+      const result = await cognito
         .listUsersInGroup({
           UserPoolId,
-          GroupName: group.GroupName
+          GroupName: group.GroupName,
+          Limit: pageSize,
+          NextToken: pageNumber || undefined
         })
         .promise()
 
-      return groupUsers.Users
+      return { data: result.Users, nextPage: result.NextToken }
     },
     addUserToGroup({ userId, groupId }) {
       return cognito

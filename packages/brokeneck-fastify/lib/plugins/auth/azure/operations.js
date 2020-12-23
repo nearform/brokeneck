@@ -85,9 +85,50 @@ const listGroupsNextOperationSpec = {
   serializer
 }
 
+const listGroupsUsersOperationSpec = {
+  httpMethod: 'GET',
+  path: '{tenantID}/groups/{groupId}/members',
+  urlParameters: [Parameters.tenantID, Parameters.groupId],
+  queryParameters: [
+    Parameters.filter,
+    Parameters.top,
+    Parameters.apiVersion,
+    Parameters.search
+  ],
+  headerParameters: [Parameters.acceptLanguage],
+  responses: {
+    200: {
+      bodyMapper: Mappers.UserListResult
+    },
+    default: {
+      bodyMapper: Mappers.GraphError
+    }
+  },
+  serializer
+}
+
+const listGroupsUsersNextOperationSpec = {
+  httpMethod: 'GET',
+  path: '{tenantID}/{nextLink}',
+  urlParameters: [Parameters.nextLink, Parameters.tenantID],
+  queryParameters: [Parameters.apiVersion, Parameters.top],
+  headerParameters: [Parameters.acceptLanguage],
+  responses: {
+    200: {
+      bodyMapper: Mappers.UserListResult
+    },
+    default: {
+      bodyMapper: Mappers.GraphError
+    }
+  },
+  serializer
+}
+
 module.exports = {
   listUsersOperationSpec,
   listUsersNextOperationSpec,
   listGroupsOperationSpec,
-  listGroupsNextOperationSpec
+  listGroupsNextOperationSpec,
+  listGroupsUsersOperationSpec,
+  listGroupsUsersNextOperationSpec
 }

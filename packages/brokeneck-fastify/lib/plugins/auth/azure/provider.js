@@ -6,7 +6,9 @@ const {
   listUsersNextOperationSpec,
   listUsersOperationSpec,
   listGroupsOperationSpec,
-  listGroupsNextOperationSpec
+  listGroupsNextOperationSpec,
+  listGroupsUsersOperationSpec,
+  listGroupsUsersNextOperationSpec
 } = require('./operations')
 
 function AzureProvider(options, credentials, logger) {
@@ -90,12 +92,27 @@ function AzureProvider(options, credentials, logger) {
         userGroupsIds.map(groupId => azure.groups.get(groupId))
       )
     },
-    async listUsersForGroup(group) {
-      const groupUsers = await azure.groups.getGroupMembers(group.objectId)
+    async listUsersForGroup({ group, pageSize, pageNumber }) {
+      const options = { top: pageSize }
 
-      logger.debug({ groupUsers }, 'loaded users for group')
+      const result = await (pageNumber
+        ? azure.sendOperationRequest(
+            {
+              nextLink: pageNumber,
+              options
+            },
+            listGroupsUsersNextOperationSpec
+          )
+        : azure.sendOperationRequest(
+            { groupId: group.objectId, options },
+            listGroupsUsersOperationSpec
+          ))
 
-      return groupUsers
+      const users = { data: result, nextPage: result.odatanextLink }
+
+      logger.debug({ users }, "loaded group's users")
+
+      return users
     },
     addUserToGroup({ userId, groupId }) {
       const userUrl = `https://graph.windows.net/${options.tenantId}/directoryObjects/${userId}`
