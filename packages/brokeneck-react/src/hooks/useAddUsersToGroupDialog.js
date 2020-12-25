@@ -58,6 +58,8 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
         autocomplete: true,
         options: data?.users.data || [],
         getOptionLabel: option => option[userFields.description],
+        filterOptions: x => x,
+        autoComplete: true,
         loading,
         renderInput: function Input(params) {
           // eslint-disable-next-line no-unused-vars
