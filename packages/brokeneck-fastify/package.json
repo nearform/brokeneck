@@ -18,6 +18,7 @@
   "dependencies": {
     "@azure/graph": "^5.0.1",
     "@azure/ms-rest-nodeauth": "^3.0.6",
+    "@microsoft/microsoft-graph-client": "^2.2.1",
     "@nearform/brokeneck-html": "^1.0.0-spinal.3",
     "auth0": "^2.30.0",
     "aws-sdk": "^2.793.0",
@@ -33,6 +34,7 @@
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^7.0.1",
     "mercurius": "^6.4.0",
+    "node-fetch": "^2.6.1",
     "pkg-dir": "^5.0.0",
     "point-of-view": "^4.7.0"
   },
