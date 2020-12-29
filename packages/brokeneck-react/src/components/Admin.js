@@ -31,8 +31,6 @@ export default function Admin() {
   const { pathname } = useLocation()
   const { data, loading } = useQuery(LOAD_ROOT)
 
-  console.log(data)
-
   return (
     <Box display="flex" flexDirection="column" flex={1}>
       {loading ? (

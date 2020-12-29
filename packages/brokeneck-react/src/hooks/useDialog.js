@@ -72,6 +72,9 @@ export default function useDialog({
           {error && <FormHelperText error>{error.message}</FormHelperText>}
         </DialogContent>
         <DialogActions>
+          <Button fullWidth variant="outlined" onClick={handleClose}>
+            Cancel
+          </Button>
           <Button fullWidth variant="contained" color="primary" type="submit">
             {action}
           </Button>
