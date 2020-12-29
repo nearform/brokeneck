@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.5](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-desktop@1.0.0-spinal.4...@nearform/brokeneck-desktop@1.0.0-spinal.5) (2020-12-29)
+
+**Note:** Version bump only for package @nearform/brokeneck-desktop
+
+
+
+
+
 # [1.0.0-spinal.4](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-desktop@1.0.0-spinal.3...@nearform/brokeneck-desktop@1.0.0-spinal.4) (2020-12-29)
 
 

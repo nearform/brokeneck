@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.5](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-html@1.0.0-spinal.4...@nearform/brokeneck-html@1.0.0-spinal.5) (2020-12-29)
+
+
+### Bug Fixes
+
+* missing package ([992d070](https://github.com/nearform/brokeneck/commit/992d07044d36658543a237d5bd525d0e90c057bb))
+
+
+
+
+
 # [1.0.0-spinal.4](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-html@1.0.0-spinal.3...@nearform/brokeneck-html@1.0.0-spinal.4) (2020-12-29)
 
 
