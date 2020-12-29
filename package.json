@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "@nearform/brokeneck",
   "private": true,
   "workspaces": [
     "packages/*",
