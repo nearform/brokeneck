@@ -1,6 +1,6 @@
 {
   "name": "@nearform/brokeneck-html",
-  "version": "1.0.0-spinal.3",
+  "version": "1.0.0-spinal.4",
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.1",
-    "@nearform/brokeneck-react": "^1.0.0-spinal.3",
+    "@nearform/brokeneck-react": "^1.0.0-spinal.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",

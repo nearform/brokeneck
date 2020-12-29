@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.4](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-fastify@1.0.0-spinal.3...@nearform/brokeneck-fastify@1.0.0-spinal.4) (2020-12-29)
+
+
+### Features
+
+* dialog cancel button ([f842ada](https://github.com/nearform/brokeneck/commit/f842ada6e85508cf2fc87a364078f501109b4106))
+* **capabilities:** group search ([#31](https://github.com/nearform/brokeneck/issues/31)) ([c201012](https://github.com/nearform/brokeneck/commit/c2010129fef23176da021b784261ec046f5cf4c6))
+* auth0 group search functionality ([#20](https://github.com/nearform/brokeneck/issues/20)) ([406f42e](https://github.com/nearform/brokeneck/commit/406f42e89224bfb9ba1f5d71c3068c5ac6f40656))
+* pagination ([#12](https://github.com/nearform/brokeneck/issues/12)) ([c3965ba](https://github.com/nearform/brokeneck/commit/c3965ba370291d9d4f3dc80e31b57ecd6742fbe4))
+* pagination groups ([#18](https://github.com/nearform/brokeneck/issues/18)) ([ac4dfe5](https://github.com/nearform/brokeneck/commit/ac4dfe598b5205394f6c2ab181901582dea311ed))
+* pagination groups users ([#24](https://github.com/nearform/brokeneck/issues/24)) ([4e9a463](https://github.com/nearform/brokeneck/commit/4e9a463f7b8c98e8629c4176f35bb95e8a8a080a))
+* support fastify prefix subset ([#16](https://github.com/nearform/brokeneck/issues/16)) ([4c67b31](https://github.com/nearform/brokeneck/commit/4c67b316613d8fa3d7126a644f411910d9e1540a))
+
+
+
+
+
 # [1.0.0-spinal.3](https://github.com/nearform/brokeneck/compare/@nearform/brokeneck-fastify@1.0.0-spinal.2...@nearform/brokeneck-fastify@1.0.0-spinal.3) (2020-12-09)
 
 
