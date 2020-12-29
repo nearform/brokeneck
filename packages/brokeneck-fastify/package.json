@@ -1,6 +1,6 @@
 {
   "name": "@nearform/brokeneck-fastify",
-  "version": "1.0.0-spinal.5",
+  "version": "1.0.0-spinal.6",
   "author": {
     "name": "Simone Busoli",
     "email": "simone.busoli@nearform.com"
@@ -18,7 +18,7 @@
   "dependencies": {
     "@azure/graph": "^5.0.1",
     "@azure/ms-rest-nodeauth": "^3.0.6",
-    "@nearform/brokeneck-html": "^1.0.0-spinal.5",
+    "@nearform/brokeneck-html": "^1.0.0-spinal.6",
     "auth0": "^2.30.0",
     "aws-sdk": "^2.793.0",
     "ejs": "^3.1.5",
