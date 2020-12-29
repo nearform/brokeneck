@@ -41,7 +41,8 @@ export default function FormField({
             key={field.name}
             autoComplete="off"
             fullWidth
-            margin="dense"
+            variant="outlined"
+            size="small"
             onChange={handleChange}
             value={
               field.name in formValues ? formValues[field.name] : initialValue

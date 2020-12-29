@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useCallback } from 'react'
 import { useQuery, useMutation } from 'graphql-hooks'
 import { CircularProgress, TextField } from '@material-ui/core'
 import startCase from 'lodash.startcase'
@@ -46,6 +46,8 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
     debouncedSetSearch(search)
   }
 
+  const getValueFromObject = useCallback(o => o[userFields.id], [userFields.id])
+
   return useDialog({
     onConfirm: handleConfirm,
     title: `Add users to group ${groupId}`,
@@ -59,7 +61,12 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
         options: data?.users.data || [],
         getOptionLabel: option => option[userFields.description],
         filterOptions: x => x,
+        getOptionSelected: (option, value) =>
+          value
+            ? getValueFromObject(option) === getValueFromObject(value)
+            : null,
         autoComplete: true,
+        size: 'small',
         loading,
         renderInput: function Input(params) {
           // eslint-disable-next-line no-unused-vars
@@ -88,7 +95,7 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
           )
         },
         ...userFields.metadata[userFields.id],
-        getValueFromObject: o => o[userFields.id],
+        getValueFromObject,
         onInputChange: handleAutocompleteChange
       }
     ]
