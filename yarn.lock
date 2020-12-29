@@ -9016,6 +9016,11 @@ graphql-hooks@^5.0.0:
     dequal "^2.0.0"
     extract-files "^9.0.0"
 
+graphql-iso-date@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/graphql-iso-date/-/graphql-iso-date-3.6.1.tgz#bd2d0dc886e0f954cbbbc496bbf1d480b57ffa96"
+  integrity sha512-AwFGIuYMJQXOEAgRlJlFL4H1ncFM8n8XmoVDTNypNOZyQ8LFDG2ppMFlsS862BSTCDcSUfHp8PD3/uJhv7t59Q==
+
 graphql-jit@^0.4.0:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/graphql-jit/-/graphql-jit-0.4.3.tgz#2ee37f221e8a982536a49e87c4bd4b3daf6ec35a"

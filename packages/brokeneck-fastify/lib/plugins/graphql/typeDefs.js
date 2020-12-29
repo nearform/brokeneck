@@ -4,6 +4,9 @@ const gql = require('graphql-tag')
 
 const typeDefs = gql`
   scalar Ignored
+  scalar Date
+  scalar Time
+  scalar DateTime
 
   type User {
     groups: [Group]!

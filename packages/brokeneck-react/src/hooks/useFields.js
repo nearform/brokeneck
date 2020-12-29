@@ -1,44 +1,53 @@
 import useSchema from './useSchema'
 
-function getFieldTypeName(field) {
+const CHECKBOX = 'checkbox'
+const ID = 'ID'
+const STRING = 'String'
+const NON_NULL = 'NON_NULL'
+const BOOLEAN = 'Boolean'
+
+function getTypeName(field) {
   return field.type.ofType?.name || field.type.name
 }
 
-const CHECKBOX = 'checkbox'
-
-function getMetadataFieldType(field) {
-  if (getFieldTypeName(field) === 'Boolean') return CHECKBOX
+function getFormType(field) {
+  if (getTypeName(field) === BOOLEAN) return CHECKBOX
   if (/password/i.test(field.name)) return 'password'
 
   return 'text'
 }
 
+const SUPPORTED_FIELD_TYPES = [
+  ID,
+  STRING,
+  'Date',
+  'Time',
+  'DateTime',
+  'Boolean'
+]
+
 export default function useFields(typeName) {
   const schema = useSchema(typeName)
 
-  const strings = [
-    ...(schema.fields || []),
-    ...(schema.inputFields || [])
-  ].filter(field => ['String'].includes(getFieldTypeName(field)))
+  const allFields = [...(schema.fields || []), ...(schema.inputFields || [])]
 
-  const booleans = [
-    ...(schema.fields || []),
-    ...(schema.inputFields || [])
-  ].filter(field => ['Boolean'].includes(getFieldTypeName(field)))
-
-  const id = (schema.fields || []).find(
-    field => getFieldTypeName(field) === 'ID'
+  const firstStringField = allFields.find(
+    field => getTypeName(field) === STRING
   )
 
-  const all = [id, ...strings, ...booleans].filter(Boolean)
+  const id = allFields.find(field => getTypeName(field) === ID)
+
+  const all = allFields.filter(field =>
+    SUPPORTED_FIELD_TYPES.includes(getTypeName(field))
+  )
 
   const metadata = all.reduce((acc, field) => {
-    const type = getMetadataFieldType(field)
+    const type = getFormType(field)
 
     return {
       ...acc,
       [field.name]: {
-        required: type !== CHECKBOX && field.type.kind === 'NON_NULL',
+        required: type !== CHECKBOX && field.type.kind === NON_NULL,
         type,
         initialValue: type === CHECKBOX ? false : ''
       }
@@ -49,7 +58,9 @@ export default function useFields(typeName) {
   // this is to cope with auth0 which has a non-readable id field and a mandatory additional field
   // and with cognito which has a readable id field but possibly other, non-mandatory string fields
   const description =
-    strings[0] && metadata[strings[0].name].required ? strings[0] : id
+    firstStringField && metadata[firstStringField.name].required
+      ? firstStringField
+      : id
 
   const fields = {
     id: id?.name,

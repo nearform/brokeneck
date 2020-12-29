@@ -30,6 +30,7 @@
     "fastify-static": "^3.3.0",
     "fluent-schema": "^1.0.5",
     "graphql": "^15.4.0",
+    "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^7.0.1",
     "mercurius": "^6.4.0",

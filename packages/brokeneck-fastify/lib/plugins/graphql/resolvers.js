@@ -1,7 +1,16 @@
 'use strict'
 
+const {
+  GraphQLDate,
+  GraphQLTime,
+  GraphQLDateTime
+} = require('graphql-iso-date')
+
 module.exports = function makeResolvers(fastify) {
   return {
+    Date: GraphQLDate,
+    Time: GraphQLTime,
+    DateTime: GraphQLDateTime,
     Query: {
       users(_, { pageNumber, pageSize, search }) {
         return fastify.provider.listUsers({ pageNumber, pageSize, search })
