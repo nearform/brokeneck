@@ -12,6 +12,26 @@ This monorepo contains packages and applications which provide a way to manage u
 
 ![Brokeneck](docs/brokeneck.png "Brokeneck")
 
+<!-- toc -->
+
+- [Getting started](#getting-started)
+- [Development](#development)
+- [Providers](#providers)
+  * [Auth0](#auth0)
+  * [AWS Cognito](#aws-cognito)
+  * [Azure AD](#azure-ad)
+- [Packages](#packages)
+  * [`brokeneck-react`](#brokeneck-react)
+  * [`brokeneck-html`](#brokeneck-html)
+  * [`brokeneck-fastify`](#brokeneck-fastify)
+  * [`brokeneck-desktop`](#brokeneck-desktop)
+- [Usage](#usage)
+  * [Fully standalone](#fully-standalone)
+  * [Separate Web frontend and backend](#separate-web-frontend-and-backend)
+  * [As a React component](#as-a-react-component)
+
+<!-- tocstop -->
+
 ## Getting started
 
 You'll need yarn and lerna installed globally:
@@ -27,8 +47,6 @@ The easiest way to try this out is to run the standalone server via `brokeneck-f
 - configure `.env` based on the authentication provider you want to use
 - `yarn start`
 - browse to [`http://localhost:5001`](http://localhost:5001)
-
-> ⚠️ The packages in this monorepo are currently built to work when run inside the monorepo, they are not yet ready to be used and deployed independently.
 
 ## Development
 

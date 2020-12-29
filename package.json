@@ -13,18 +13,21 @@
   "scripts": {
     "dev": "lerna run dev --parallel",
     "test": "lerna run test --stream",
-    "version:safe": "lerna version --no-git-tag-version --no-push"
+    "version:safe": "lerna version --no-git-tag-version --no-push",
+    "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents",
+    "toc": "markdown-toc README.md -i"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "husky": "^4.3.0",
-    "lerna": "^3.22.1"
+    "lerna": "^3.22.1",
+    "markdown-toc": "^1.2.0"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents"
+      "pre-commit": "yarn pre-commit && yarn toc && git add README.md"
     }
   }
 }
