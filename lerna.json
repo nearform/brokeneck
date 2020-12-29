@@ -1,11 +1,11 @@
 {
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "independent",
+  "version": "1.0.0-spinal.5",
   "command": {
     "version": {
       "allowBranch": "master",
-      "message": "chore(release): 🦢",
+      "message": "chore(release): 🚀 publish %s",
       "conventionalCommits": true
     }
   }
