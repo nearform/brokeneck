@@ -13,12 +13,15 @@ async function azure(fastify, options) {
     extend type User {
       objectId: ID!
       displayName: String!
+      mailNickname: String!
+      createdDateTime: DateTime
       accountEnabled: Boolean
     }
 
     extend type Group {
       objectId: ID!
       displayName: String!
+      mailNickname: String!
     }
 
     extend input UserInput {

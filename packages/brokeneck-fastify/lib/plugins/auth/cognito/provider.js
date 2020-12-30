@@ -40,6 +40,8 @@ function CognitoProvider(options, logger) {
         })
         .promise()
 
+      logger.debug({ user })
+
       return user
     },
     async listGroups({ pageSize, pageNumber }) {
@@ -64,6 +66,8 @@ function CognitoProvider(options, logger) {
           GroupName: id
         })
         .promise()
+
+      logger.debug({ group })
 
       return group.Group
     },
@@ -95,6 +99,8 @@ function CognitoProvider(options, logger) {
         })
         .promise()
 
+      logger.debug({ userGroups })
+
       return userGroups.Groups
     },
     async listUsersForGroup({ group, pageSize, pageNumber }) {
@@ -107,7 +113,11 @@ function CognitoProvider(options, logger) {
         })
         .promise()
 
-      return { data: result.Users, nextPage: result.NextToken }
+      const groupUsers = { data: result.Users, nextPage: result.NextToken }
+
+      logger.debug({ groupUsers })
+
+      return groupUsers
     },
     addUserToGroup({ userId, groupId }) {
       return cognito

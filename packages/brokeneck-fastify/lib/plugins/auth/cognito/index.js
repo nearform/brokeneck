@@ -11,15 +11,16 @@ async function cognito(fastify, options) {
   fastify.graphql.extendSchema(gql`
     extend type User {
       Username: ID!
-      Enabled: Boolean!
-      UserCreateDate: DateTime!
+      Enabled: Boolean
+      UserStatus: String
+      UserCreateDate: DateTime
       UserLastModifiedDate: DateTime
     }
 
     extend type Group {
       GroupName: ID!
       Description: String
-      CreationDate: DateTime!
+      CreationDate: DateTime
       LastModifiedDate: DateTime
     }
 
