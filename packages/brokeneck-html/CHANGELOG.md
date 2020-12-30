@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.7](https://github.com/nearform/brokeneck/compare/v1.0.0-spinal.6...v1.0.0-spinal.7) (2020-12-30)
+
+**Note:** Version bump only for package @nearform/brokeneck-html
+
+
+
+
+
 # 1.0.0-spinal.6 (2020-12-29)
 
 

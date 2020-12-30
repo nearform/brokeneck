@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.7](https://github.com/nearform/brokeneck/compare/v1.0.0-spinal.6...v1.0.0-spinal.7) (2020-12-30)
+
+
+### Features
+
+* field formatting ([7e5fd91](https://github.com/nearform/brokeneck/commit/7e5fd91679a50e968a13b171b26dc99474aaafa6))
+* simple form validation ([2c839d0](https://github.com/nearform/brokeneck/commit/2c839d00d1188737c876994ce7fc1cd5858bc9a3))
+
+
+
+
+
 # 1.0.0-spinal.6 (2020-12-29)
 
 
