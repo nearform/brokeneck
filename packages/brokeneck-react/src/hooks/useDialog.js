@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Button,
   Dialog,
@@ -22,6 +22,16 @@ export default function useDialog({
   const [open, setOpen] = useState(false)
   const [formValues, setFormValues] = useState({})
   const [error, setError] = useState()
+  const form = useRef()
+  const [isValid, setIsValid] = useState()
+
+  useEffect(() => {
+    if (!form.current) {
+      return
+    }
+
+    setIsValid(form.current.checkValidity())
+  }, [formValues])
 
   const handleClose = () => {
     closeDialog()
@@ -57,7 +67,7 @@ export default function useDialog({
 
   const dialog = (
     <Dialog open={open} onClose={handleClose}>
-      <form onSubmit={handleConfirm}>
+      <form ref={form} noValidate onSubmit={handleConfirm}>
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           {text && <DialogContentText>{text}</DialogContentText>}
@@ -75,7 +85,13 @@ export default function useDialog({
           <Button fullWidth variant="outlined" onClick={handleClose}>
             Cancel
           </Button>
-          <Button fullWidth variant="contained" color="primary" type="submit">
+          <Button
+            disabled={!isValid}
+            fullWidth
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
             {action}
           </Button>
         </DialogActions>
