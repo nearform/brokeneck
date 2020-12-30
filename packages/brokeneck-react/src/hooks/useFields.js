@@ -1,3 +1,6 @@
+import React from 'react'
+import isNil from 'lodash.isnil'
+
 import useSchema from './useSchema'
 
 const CHECKBOX = 'checkbox'
@@ -5,6 +8,20 @@ const ID = 'ID'
 const STRING = 'String'
 const NON_NULL = 'NON_NULL'
 const BOOLEAN = 'Boolean'
+
+const SUPPORTED_FIELD_TYPES = [
+  ID,
+  STRING,
+  'Date',
+  'Time',
+  'DateTime',
+  'Boolean'
+]
+
+export const TYPE_NAMES = SUPPORTED_FIELD_TYPES.reduce(
+  (acc, c) => ({ ...acc, [c]: c }),
+  {}
+)
 
 function getTypeName(field) {
   return field.type.ofType?.name || field.type.name
@@ -16,15 +33,6 @@ function getFormType(field) {
 
   return 'text'
 }
-
-const SUPPORTED_FIELD_TYPES = [
-  ID,
-  STRING,
-  'Date',
-  'Time',
-  'DateTime',
-  'Boolean'
-]
 
 export default function useFields(typeName) {
   const schema = useSchema(typeName)
@@ -54,6 +62,15 @@ export default function useFields(typeName) {
     }
   }, {})
 
+  const fieldMetadata = all.reduce((acc, field) => {
+    return {
+      ...acc,
+      [field.name]: {
+        typeName: getTypeName(field)
+      }
+    }
+  }, {})
+
   // description is either the first string field, if mandatory, or the id
   // this is to cope with auth0 which has a non-readable id field and a mandatory additional field
   // and with cognito which has a readable id field but possibly other, non-mandatory string fields
@@ -66,8 +83,36 @@ export default function useFields(typeName) {
     id: id?.name,
     description: description?.name,
     all: all.map(f => f.name),
-    metadata
+    metadata,
+    fieldMetadata,
+    format: (field, value) => formatField(field, value, fieldMetadata),
+    isType(field, typeName) {
+      return fieldMetadata[field].typeName === typeName
+    }
   }
 
   return fields
+}
+
+function formatField(field, value, fieldMetadata) {
+  if (isNil(value)) {
+    return '-'
+  }
+
+  switch (fieldMetadata[field].typeName) {
+    case TYPE_NAMES.Boolean:
+      return (
+        <span role="img" aria-label={field}>
+          {value ? '✅' : '❌'}
+        </span>
+      )
+    case TYPE_NAMES.Date:
+      return new Date(value).toLocaleDateString()
+    case TYPE_NAMES.Time:
+      return new Date(value).toLocaleTimeString()
+    case TYPE_NAMES.DateTime:
+      return new Date(value).toLocaleString()
+    default:
+      return value
+  }
 }

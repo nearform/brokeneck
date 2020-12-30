@@ -13,12 +13,14 @@ async function cognito(fastify, options) {
       Username: ID!
       Enabled: Boolean!
       UserCreateDate: DateTime!
-      UserLastModifiedDate: DateTime!
+      UserLastModifiedDate: DateTime
     }
 
     extend type Group {
       GroupName: ID!
       Description: String
+      CreationDate: DateTime!
+      LastModifiedDate: DateTime
     }
 
     extend input UserInput {

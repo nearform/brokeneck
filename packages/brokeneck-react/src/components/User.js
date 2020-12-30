@@ -7,15 +7,11 @@ import {
   Chip,
   CircularProgress,
   Link,
-  List,
-  ListItem,
-  ListItemText,
   makeStyles,
   Typography
 } from '@material-ui/core'
 import { Link as RouterLink, useHistory } from 'react-router-dom'
 import { useQuery, useMutation } from 'graphql-hooks'
-import startCase from 'lodash.startcase'
 
 import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
 import { DELETE_USER, LOAD_USER, REMOVE_USER_FROM_GROUP } from '../graphql'
@@ -23,6 +19,7 @@ import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
 
 import Square from './Square'
+import EntityFields from './EntityFields'
 
 const useStyles = makeStyles(theme => ({
   spacing: {
@@ -141,16 +138,7 @@ export default function User({ userId }) {
       </Box>
       <Square mb={3}>
         <Typography variant="h6">User</Typography>
-        <List>
-          {userFields.all.map(field => (
-            <ListItem key={field}>
-              <ListItemText
-                primary={startCase(field)}
-                secondary={data.user[field] || '-'}
-              ></ListItemText>
-            </ListItem>
-          ))}
-        </List>
+        <EntityFields typeName="User" data={data.user} />
       </Square>
       <Square mb={3}>
         <Typography variant="h6" gutterBottom>

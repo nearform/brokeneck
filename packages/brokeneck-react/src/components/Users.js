@@ -22,7 +22,7 @@ import startCase from 'lodash.startcase'
 import debounce from 'lodash.debounce'
 
 import useCreateUserDialog from '../hooks/useCreateUserDialog'
-import useFields from '../hooks/useFields'
+import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import useSurrogatePagination from '../hooks/useSurrogatePagination'
 import { LOAD_USERS } from '../graphql'
 
@@ -149,16 +149,20 @@ export default function Users() {
                           component={RouterLink}
                           to={`${match.url}/${user[userFields.id]}`}
                         >
-                          <Typography>{user[field]}</Typography>
+                          <Typography>
+                            {userFields.format(field, user[field])}
+                          </Typography>
                         </Link>
-                      ) : userFields.metadata[field].type === 'checkbox' ? (
-                        <Typography align="center">
-                          <span role="img" aria-label={field}>
-                            {user[field] ? '✅' : '❌'}
-                          </span>
-                        </Typography>
                       ) : (
-                        <Typography>{user[field]}</Typography>
+                        <Typography
+                          align={
+                            userFields.isType(field, TYPE_NAMES.Boolean)
+                              ? 'center'
+                              : undefined
+                          }
+                        >
+                          {userFields.format(field, user[field])}
+                        </Typography>
                       )}
                     </TableCell>
                   ))}

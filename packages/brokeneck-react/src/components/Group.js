@@ -7,9 +7,6 @@ import {
   CircularProgress,
   IconButton,
   Link,
-  List,
-  ListItem,
-  ListItemText,
   makeStyles,
   Table,
   TableBody,
@@ -31,6 +28,7 @@ import useConfirmDialog from '../hooks/useConfirmDialog'
 import useSurrogatePagination from '../hooks/useSurrogatePagination'
 
 import Square from './Square'
+import EntityFields from './EntityFields'
 
 const useStyles = makeStyles(theme => ({
   spacing: {
@@ -161,16 +159,7 @@ export default function Group({ groupId }) {
       </Box>
       <Square mb={3}>
         <Typography variant="h6">Group</Typography>
-        <List>
-          {groupFields.all.map(field => (
-            <ListItem key={field}>
-              <ListItemText
-                primary={startCase(field)}
-                secondary={data.group[field] || '-'}
-              ></ListItemText>
-            </ListItem>
-          ))}
-        </List>
+        <EntityFields typeName="Group" data={data.group} />
       </Square>
       <Square mb={3}>
         <Typography variant="h6" gutterBottom>

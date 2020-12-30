@@ -22,7 +22,7 @@ import startCase from 'lodash.startcase'
 import debounce from 'lodash.debounce'
 
 import useCreateGroupDialog from '../hooks/useCreateGroupDialog'
-import useFields from '../hooks/useFields'
+import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import useSurrogatePagination from '../hooks/useSurrogatePagination'
 import { LOAD_GROUPS } from '../graphql'
 import useProvider from '../hooks/useProvider'
@@ -155,16 +155,20 @@ export default function Groups() {
                           component={RouterLink}
                           to={`${match.url}/${group[groupFields.id]}`}
                         >
-                          <Typography>{group[field]}</Typography>
+                          <Typography>
+                            {groupFields.format(field, group[field])}
+                          </Typography>
                         </Link>
-                      ) : groupFields.metadata[field].type === 'checkbox' ? (
-                        <Typography align="center">
-                          <span role="img" aria-label={field}>
-                            {group[field] ? '✅' : '❌'}
-                          </span>
-                        </Typography>
                       ) : (
-                        <Typography>{group[field]}</Typography>
+                        <Typography
+                          align={
+                            groupFields.isType(field, TYPE_NAMES.Boolean)
+                              ? 'center'
+                              : undefined
+                          }
+                        >
+                          {groupFields.format(field, group[field])}
+                        </Typography>
                       )}
                     </TableCell>
                   ))}
