@@ -1,10 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import {
   Box,
   Button,
   CircularProgress,
   IconButton,
-  InputAdornment,
   Link,
   makeStyles,
   Table,
@@ -13,18 +12,17 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TextField,
   Typography
 } from '@material-ui/core'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
-import debounce from 'lodash.debounce'
 
 import useCreateUserDialog from '../hooks/useCreateUserDialog'
 import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import useSurrogatePagination from '../hooks/useSurrogatePagination'
 import { LOAD_USERS } from '../graphql'
+import useSearch from '../hooks/useSearch'
 
 import Square from './Square'
 
@@ -43,15 +41,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Users() {
   const match = useRouteMatch()
-  const userFields = useFields('User')
-  const [search, setSearch] = useState({ immediate: '', debounced: '' })
   const classes = useStyles()
-
-  const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
-    setSearch
-  ])
-
-  useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch])
+  const userFields = useFields('User')
+  const { search, Search } = useSearch()
 
   const {
     pageSize,
@@ -66,15 +58,10 @@ export default function Users() {
       variables: {
         pageNumber: surrogatePageNumber,
         pageSize,
-        search: search.debounced
+        search
       }
     }
   )
-
-  const handleSearchChange = search => {
-    setSearch(s => ({ ...s, immediate: search }))
-    debouncedSetSearch(s => ({ ...s, debounced: search }))
-  }
 
   const [dialog, openDialog] = useCreateUserDialog(loadUsers)
 
@@ -90,26 +77,7 @@ export default function Users() {
           <Button variant="contained" color="primary" onClick={openDialog}>
             Create User
           </Button>
-          <TextField
-            label="Search"
-            variant="outlined"
-            size="small"
-            value={search.immediate}
-            onChange={e => handleSearchChange(e.target.value)}
-            InputProps={{
-              endAdornment: search.immediate && (
-                <InputAdornment position="end">
-                  <IconButton onClick={() => handleSearchChange('')}>
-                    <Typography>
-                      <span role="img" aria-label="clear">
-                        ❌
-                      </span>
-                    </Typography>
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-          />
+          {Search}
           <div className={classes.right}>
             <IconButton onClick={loadUsers} title="reload users">
               <Typography>
