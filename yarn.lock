@@ -17274,6 +17274,11 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
+token-pagination-hooks@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/token-pagination-hooks/-/token-pagination-hooks-0.1.0.tgz#ddfc3e26ff2ae5d67edfcda8c8c4b47b4e5ccc75"
+  integrity sha512-qciglyP96HDCjthL7kaFQ0P35KF8Ak2fcgSBt1m6Z1egT1c9VqMZ7daMENnyLxueKT+K32Adkxp0psVqsb1Yvg==
+
 toml@^2.3.2:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/toml/-/toml-2.3.6.tgz#25b0866483a9722474895559088b436fd11f861b"

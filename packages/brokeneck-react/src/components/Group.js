@@ -25,7 +25,7 @@ import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
 import { DELETE_GROUP, LOAD_GROUP, REMOVE_USER_FROM_GROUP } from '../graphql'
 import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
-import useSurrogatePagination from '../hooks/useSurrogatePagination'
+import usePagination from '../hooks/usePagination'
 
 import Square from './Square'
 import EntityFields from './EntityFields'
@@ -46,10 +46,10 @@ export default function Group({ groupId }) {
 
   const {
     pageSize,
-    surrogatePageNumber,
-    useUpdateSurrogatePageNumber,
+    currentToken,
+    useUpdateToken,
     useTablePagination
-  } = useSurrogatePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
 
   const { data, loading, refetch: loadGroup } = useQuery(
     LOAD_GROUP(groupFields.all, userFields.all),
@@ -57,12 +57,12 @@ export default function Group({ groupId }) {
       variables: {
         id: groupId,
         pageSize,
-        pageNumber: surrogatePageNumber
+        pageNumber: currentToken
       }
     }
   )
 
-  useUpdateSurrogatePageNumber(data?.group.users.nextPage)
+  useUpdateToken(data?.group.users.nextPage)
 
   const tablePagination = useTablePagination(data?.group.users)
 

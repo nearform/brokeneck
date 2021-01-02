@@ -20,7 +20,7 @@ import startCase from 'lodash.startcase'
 
 import useCreateUserDialog from '../hooks/useCreateUserDialog'
 import useFields, { TYPE_NAMES } from '../hooks/useFields'
-import useSurrogatePagination from '../hooks/useSurrogatePagination'
+import usePagination from '../hooks/usePagination'
 import { LOAD_USERS } from '../graphql'
 import useSearch from '../hooks/useSearch'
 
@@ -47,16 +47,16 @@ export default function Users() {
 
   const {
     pageSize,
-    surrogatePageNumber,
-    useUpdateSurrogatePageNumber,
+    currentToken,
+    useUpdateToken,
     useTablePagination
-  } = useSurrogatePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
 
   const { data, loading, refetch: loadUsers } = useQuery(
     LOAD_USERS(userFields.all),
     {
       variables: {
-        pageNumber: surrogatePageNumber,
+        pageNumber: currentToken,
         pageSize,
         search
       }
@@ -65,7 +65,7 @@ export default function Users() {
 
   const [dialog, openDialog] = useCreateUserDialog(loadUsers)
 
-  useUpdateSurrogatePageNumber(data?.users.nextPage)
+  useUpdateToken(data?.users.nextPage)
 
   const tablePagination = useTablePagination(data?.users)
 

@@ -20,7 +20,7 @@ import startCase from 'lodash.startcase'
 
 import useCreateGroupDialog from '../hooks/useCreateGroupDialog'
 import useFields, { TYPE_NAMES } from '../hooks/useFields'
-import useSurrogatePagination from '../hooks/useSurrogatePagination'
+import usePagination from '../hooks/usePagination'
 import { LOAD_GROUPS } from '../graphql'
 import useProvider from '../hooks/useProvider'
 import useSearch from '../hooks/useSearch'
@@ -51,16 +51,16 @@ export default function Groups() {
 
   const {
     pageSize,
-    surrogatePageNumber,
-    useUpdateSurrogatePageNumber,
+    currentToken,
+    useUpdateToken,
     useTablePagination
-  } = useSurrogatePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
 
   const { data, loading, refetch: loadGroups } = useQuery(
     LOAD_GROUPS(groupFields.all),
     {
       variables: {
-        pageNumber: surrogatePageNumber,
+        pageNumber: currentToken,
         pageSize,
         search
       }
@@ -69,7 +69,7 @@ export default function Groups() {
 
   const [dialog, openDialog] = useCreateGroupDialog(loadGroups)
 
-  useUpdateSurrogatePageNumber(data?.groups.nextPage)
+  useUpdateToken(data?.groups.nextPage)
 
   const tablePagination = useTablePagination(data?.groups)
 
