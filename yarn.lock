@@ -17274,10 +17274,10 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
-token-pagination-hooks@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/token-pagination-hooks/-/token-pagination-hooks-0.1.0.tgz#ddfc3e26ff2ae5d67edfcda8c8c4b47b4e5ccc75"
-  integrity sha512-qciglyP96HDCjthL7kaFQ0P35KF8Ak2fcgSBt1m6Z1egT1c9VqMZ7daMENnyLxueKT+K32Adkxp0psVqsb1Yvg==
+token-pagination-hooks@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/token-pagination-hooks/-/token-pagination-hooks-0.2.0.tgz#def7be607bfcfccd118c338502676da8a64c5677"
+  integrity sha512-J3SD22cmbcxkgk3NVUuD2D9wXDn126ePLch1BuMQoyVoJen7aYD9MZNg1y5sUKdADizrHvcxpKJT9nrSLk+AsQ==
 
 toml@^2.3.2:
   version "2.3.6"
