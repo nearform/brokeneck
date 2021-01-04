@@ -31,7 +31,7 @@
     "lodash.startcase": "^4.4.0",
     "lodash.throttle": "^4.1.1",
     "prop-types": "^15.7.2",
-    "token-pagination-hooks": "^0.1.0"
+    "token-pagination-hooks": "^0.2.0"
   },
   "peerDependencies": {
     "@material-ui/core": "^4.11.0",
