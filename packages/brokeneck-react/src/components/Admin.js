@@ -3,9 +3,10 @@ import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { Box, CircularProgress, makeStyles } from '@material-ui/core'
 import { useQuery } from 'graphql-hooks'
 
-import { LOAD_ROOT, LOAD_USERS, LOAD_GROUPS } from '../graphql'
+import { LOAD_ROOT } from '../graphql'
 
-import Entities from './Entities'
+import Users from './Users'
+import Groups from './Groups'
 import User from './User'
 import Group from './Group'
 import Navigation from './Navigation'
@@ -43,23 +44,13 @@ export default function Admin() {
               <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
               <Redirect from="/" exact to="/users" />
               <Route path="/users" exact>
-                <Entities
-                  entityName="User"
-                  entitiesName="Users"
-                  entitiesKey="users"
-                  query={LOAD_USERS}
-                />
+                <Users />
               </Route>
               <Route path="/users/:userId">
                 {({ match }) => <User userId={match.params.userId} />}
               </Route>
               <Route path="/groups" exact>
-                <Entities
-                  entityName="Group"
-                  entitiesName="Groups"
-                  entitiesKey="groups"
-                  query={LOAD_GROUPS}
-                />
+                <Groups />
               </Route>
               <Route path="/groups/:groupId">
                 {({ match }) => <Group groupId={match.params.groupId} />}

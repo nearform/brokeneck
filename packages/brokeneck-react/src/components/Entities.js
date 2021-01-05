@@ -56,8 +56,7 @@ export default function Entities({
     useUpdateToken,
     useTablePagination
   } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
-  // console.log(fields, 'fields')
-  // console.log(query(fields.all), 'query')
+
   const { data, loading, refetch: loadEntities } = useQuery(query(fields.all), {
     variables: {
       pageNumber: currentToken,
@@ -67,10 +66,9 @@ export default function Entities({
   })
 
   const [dialog, openDialog] = useCreateUserDialog(loadEntities)
-  // console.log(data, 'data')
-  // console.log(entitiesKey, 'entitiesKey')
+
   useUpdateToken(data?.[entitiesKey].nextPage)
-  // console.log('this')
+
   const tablePagination = useTablePagination(data?.[entitiesKey])
 
   return (
