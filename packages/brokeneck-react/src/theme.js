@@ -15,9 +15,15 @@ const palette = {
 
 const typography = {
   fontFamily: '"Didact Gothic",Arial,Helvetica,sans-serif',
+  fontStyle: 'normal',
   fontWeight: '700',
   letterSpacing: '0px',
-  fontStyle: 'normal'
+  h1: { fontSize: '2.4rem' },
+  h2: { fontSize: '2rem' },
+  h3: { fontSize: '1.75rem' },
+  h4: { fontSize: '1.5rem' },
+  h5: { fontSize: '1.3rem' },
+  h6: { fontSize: '1.15rem' }
 }
 
 export default {

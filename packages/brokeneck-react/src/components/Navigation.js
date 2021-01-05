@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.bodyText.main,
     flexDirection: 'row',
     marginBottom: theme.spacing(3),
-    paddingLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(4)
   },
   provider: {
@@ -38,6 +38,12 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
     paddingLeft: theme.spacing(2),
     width: '42px'
+  },
+  tabRoot: {
+    minWidth: 120
+  },
+  tabWrapper: {
+    flexDirection: 'row'
   }
 }))
 
@@ -55,22 +61,24 @@ export default function Navigation() {
     <AppBar position="static" className={classes.appBar}>
       <Tabs value={currentTab}>
         <Tab
+          classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
           component={NavLink}
           to="/users"
           label={
-            <div>
+            <>
               <UserIcon style={{ verticalAlign: 'middle' }} /> Users
-            </div>
+            </>
           }
           value="users"
         />
         <Tab
+          classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
           component={NavLink}
           to="/groups"
           label={
-            <div>
+            <>
               <GroupIcon style={{ verticalAlign: 'middle' }} /> Groups
-            </div>
+            </>
           }
           value="groups"
         />

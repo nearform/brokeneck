@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  IconButton,
   Link,
   makeStyles,
   Table,
@@ -24,19 +23,50 @@ import usePagination from '../hooks/usePagination'
 import { LOAD_GROUPS } from '../graphql'
 import useProvider from '../hooks/useProvider'
 import useSearch from '../hooks/useSearch'
+import PlusIcon from '../icons/plus'
+import RefreshIcon from '../icons/refresh'
 
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
+  actions: {
+    alignItems: 'center',
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    display: 'flex',
+    marginLeft: theme.spacing(2.5),
+    marginTop: 10,
+    paddingLeft: theme.spacing(1)
+  },
+  actionButton: {
+    textTransform: 'none',
+    '& svg': {
+      fill: theme.palette.primary.main,
+      marginLeft: theme.spacing(1)
+    }
+  },
+  header: {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: theme.spacing(2.5)
+  },
+  right: {
+    marginLeft: 'auto'
+  },
+  search: {
+    marginLeft: 'auto'
+  },
+  separator: {
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    height: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
   spacing: {
     display: 'flex',
     alignItems: 'center',
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
-  },
-  right: {
-    marginLeft: 'auto'
   }
 }))
 
@@ -76,22 +106,28 @@ export default function Groups() {
   return (
     <>
       {dialog}
-      <Square mb={3}>
-        <Box className={classes.spacing} mb={3}>
-          <Button variant="contained" color="primary" onClick={openDialog}>
-            Create Group
+      <Box mb={3} className={classes.header}>
+        <Typography variant="h1">Groups</Typography>
+        <div className={classes.actions}>
+          <Button
+            onClick={openDialog}
+            title="Add group"
+            className={classes.actionButton}
+          >
+            Add <PlusIcon />
           </Button>
-          {canSearchGroups && Search}
-          <div className={classes.right}>
-            <IconButton onClick={loadGroups} title="reload groups">
-              <Typography>
-                <span role="img" aria-label="reload groups">
-                  🔃
-                </span>
-              </Typography>
-            </IconButton>
-          </div>
-        </Box>
+          <div className={classes.separator}></div>
+          <Button
+            onClick={loadGroups}
+            title="Refresh groups"
+            className={classes.actionButton}
+          >
+            Refresh <RefreshIcon />
+          </Button>
+        </div>
+        {canSearchGroups && <div className={classes.search}>{Search}</div>}
+      </Box>
+      <Square mb={3}>
         <TableContainer>
           <Table>
             <TableHead>
