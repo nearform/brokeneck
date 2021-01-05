@@ -52,6 +52,13 @@ The easiest way to try this out is to run the standalone server via `brokeneck-f
 
 To easily develop the packages of this repo you can execute:
 
+- `cd packages/brokeneck-html`
+- `cp .env.sample .env`
+- configure `.env` with the correct REACT_APP_API_PATH. The sample one works on the default local install.
+- `cd ../../`
+
+Then
+
 ```sh
 yarn dev
 ```
