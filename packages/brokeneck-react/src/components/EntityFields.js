@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import T from 'prop-types'
-import { List, ListItem, ListItemText } from '@material-ui/core'
+import { List, ListItem, ListItemText, TextField } from '@material-ui/core'
 import startCase from 'lodash.startcase'
+import EditIcon from '@material-ui/icons/Edit'
+import { useFormik } from 'formik'
 
 import useFields from '../hooks/useFields'
 
@@ -10,15 +12,58 @@ export default function EntityFields({ typeName, data }) {
 
   return (
     <List>
-      {fields.all.map(field => (
-        <ListItem key={field}>
+      {fields.all.map(field =>
+        EditableListItem(field, fields.format(field, data[field]), fields.id)
+      )}
+    </List>
+  )
+}
+
+const EditableListItem = (field, val, id) => {
+  const [editing, setEditing] = useState(false)
+
+  const watchKeys = e => {
+    if (e.keyCode === 13) formik.handleSubmit()
+  }
+
+  const formik = useFormik({
+    initialValues: {
+      [field]: val
+    },
+    onSubmit: values => {
+      setEditing(!editing)
+      //Send edited values to backend
+      alert(JSON.stringify(values, null, 2))
+    }
+  })
+
+  return (
+    <ListItem key={field}>
+      {editing ? (
+        <TextField
+          label={startCase(field)}
+          name={field}
+          value={formik.values[field]}
+          onKeyUp={watchKeys}
+          onChange={formik.handleChange}
+          onBlur={formik.handleSubmit}
+          fullWidth
+          variant="outlined"
+          size="small"
+        ></TextField>
+      ) : id !== field ? (
+        <>
           <ListItemText
             primary={startCase(field)}
-            secondary={fields.format(field, data[field])}
+            secondary={formik.values[field]}
+            onClick={() => setEditing(!editing)}
           ></ListItemText>
-        </ListItem>
-      ))}
-    </List>
+          <EditIcon />
+        </>
+      ) : (
+        <ListItemText primary={startCase(field)} secondary={val}></ListItemText>
+      )}
+    </ListItem>
   )
 }
 
