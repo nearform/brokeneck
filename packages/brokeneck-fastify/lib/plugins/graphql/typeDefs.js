@@ -24,6 +24,15 @@ const typeDefs = gql`
     _: Ignored
   }
 
+  input EditUserInput {
+    email: String
+  }
+
+  input EditGroupInput {
+    name: String
+    description: String
+  }
+
   input AddUserToGroupInput {
     userId: String!
     groupId: String!
@@ -72,6 +81,8 @@ const typeDefs = gql`
   type Mutation {
     createUser(input: UserInput!): User
     createGroup(input: GroupInput!): Group
+    editUser(id: String!, input: EditUserInput!): User
+    editGroup(id: String!, input: EditGroupInput!): Group
     addUserToGroup(input: AddUserToGroupInput!): Boolean
     removeUserFromGroup(input: RemoveUserFromGroupInput!): Boolean
     deleteUser(input: DeleteUserInput!): Boolean

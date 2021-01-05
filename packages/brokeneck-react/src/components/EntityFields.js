@@ -7,19 +7,24 @@ import { useFormik } from 'formik'
 
 import useFields from '../hooks/useFields'
 
-export default function EntityFields({ typeName, data }) {
+export default function EntityFields({ typeName, data, editHandler }) {
   const fields = useFields(typeName)
 
   return (
     <List>
       {fields.all.map(field =>
-        EditableListItem(field, fields.format(field, data[field]), fields.id)
+        EditableListItem(
+          field,
+          fields.format(field, data[field]),
+          fields.id,
+          editHandler
+        )
       )}
     </List>
   )
 }
 
-const EditableListItem = (field, val, id) => {
+const EditableListItem = (field, val, id, editHandler) => {
   const [editing, setEditing] = useState(false)
 
   const watchKeys = e => {
@@ -32,8 +37,7 @@ const EditableListItem = (field, val, id) => {
     },
     onSubmit: values => {
       setEditing(!editing)
-      //Send edited values to backend
-      alert(JSON.stringify(values, null, 2))
+      editHandler(values)
     }
   })
 
@@ -69,5 +73,6 @@ const EditableListItem = (field, val, id) => {
 
 EntityFields.propTypes = {
   typeName: T.string.isRequired,
-  data: T.object
+  data: T.object,
+  editHandler: T.object
 }

@@ -22,7 +22,12 @@ import { useQuery, useMutation } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
 import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
-import { DELETE_GROUP, LOAD_GROUP, REMOVE_USER_FROM_GROUP } from '../graphql'
+import {
+  DELETE_GROUP,
+  EDIT_GROUP,
+  LOAD_GROUP,
+  REMOVE_USER_FROM_GROUP
+} from '../graphql'
 import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
 import usePagination from '../hooks/usePagination'
@@ -82,6 +87,18 @@ export default function Group({ groupId }) {
   })
   const [removeUserFromGroup] = useMutation(REMOVE_USER_FROM_GROUP)
   const [deleteGroup] = useMutation(DELETE_GROUP)
+  const [editGroup] = useMutation(EDIT_GROUP(groupFields.all))
+
+  async function handleEditGroup(fields) {
+    await editGroup({
+      variables: {
+        id: groupId,
+        input: {
+          ...fields
+        }
+      }
+    })
+  }
 
   async function handleRemoveUserFromGroup(userId) {
     if (!(await confirmRemoveUser())) {
@@ -159,7 +176,11 @@ export default function Group({ groupId }) {
       </Box>
       <Square mb={3}>
         <Typography variant="h6">Group</Typography>
-        <EntityFields typeName="Group" data={data.group} />
+        <EntityFields
+          typeName="Group"
+          data={data.group}
+          editHandler={handleEditGroup}
+        />
       </Square>
       <Square mb={3}>
         <Typography variant="h6" gutterBottom>

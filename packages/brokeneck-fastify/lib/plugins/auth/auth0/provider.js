@@ -123,6 +123,12 @@ function Auth0Provider(options, logger) {
     removeUserFromGroup({ userId, groupId }) {
       return auth0.removeRolesFromUser({ id: userId }, { roles: [groupId] })
     },
+    async editUser(id, input) {
+      return await auth0.updateUser(id, input)
+    },
+    async editGroup(id, input) {
+      return await auth0.updateRole(id, input)
+    },
     deleteUser({ id }) {
       return auth0.deleteUser({ id })
     },
