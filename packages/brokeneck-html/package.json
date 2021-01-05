@@ -10,6 +10,7 @@
     "build"
   ],
   "scripts": {
+    "create:env": "node -r fs -e \"fs.copyFileSync('.env.sample', '.env', fs.constants.COPYFILE_EXCL)\"",
     "dev": "yarn start",
     "start": "cross-env PORT=3001 react-scripts start",
     "clean": "rimraf build",
