@@ -1,12 +1,8 @@
 import React from 'react'
+import { SvgIcon } from '@material-ui/core'
 
-const Plus = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 311.539 311.539"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Plus = props => (
+  <SvgIcon {...props} viewBox="0 0 311.539 311.539">
     <g>
       <path
         d="M214.603,135.77H175.77V96.937c0-11.046-8.954-20-20-20s-20,8.954-20,20v38.833H96.937c-11.046,0-20,8.954-20,20
@@ -19,7 +15,7 @@ const Plus = () => (
             C271.539,219.755,219.761,271.539,155.77,271.539z"
       />
     </g>
-  </svg>
+  </SvgIcon>
 )
 
 export default Plus

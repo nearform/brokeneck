@@ -1,12 +1,8 @@
 import React from 'react'
+import { SvgIcon } from '@material-ui/core'
 
-const Cancel = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 311.539 311.539"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Cancel = props => (
+  <SvgIcon {...props} viewBox="0 0 311.539 311.539">
     <g>
       <path
         d="M218.412,93.127c-7.811-7.811-20.475-7.811-28.285,0l-34.357,34.357l-34.357-34.357c-7.811-7.811-20.475-7.811-28.285,0
@@ -20,7 +16,7 @@ const Cancel = () => (
             C271.539,219.755,219.761,271.539,155.77,271.539z"
       />
     </g>
-  </svg>
+  </SvgIcon>
 )
 
 export default Cancel

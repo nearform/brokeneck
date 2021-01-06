@@ -1,12 +1,8 @@
 import React from 'react'
+import { SvgIcon } from '@material-ui/core'
 
-const Refresh = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 314.154 314.154"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Refresh = props => (
+  <SvgIcon {...props} viewBox="0 0 314.154 314.154">
     <g>
       <path
         d="M307.475,141.686c-6.893-4.598-16.207-2.736-20.802,4.157l-0.446,0.669c-5.426-74.107-67.45-132.745-142.918-132.745
@@ -16,7 +12,7 @@ const Refresh = () => (
         c6.047,0,11.749-3.139,15.252-8.394l29.702-44.541C316.228,155.595,314.367,146.282,307.475,141.686z"
       />
     </g>
-  </svg>
+  </SvgIcon>
 )
 
 export default Refresh

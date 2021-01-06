@@ -1,13 +1,9 @@
 import React from 'react'
 import T from 'prop-types'
+import { SvgIcon } from '@material-ui/core'
 
-const Check = ({ fill }) => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 405.272 405.272"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Check = ({ fill, ...props }) => (
+  <SvgIcon {...props} viewBox="0 0 405.272 405.272">
     <g>
       <path
         d="M393.401,124.425L179.603,338.208c-15.832,15.835-41.514,15.835-57.361,0L11.878,227.836
@@ -16,7 +12,7 @@ const Check = ({ fill }) => (
         fill={fill}
       />
     </g>
-  </svg>
+  </SvgIcon>
 )
 
 Check.propTypes = {

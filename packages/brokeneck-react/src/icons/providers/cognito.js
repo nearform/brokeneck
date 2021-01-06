@@ -1,12 +1,8 @@
 import React from 'react'
+import { SvgIcon } from '@material-ui/core'
 
-const Cognito = () => (
-  <svg
-    width="24"
-    height="28"
-    viewBox="0 0 256 299"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Cognito = props => (
+  <SvgIcon {...props} viewBox="0 0 256 299">
     <path
       d="M208.752 58.061l25.771-6.636l.192.283l.651 155.607l-.843.846l-5.31.227l-20.159-3.138l-.302-.794V58.061"
       fill="#7A3E65"
@@ -44,7 +40,7 @@ const Cognito = () => (
       d="M234.523 51.425v156.736L128 238.878v59.72l128-61.794V61.793l-21.477-10.368"
       fill="#C17B9E"
     />
-  </svg>
+  </SvgIcon>
 )
 
 export default Cognito

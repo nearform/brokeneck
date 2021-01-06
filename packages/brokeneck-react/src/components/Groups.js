@@ -44,6 +44,10 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(1)
     }
   },
+  actionIcon: {
+    height: 20,
+    width: 20
+  },
   header: {
     alignItems: 'center',
     display: 'flex',
@@ -115,7 +119,7 @@ export default function Groups() {
             title="Add group"
             className={classes.actionButton}
           >
-            Add <PlusIcon />
+            Add <PlusIcon className={classes.actionIcon} />
           </Button>
           <div className={classes.separator}></div>
           <Button
@@ -123,7 +127,7 @@ export default function Groups() {
             title="Refresh groups"
             className={classes.actionButton}
           >
-            Refresh <RefreshIcon />
+            Refresh <RefreshIcon className={classes.actionIcon} />
           </Button>
         </div>
         {loading && <CircularProgress />}

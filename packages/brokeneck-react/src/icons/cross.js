@@ -1,13 +1,9 @@
 import React from 'react'
 import T from 'prop-types'
+import { SvgIcon } from '@material-ui/core'
 
-const Cross = ({ fill }) => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 348.333 348.334"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Cross = ({ fill, ...props }) => (
+  <SvgIcon {...props} viewBox="0 0 348.333 348.334">
     <g>
       <path
         d="M336.559,68.611L231.016,174.165l105.543,105.549c15.699,15.705,15.699,41.145,0,56.85
@@ -18,7 +14,7 @@ const Cross = ({ fill }) => (
         fill={fill}
       />
     </g>
-  </svg>
+  </SvgIcon>
 )
 
 Cross.propTypes = {

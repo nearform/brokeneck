@@ -34,8 +34,12 @@ const useStyles = makeStyles(theme => ({
     borderRight: `1px solid transparent`, // Needed for symetry
     height: '42px',
     marginLeft: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
+    padding: theme.spacing(2),
     width: '42px'
+  },
+  switcherIcon: {
+    height: 18,
+    width: 18
   },
   tabRoot: {
     minWidth: 120
@@ -86,9 +90,11 @@ export default function Navigation() {
         onClick={toggleThemeType}
         className={classes.switcher}
       >
-        <span role="img" aria-label="switch color mode">
-          {themeType === 'dark' ? <SunIcon /> : <MoonIcon />}
-        </span>
+        {themeType === 'dark' ? (
+          <SunIcon className={classes.switcherIcon} />
+        ) : (
+          <MoonIcon className={classes.switcherIcon} />
+        )}
       </IconButton>
     </AppBar>
   )

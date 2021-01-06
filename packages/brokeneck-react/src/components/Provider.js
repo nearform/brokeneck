@@ -22,20 +22,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const iconsMap = new Map()
-iconsMap.set('auth0', <Auth0Icon />)
-iconsMap.set('azure', <AzureIcon />)
-iconsMap.set('cognito', <CognitoIcon />)
+iconsMap.set('auth0', Auth0Icon)
+iconsMap.set('azure', AzureIcon)
+iconsMap.set('cognito', CognitoIcon)
 
 export default function Provider() {
   const { name } = useProvider()
   const classes = useStyles()
 
-  const icon = iconsMap.get(name)
+  const Icon = iconsMap.get(name)
 
   return (
     <div className={classes.wrapper}>
       Provider:
-      {icon && <div className={classes.icon}>{icon}</div>}
+      {Icon && <Icon className={classes.icon} />}
       <span className={classes.text}>{name}</span>
     </div>
   )

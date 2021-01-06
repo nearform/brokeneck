@@ -1,12 +1,8 @@
 import React from 'react'
+import { SvgIcon } from '@material-ui/core'
 
-const Sun = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 456.54 456.54"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Sun = props => (
+  <SvgIcon {...props} viewBox="0 0 456.54 456.54">
     <g>
       <path
         fill="#ffde55"
@@ -27,7 +23,7 @@ const Sun = () => (
       <circle cx={228.267} cy={228.271} r={124.003} fill="#fceba2" />
       <circle cx={228.267} cy={228.271} r={95.142} fill="#ffde55" />
     </g>
-  </svg>
+  </SvgIcon>
 )
 
 export default Sun

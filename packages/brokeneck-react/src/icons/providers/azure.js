@@ -1,12 +1,8 @@
 import React from 'react'
+import { SvgIcon } from '@material-ui/core'
 
-const Azure = () => (
-  <svg
-    width="28"
-    height="28"
-    viewBox="0 0 18 18"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+const Azure = props => (
+  <SvgIcon {...props} viewBox="0 0 18 18">
     <defs>
       <linearGradient
         id="gradientA"
@@ -47,7 +43,7 @@ const Azure = () => (
       fill="url(#gradientB)"
       d="M8.93 17.19L18 11.35l-1.01-1.18-8.06 5.16v1.86z"
     />
-  </svg>
+  </SvgIcon>
 )
 
 export default Azure
