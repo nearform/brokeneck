@@ -46,12 +46,16 @@ export default function ThemeSwitcherProvider({ children }) {
     [themeType]
   )
 
+  const providerValue = useMemo(() => ({ toggleThemeType, themeType, theme }), [
+    toggleThemeType,
+    themeType,
+    theme
+  ])
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ThemeSwitcherContext.Provider
-        value={{ toggleThemeType, themeType, theme }}
-      >
+      <ThemeSwitcherContext.Provider value={providerValue}>
         {children}
       </ThemeSwitcherContext.Provider>
     </ThemeProvider>
