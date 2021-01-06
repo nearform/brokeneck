@@ -9,8 +9,7 @@ import {
   Tabs
 } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
-import GroupIcon from '@material-ui/icons/Group'
-import UserIcon from '@material-ui/icons/Person'
+import { Group as GroupIcon, Person as UserIcon } from '@material-ui/icons'
 
 import MoonIcon from '../icons/moon'
 import SunIcon from '../icons/sun'
