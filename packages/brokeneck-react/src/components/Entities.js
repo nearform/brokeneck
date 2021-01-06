@@ -19,7 +19,6 @@ import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
-import useCreateUserDialog from '../hooks/useCreateUserDialog'
 import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import usePagination from '../hooks/usePagination'
 import useSearch from '../hooks/useSearch'
@@ -43,7 +42,8 @@ export default function Entities({
   query,
   entityName,
   entitiesName,
-  entitiesKey
+  entitiesKey,
+  useCreateEntityDialog
 }) {
   const match = useRouteMatch()
   const classes = useStyles()
@@ -65,7 +65,7 @@ export default function Entities({
     }
   })
 
-  const [dialog, openDialog] = useCreateUserDialog(loadEntities)
+  const [dialog, openDialog] = useCreateEntityDialog(loadEntities)
 
   useUpdateToken(data?.[entitiesKey].nextPage)
 
@@ -109,18 +109,18 @@ export default function Entities({
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.[entitiesKey].data.map(user => (
-                <TableRow key={user[fields.id]}>
+              {data?.[entitiesKey].data.map(item => (
+                <TableRow key={item[fields.id]}>
                   {fields.all.map((field, index) => (
                     <TableCell key={field}>
                       {!index ? (
                         <Link
                           color="secondary"
                           component={RouterLink}
-                          to={`${match.url}/${user[fields.id]}`}
+                          to={`${match.url}/${item[fields.id]}`}
                         >
                           <Typography>
-                            {fields.format(field, user[field])}
+                            {fields.format(field, item[field])}
                           </Typography>
                         </Link>
                       ) : (
@@ -131,7 +131,7 @@ export default function Entities({
                               : undefined
                           }
                         >
-                          {fields.format(field, user[field])}
+                          {fields.format(field, item[field])}
                         </Typography>
                       )}
                     </TableCell>
@@ -158,5 +158,6 @@ Entities.propTypes = {
   query: T.func.isRequired,
   entityName: T.string.isRequired,
   entitiesName: T.string.isRequired,
-  entitiesKey: T.string.isRequired
+  entitiesKey: T.string.isRequired,
+  useCreateEntityDialog: toString.isRequired
 }
