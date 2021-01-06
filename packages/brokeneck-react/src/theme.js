@@ -3,10 +3,12 @@ const palette = {
   bodyText: '#333333',
   lightenedBlue: '#588be9',
   midnightBlue: '#194ca9',
+  grey5: '#3d3d38',
   grey4: '#6d6d68',
   grey3: '#a8a9a1',
   grey2: '#d2d2cc',
   grey1: '#f1f1ef',
+  grey0: '#f5f5f5',
   white: '#ffffff',
   salmon: '#fa775e',
   flamingo: '#fa7a9b',
@@ -43,6 +45,9 @@ export default {
       },
       separator: {
         main: palette.grey2
+      },
+      tableRowHighlight: {
+        main: palette.grey0
       }
     },
     typography
@@ -63,6 +68,9 @@ export default {
       },
       separator: {
         main: palette.grey3
+      },
+      tableRowHighlight: {
+        main: palette.grey5
       }
     },
     typography

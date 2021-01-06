@@ -14,7 +14,7 @@ import {
   Typography
 } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
+import { Link as RouterLink, useHistory, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
@@ -81,6 +81,12 @@ const useStyles = makeStyles(theme => ({
     '& th:last-child': {
       borderRadius: '0 10px 10px 0'
     }
+  },
+  tableRow: {
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.tableRowHighlight.main
+    }
   }
 }))
 
@@ -90,6 +96,7 @@ export default function Groups() {
   const { search, Search } = useSearch()
   const classes = useStyles()
   const theme = useTheme()
+  const history = useHistory()
   const {
     capabilities: { canSearchGroups }
   } = useProvider()
@@ -164,7 +171,13 @@ export default function Groups() {
             </TableHead>
             <TableBody>
               {data?.groups.data.map(group => (
-                <TableRow key={group[groupFields.id]}>
+                <TableRow
+                  classes={{ root: classes.tableRow }}
+                  key={group[groupFields.id]}
+                  onClick={() =>
+                    history.push(`${match.url}/${group[groupFields.id]}`)
+                  }
+                >
                   {groupFields.all.map((field, index) => (
                     <TableCell key={field}>
                       {!index ? (
