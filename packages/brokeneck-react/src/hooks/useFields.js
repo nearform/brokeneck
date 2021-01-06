@@ -1,5 +1,10 @@
 import React from 'react'
 import isNil from 'lodash.isnil'
+import { useTheme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core'
+
+import CheckIcon from '../icons/check'
+import CrossIcon from '../icons/cross'
 
 import useSchema from './useSchema'
 
@@ -34,8 +39,17 @@ function getFormType(field) {
   return 'text'
 }
 
+const useStyles = makeStyles(() => ({
+  fieldIcon: {
+    height: 18,
+    width: 18
+  }
+}))
+
 export default function useFields(typeName) {
   const schema = useSchema(typeName)
+  const theme = useTheme()
+  const classes = useStyles()
 
   const allFields = [...(schema.fields || []), ...(schema.inputFields || [])]
 
@@ -85,7 +99,8 @@ export default function useFields(typeName) {
     all: all.map(f => f.name),
     metadata,
     fieldMetadata,
-    format: (field, value) => formatField(field, value, fieldMetadata),
+    format: (field, value) =>
+      formatField(field, value, fieldMetadata, theme, classes),
     isType(field, typeName) {
       return fieldMetadata[field].typeName === typeName
     }
@@ -94,17 +109,27 @@ export default function useFields(typeName) {
   return fields
 }
 
-function formatField(field, value, fieldMetadata) {
+function formatField(
+  field,
+  value,
+  fieldMetadata,
+  theme = { palette: {} },
+  classes
+) {
   if (isNil(value)) {
     return '-'
   }
 
+  const {
+    palette: { success = {}, error = {} }
+  } = theme
+
   switch (fieldMetadata[field].typeName) {
     case TYPE_NAMES.Boolean:
-      return (
-        <span role="img" aria-label={field}>
-          {value ? '✅' : '❌'}
-        </span>
+      return value ? (
+        <CheckIcon className={classes.fieldIcon} fill={success.main} />
+      ) : (
+        <CrossIcon className={classes.fieldIcon} fill={error.main} />
       )
     case TYPE_NAMES.Date:
       return new Date(value).toLocaleDateString()

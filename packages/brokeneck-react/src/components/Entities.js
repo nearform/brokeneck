@@ -4,8 +4,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  IconButton,
-  Link,
   makeStyles,
   Table,
   TableBody,
@@ -15,26 +13,65 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
 import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import usePagination from '../hooks/usePagination'
 import useSearch from '../hooks/useSearch'
+import PlusIcon from '../icons/plus'
+import RefreshIcon from '../icons/refresh'
 
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
+  actions: {
+    alignItems: 'center',
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    display: 'flex',
+    marginLeft: theme.spacing(2.5),
+    marginTop: 10,
+    paddingLeft: theme.spacing(1)
+  },
+  actionButton: {
+    textTransform: 'none',
+    '& svg': {
+      fill: theme.palette.primary.main,
+      marginLeft: theme.spacing(1)
+    }
+  },
+  actionIcon: {
+    height: 20,
+    width: 20
+  },
+  entityName: {
+    color: theme.palette.secondary.main,
+    fontWeight: 'bold'
+  },
+  header: {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: theme.spacing(2.5)
+  },
+  right: {
+    marginLeft: 'auto'
+  },
+  search: {
+    marginLeft: 'auto'
+  },
+  separator: {
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    height: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
   spacing: {
     display: 'flex',
     alignItems: 'center',
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
-  },
-  right: {
-    marginLeft: 'auto'
   }
 }))
 
@@ -50,6 +87,7 @@ export default function Entities({
   const classes = useStyles()
   const fields = useFields(entityName)
   const { search, Search } = useSearch()
+  const history = useHistory()
 
   const {
     pageSize,
@@ -76,20 +114,27 @@ export default function Entities({
     <>
       {dialog}
       <Square mb={3}>
-        <Box className={classes.spacing} mb={3}>
-          <Button variant="contained" color="primary" onClick={openDialog}>
-            {`Create ${entityName}`}
-          </Button>
-          {canSearch && Search}
-          <div className={classes.right}>
-            <IconButton onClick={loadEntities} title={`reload ${entitiesName}`}>
-              <Typography>
-                <span role="img" aria-label={`reload ${entitiesName}`}>
-                  🔃
-                </span>
-              </Typography>
-            </IconButton>
+        <Box mb={3} className={classes.header}>
+          <Typography variant="h1">{entitiesName}</Typography>
+          <div className={classes.actions}>
+            <Button
+              onClick={openDialog}
+              title={`Add ${entityName}`}
+              className={classes.actionButton}
+            >
+              Add <PlusIcon className={classes.actionIcon} />
+            </Button>
+            <div className={classes.separator}></div>
+            <Button
+              onClick={loadEntities}
+              title={`Refresh ${entitiesName}`}
+              className={classes.actionButton}
+            >
+              Refresh <RefreshIcon className={classes.actionIcon} />
+            </Button>
           </div>
+          {loading && <CircularProgress />}
+          {canSearch && <div className={classes.search}>{Search}</div>}
         </Box>
         <TableContainer>
           <Table>
@@ -111,41 +156,33 @@ export default function Entities({
             </TableHead>
             <TableBody>
               {data?.[entitiesKey].data.map(item => (
-                <TableRow key={item[fields.id]}>
+                <TableRow
+                  key={item[fields.id]}
+                  onClick={() =>
+                    history.push(`${match.url}/${item[fields.id]}`)
+                  }
+                  onKeyPress={event =>
+                    (event.code === 'Enter' || event.code === 'Space') &&
+                    history.push(`${match.url}/${item[fields.id]}`)
+                  }
+                  tabIndex={0}
+                >
                   {fields.all.map((field, index) => (
                     <TableCell key={field}>
-                      {!index ? (
-                        <Link
-                          color="secondary"
-                          component={RouterLink}
-                          to={`${match.url}/${item[fields.id]}`}
-                        >
-                          <Typography>
-                            {fields.format(field, item[field])}
-                          </Typography>
-                        </Link>
-                      ) : (
-                        <Typography
-                          align={
-                            fields.isType(field, TYPE_NAMES.Boolean)
-                              ? 'center'
-                              : undefined
-                          }
-                        >
-                          {fields.format(field, item[field])}
-                        </Typography>
-                      )}
+                      <Typography
+                        className={index === 0 ? classes.entityName : ''}
+                        align={
+                          fields.isType(field, TYPE_NAMES.Boolean)
+                            ? 'center'
+                            : undefined
+                        }
+                      >
+                        {fields.format(field, item[field])}
+                      </Typography>
                     </TableCell>
                   ))}
                 </TableRow>
               ))}
-              {loading && (
-                <TableRow>
-                  <TableCell colSpan={fields.all.length}>
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>

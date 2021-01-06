@@ -42,9 +42,9 @@ The easiest way to try this out is to run the standalone server via `brokeneck-f
 
 - `lerna bootstrap`
 - `lerna run build`
-- `cd packages/brokeneck-fastify`
-- `cp .env.sample .env`
-- configure `.env` based on the authentication provider you want to use
+- `lerna run create:env`
+- configure `packages/brokeneck-fastify/.env` based on the authentication provider you want to use
+- `packages/brokeneck-html/.env` will be preconfigured with the correct REACT_APP_API_PATH for local development.
 - `yarn start`
 - browse to [`http://localhost:5001`](http://localhost:5001)
 

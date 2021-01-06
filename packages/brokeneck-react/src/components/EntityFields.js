@@ -4,7 +4,6 @@ import { List, ListItem, ListItemText } from '@material-ui/core'
 import startCase from 'lodash.startcase'
 
 import useFields from '../hooks/useFields'
-
 export default function EntityFields({ typeName, data }) {
   const fields = useFields(typeName)
 
