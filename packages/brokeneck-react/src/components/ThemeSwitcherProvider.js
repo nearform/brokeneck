@@ -36,7 +36,10 @@ export default function ThemeSwitcherProvider({ children }) {
   const theme = useMemo(
     () =>
       createMuiTheme({
-        palette: themeObject.palettes[themeType],
+        palette: {
+          type: themeType,
+          ...themeObject.palettes[themeType]
+        },
         typography: themeObject.typography,
         overrides: themeObject.overrides(themeType)
       }),
