@@ -20,10 +20,8 @@ async function customPath(fastify, options) {
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link
-      rel="stylesheet"
-      href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
     <style>
       body {
         padding: 1em;
