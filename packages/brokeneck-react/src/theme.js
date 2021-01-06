@@ -1,6 +1,5 @@
 const palette = {
   blue: '#2165e2',
-  bodyText: '#333333',
   lightenedBlue: '#588be9',
   midnightBlue: '#194ca9',
   grey5: '#3d3d38',
@@ -37,7 +36,7 @@ const palettes = {
       main: palette.lightenedBlue
     },
     bodyText: {
-      main: palette.bodyText
+      main: palette.grey5
     },
     headerBackground: {
       main: palette.grey1
@@ -72,6 +71,20 @@ const palettes = {
 }
 
 const overrides = themeType => ({
+  MuiLink: {
+    root: {
+      '&:visited': {
+        color: palettes[themeType].secondary.main
+      }
+    }
+  },
+  MuiTab: {
+    root: {
+      '&:visited': {
+        color: palettes[themeType].bodyText.main
+      }
+    }
+  },
   MuiTableRow: {
     head: {
       '& th': {
