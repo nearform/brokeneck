@@ -61,7 +61,7 @@ export default function Navigation() {
           to="/users"
           label={
             <>
-              <UserIcon style={{ verticalAlign: 'middle' }} /> Users
+              <UserIcon /> Users
             </>
           }
           value="users"
@@ -72,7 +72,7 @@ export default function Navigation() {
           to="/groups"
           label={
             <>
-              <GroupIcon style={{ verticalAlign: 'middle' }} /> Groups
+              <GroupIcon /> Groups
             </>
           }
           value="groups"
