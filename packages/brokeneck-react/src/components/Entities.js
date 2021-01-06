@@ -39,6 +39,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Entities({
+  canSearch = true,
   entitiesName,
   entityName,
   entitiesKey,
@@ -79,7 +80,7 @@ export default function Entities({
           <Button variant="contained" color="primary" onClick={openDialog}>
             {`Create ${entityName}`}
           </Button>
-          {Search}
+          {canSearch && Search}
           <div className={classes.right}>
             <IconButton onClick={loadEntities} title={`reload ${entitiesName}`}>
               <Typography>
@@ -155,6 +156,7 @@ export default function Entities({
 }
 
 Entities.propTypes = {
+  canSearch: T.bool,
   entitiesName: T.string.isRequired,
   entityName: T.string.isRequired,
   entitiesKey: T.string.isRequired,
