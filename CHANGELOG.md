@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-spinal.8](https://github.com/nearform/brokeneck/compare/v1.0.0-spinal.7...v1.0.0-spinal.8) (2021-01-06)
+
+
+### Bug Fixes
+
+* fix peerDependencies with material ui lab ([#41](https://github.com/nearform/brokeneck/issues/41)) ([dadfe56](https://github.com/nearform/brokeneck/commit/dadfe5669bf1af3c70018e329ce6d5d51197aa18))
+* **deps:** update dependency token-pagination-hooks to ^0.2.0 ([#35](https://github.com/nearform/brokeneck/issues/35)) ([3fa5f34](https://github.com/nearform/brokeneck/commit/3fa5f34915751350d3092ed69945be54a256a079))
+
+
+### Features
+
+* use token-pagination-hooks library ([78152d9](https://github.com/nearform/brokeneck/commit/78152d9e636c9419591d60071f201b199becae04)), closes [#21](https://github.com/nearform/brokeneck/issues/21)
+
+
+
+
+
 # [1.0.0-spinal.7](https://github.com/nearform/brokeneck/compare/v1.0.0-spinal.6...v1.0.0-spinal.7) (2020-12-30)
 
 
