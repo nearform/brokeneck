@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import T from 'prop-types'
 import { List, ListItem, ListItemText } from '@material-ui/core'
-import { useTheme } from '@material-ui/core/styles'
 import startCase from 'lodash.startcase'
 
 import useFields from '../hooks/useFields'
 
+import { ThemeSwitcherContext } from './ThemeSwitcherProvider'
 export default function EntityFields({ typeName, data }) {
   const fields = useFields(typeName)
-  const theme = useTheme()
+  const { theme } = useContext(ThemeSwitcherContext)
 
   return (
     <List>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   Box,
   Button,
@@ -13,7 +13,6 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { useTheme } from '@material-ui/core/styles'
 import { Link as RouterLink, useHistory, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
@@ -26,6 +25,7 @@ import useSearch from '../hooks/useSearch'
 import PlusIcon from '../icons/plus'
 import RefreshIcon from '../icons/refresh'
 
+import { ThemeSwitcherContext } from './ThemeSwitcherProvider'
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
@@ -94,7 +94,7 @@ export default function Users() {
   const classes = useStyles()
   const userFields = useFields('User')
   const { search, Search } = useSearch()
-  const theme = useTheme()
+  const { theme } = useContext(ThemeSwitcherContext)
   const history = useHistory()
 
   const {

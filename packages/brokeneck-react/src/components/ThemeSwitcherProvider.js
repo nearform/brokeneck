@@ -48,7 +48,9 @@ export default function ThemeSwitcherProvider({ children }) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ThemeSwitcherContext.Provider value={toggleThemeType}>
+      <ThemeSwitcherContext.Provider
+        value={{ toggleThemeType, themeType, theme }}
+      >
         {children}
       </ThemeSwitcherContext.Provider>
     </ThemeProvider>

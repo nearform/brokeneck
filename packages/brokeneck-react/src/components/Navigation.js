@@ -8,7 +8,6 @@ import {
   Tab,
   Tabs
 } from '@material-ui/core'
-import { useTheme } from '@material-ui/core/styles'
 import { Group as GroupIcon, Person as UserIcon } from '@material-ui/icons'
 
 import MoonIcon from '../icons/moon'
@@ -48,10 +47,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Navigation() {
   const classes = useStyles()
-  const {
-    palette: { type: themeType }
-  } = useTheme()
-  const toggleThemeType = useContext(ThemeSwitcherContext)
+  const { toggleThemeType, themeType } = useContext(ThemeSwitcherContext)
   const isGroups = useRouteMatch('/groups')
 
   const currentTab = isGroups ? 'groups' : 'users'
