@@ -39,10 +39,10 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Entities({
-  query,
-  entityName,
   entitiesName,
+  entityName,
   entitiesKey,
+  query,
   useCreateEntityDialog
 }) {
   const match = useRouteMatch()
@@ -155,9 +155,9 @@ export default function Entities({
 }
 
 Entities.propTypes = {
-  query: T.func.isRequired,
-  entityName: T.string.isRequired,
   entitiesName: T.string.isRequired,
+  entityName: T.string.isRequired,
   entitiesKey: T.string.isRequired,
-  useCreateEntityDialog: toString.isRequired
+  query: T.func.isRequired,
+  useCreateEntityDialog: T.func.isRequired
 }

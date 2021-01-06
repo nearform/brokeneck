@@ -23,14 +23,14 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Entity({
-  name,
-  pluralName,
+  children,
   description,
   entityData,
   entityMutationButtons,
-  SecondaryComponent,
   loading,
-  children
+  name,
+  pluralName,
+  SecondaryComponent
 }) {
   const classes = useStyles()
 
@@ -72,12 +72,12 @@ export default function Entity({
 }
 
 Entity.propTypes = {
-  name: T.string.isRequired,
-  pluralName: T.string.isRequired,
+  children: T.node,
   description: T.string,
-  loading: T.bool,
   entityData: T.object,
   entityMutationButtons: T.node,
-  SecondaryComponent: T.elementType,
-  children: T.node
+  loading: T.bool,
+  name: T.string.isRequired,
+  pluralName: T.string.isRequired,
+  SecondaryComponent: T.elementType
 }
