@@ -101,7 +101,7 @@ const overrides = themeType => ({
     },
     root: {
       cursor: 'pointer',
-      '&:hover': {
+      '&:hover, &:focus': {
         backgroundColor: palettes[themeType].tableRowHighlight.main
       }
     }

@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  Link,
   makeStyles,
   Table,
   TableBody,
@@ -13,7 +12,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { Link as RouterLink, useHistory, useRouteMatch } from 'react-router-dom'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
@@ -51,6 +50,10 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     display: 'flex',
     marginLeft: theme.spacing(2.5)
+  },
+  entityName: {
+    color: theme.palette.secondary.main,
+    fontWeight: 'bold'
   },
   right: {
     marginLeft: 'auto'
@@ -155,30 +158,24 @@ export default function Users() {
                   onClick={() =>
                     history.push(`${match.url}/${user[userFields.id]}`)
                   }
+                  onKeyPress={event =>
+                    (event.code === 'Enter' || event.code === 'Space') &&
+                    history.push(`${match.url}/${user[userFields.id]}`)
+                  }
+                  tabIndex={0}
                 >
                   {userFields.all.map((field, index) => (
                     <TableCell key={field}>
-                      {!index ? (
-                        <Link
-                          color="secondary"
-                          component={RouterLink}
-                          to={`${match.url}/${user[userFields.id]}`}
-                        >
-                          <Typography>
-                            {userFields.format(field, user[field])}
-                          </Typography>
-                        </Link>
-                      ) : (
-                        <Typography
-                          align={
-                            userFields.isType(field, TYPE_NAMES.Boolean)
-                              ? 'center'
-                              : undefined
-                          }
-                        >
-                          {userFields.format(field, user[field])}
-                        </Typography>
-                      )}
+                      <Typography
+                        className={index === 0 ? classes.entityName : ''}
+                        align={
+                          userFields.isType(field, TYPE_NAMES.Boolean)
+                            ? 'center'
+                            : undefined
+                        }
+                      >
+                        {userFields.format(field, user[field])}
+                      </Typography>
                     </TableCell>
                   ))}
                 </TableRow>
