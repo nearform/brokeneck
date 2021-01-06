@@ -27,7 +27,6 @@ export default function useCreateGroupDialog(onConfirm) {
   return useDialog({
     onConfirm: handleConfirm,
     title: 'Create group',
-    text: 'Use this form to create a new group',
     action: 'Create',
     fields: inputFields.all.map(field => ({
       name: field,

@@ -27,7 +27,6 @@ export default function useCreateUserDialog(onConfirm) {
   return useDialog({
     onConfirm: handleConfirm,
     title: 'Create user',
-    text: 'Use this form to create a new user',
     action: 'Create',
     fields: inputFields.all.map(field => ({
       name: field,
