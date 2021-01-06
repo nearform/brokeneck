@@ -2,8 +2,8 @@ import React from 'react'
 import isNil from 'lodash.isnil'
 import { useTheme } from '@material-ui/core/styles'
 
-import IconCheck from '../icons/check'
-import IconCross from '../icons/cross'
+import CheckIcon from '../icons/check'
+import CrossIcon from '../icons/cross'
 
 import useSchema from './useSchema'
 
@@ -113,9 +113,9 @@ function formatField(field, value, fieldMetadata, theme = { palette: {} }) {
       return (
         <span role="img" aria-label={field}>
           {value ? (
-            <IconCheck fill={success.main} />
+            <CheckIcon fill={success.main} />
           ) : (
-            <IconCross fill={error.main} />
+            <CrossIcon fill={error.main} />
           )}
         </span>
       )
