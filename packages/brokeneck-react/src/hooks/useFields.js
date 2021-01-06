@@ -1,5 +1,6 @@
 import React from 'react'
 import isNil from 'lodash.isnil'
+import { useTheme } from '@material-ui/core/styles'
 
 import IconCheck from '../icons/check'
 import IconCross from '../icons/cross'
@@ -39,6 +40,7 @@ function getFormType(field) {
 
 export default function useFields(typeName) {
   const schema = useSchema(typeName)
+  const theme = useTheme()
 
   const allFields = [...(schema.fields || []), ...(schema.inputFields || [])]
 
@@ -88,8 +90,7 @@ export default function useFields(typeName) {
     all: all.map(f => f.name),
     metadata,
     fieldMetadata,
-    format: (field, value, theme) =>
-      formatField(field, value, fieldMetadata, theme),
+    format: (field, value) => formatField(field, value, fieldMetadata, theme),
     isType(field, typeName) {
       return fieldMetadata[field].typeName === typeName
     }

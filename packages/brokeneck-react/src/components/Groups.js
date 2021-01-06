@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Box,
   Button,
@@ -26,7 +26,6 @@ import useSearch from '../hooks/useSearch'
 import PlusIcon from '../icons/plus'
 import RefreshIcon from '../icons/refresh'
 
-import { ThemeSwitcherContext } from './ThemeSwitcherProvider'
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
@@ -95,7 +94,6 @@ export default function Groups() {
   const groupFields = useFields('Group')
   const { search, Search } = useSearch()
   const classes = useStyles()
-  const { theme } = useContext(ThemeSwitcherContext)
   const history = useHistory()
   const {
     capabilities: { canSearchGroups }
@@ -187,7 +185,7 @@ export default function Groups() {
                           to={`${match.url}/${group[groupFields.id]}`}
                         >
                           <Typography>
-                            {groupFields.format(field, group[field], theme)}
+                            {groupFields.format(field, group[field])}
                           </Typography>
                         </Link>
                       ) : (
@@ -198,7 +196,7 @@ export default function Groups() {
                               : undefined
                           }
                         >
-                          {groupFields.format(field, group[field], theme)}
+                          {groupFields.format(field, group[field])}
                         </Typography>
                       )}
                     </TableCell>

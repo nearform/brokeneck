@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Box,
   Button,
@@ -25,7 +25,6 @@ import useSearch from '../hooks/useSearch'
 import PlusIcon from '../icons/plus'
 import RefreshIcon from '../icons/refresh'
 
-import { ThemeSwitcherContext } from './ThemeSwitcherProvider'
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
@@ -94,7 +93,6 @@ export default function Users() {
   const classes = useStyles()
   const userFields = useFields('User')
   const { search, Search } = useSearch()
-  const { theme } = useContext(ThemeSwitcherContext)
   const history = useHistory()
 
   const {
@@ -183,7 +181,7 @@ export default function Users() {
                           to={`${match.url}/${user[userFields.id]}`}
                         >
                           <Typography>
-                            {userFields.format(field, user[field], theme)}
+                            {userFields.format(field, user[field])}
                           </Typography>
                         </Link>
                       ) : (
@@ -194,7 +192,7 @@ export default function Users() {
                               : undefined
                           }
                         >
-                          {userFields.format(field, user[field], theme)}
+                          {userFields.format(field, user[field])}
                         </Typography>
                       )}
                     </TableCell>
