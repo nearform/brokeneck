@@ -36,6 +36,7 @@ export default function usePagination({ pageSizeOptions = [5, 10, 20] }) {
           onChangeRowsPerPage={handleChangePageSize}
           component="div"
           count={-1}
+          labelRowsPerPage="Show:"
           rowsPerPage={pageSize}
           page={pageNumber - 1}
           nextIconButtonProps={{

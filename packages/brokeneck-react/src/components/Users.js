@@ -13,6 +13,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
@@ -66,6 +67,19 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
+  },
+  tableHead: {
+    '& th': {
+      backgroundColor: theme.palette.headerBackground.main,
+      borderBottom: 0,
+      fontWeight: 'bold'
+    },
+    '& th:first-child': {
+      borderRadius: '10px 0 0 10px'
+    },
+    '& th:last-child': {
+      borderRadius: '0 10px 10px 0'
+    }
   }
 }))
 
@@ -74,13 +88,14 @@ export default function Users() {
   const classes = useStyles()
   const userFields = useFields('User')
   const { search, Search } = useSearch()
+  const theme = useTheme()
 
   const {
     pageSize,
     currentToken,
     useUpdateToken,
     useTablePagination
-  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination({ pageSizeOptions: [10, 20, 30] })
 
   const { data, loading, refetch: loadUsers } = useQuery(
     LOAD_USERS(userFields.all),
@@ -121,13 +136,14 @@ export default function Users() {
             Refresh <RefreshIcon />
           </Button>
         </div>
+        {loading && <CircularProgress />}
         <div className={classes.search}>{Search}</div>
       </Box>
       <Square mb={3}>
         <TableContainer>
           <Table>
             <TableHead>
-              <TableRow>
+              <TableRow classes={{ head: classes.tableHead }}>
                 {userFields.all.map(field => (
                   <TableCell
                     align={
@@ -154,7 +170,7 @@ export default function Users() {
                           to={`${match.url}/${user[userFields.id]}`}
                         >
                           <Typography>
-                            {userFields.format(field, user[field])}
+                            {userFields.format(field, user[field], theme)}
                           </Typography>
                         </Link>
                       ) : (
@@ -165,20 +181,13 @@ export default function Users() {
                               : undefined
                           }
                         >
-                          {userFields.format(field, user[field])}
+                          {userFields.format(field, user[field], theme)}
                         </Typography>
                       )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))}
-              {loading && (
-                <TableRow>
-                  <TableCell colSpan={userFields.all.length}>
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>

@@ -1,6 +1,9 @@
 import React from 'react'
 import isNil from 'lodash.isnil'
 
+import IconCheck from '../icons/check'
+import IconCross from '../icons/cross'
+
 import useSchema from './useSchema'
 
 const CHECKBOX = 'checkbox'
@@ -85,7 +88,8 @@ export default function useFields(typeName) {
     all: all.map(f => f.name),
     metadata,
     fieldMetadata,
-    format: (field, value) => formatField(field, value, fieldMetadata),
+    format: (field, value, theme) =>
+      formatField(field, value, fieldMetadata, theme),
     isType(field, typeName) {
       return fieldMetadata[field].typeName === typeName
     }
@@ -94,16 +98,24 @@ export default function useFields(typeName) {
   return fields
 }
 
-function formatField(field, value, fieldMetadata) {
+function formatField(field, value, fieldMetadata, theme = { palette: {} }) {
   if (isNil(value)) {
     return '-'
   }
+
+  const {
+    palette: { success = {}, error = {} }
+  } = theme
 
   switch (fieldMetadata[field].typeName) {
     case TYPE_NAMES.Boolean:
       return (
         <span role="img" aria-label={field}>
-          {value ? '✅' : '❌'}
+          {value ? (
+            <IconCheck fill={success.main} />
+          ) : (
+            <IconCross fill={error.main} />
+          )}
         </span>
       )
     case TYPE_NAMES.Date:

@@ -13,6 +13,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
@@ -67,6 +68,19 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
+  },
+  tableHead: {
+    '& th': {
+      backgroundColor: theme.palette.headerBackground.main,
+      borderBottom: 0,
+      fontWeight: 'bold'
+    },
+    '& th:first-child': {
+      borderRadius: '10px 0 0 10px'
+    },
+    '& th:last-child': {
+      borderRadius: '0 10px 10px 0'
+    }
   }
 }))
 
@@ -75,6 +89,7 @@ export default function Groups() {
   const groupFields = useFields('Group')
   const { search, Search } = useSearch()
   const classes = useStyles()
+  const theme = useTheme()
   const {
     capabilities: { canSearchGroups }
   } = useProvider()
@@ -84,7 +99,7 @@ export default function Groups() {
     currentToken,
     useUpdateToken,
     useTablePagination
-  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination({ pageSizeOptions: [10, 20, 30] })
 
   const { data, loading, refetch: loadGroups } = useQuery(
     LOAD_GROUPS(groupFields.all),
@@ -125,13 +140,14 @@ export default function Groups() {
             Refresh <RefreshIcon />
           </Button>
         </div>
+        {loading && <CircularProgress />}
         {canSearchGroups && <div className={classes.search}>{Search}</div>}
       </Box>
       <Square mb={3}>
         <TableContainer>
           <Table>
             <TableHead>
-              <TableRow>
+              <TableRow classes={{ head: classes.tableHead }}>
                 {groupFields.all.map(field => (
                   <TableCell
                     align={
@@ -158,7 +174,7 @@ export default function Groups() {
                           to={`${match.url}/${group[groupFields.id]}`}
                         >
                           <Typography>
-                            {groupFields.format(field, group[field])}
+                            {groupFields.format(field, group[field], theme)}
                           </Typography>
                         </Link>
                       ) : (
@@ -169,20 +185,13 @@ export default function Groups() {
                               : undefined
                           }
                         >
-                          {groupFields.format(field, group[field])}
+                          {groupFields.format(field, group[field], theme)}
                         </Typography>
                       )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))}
-              {loading && (
-                <TableRow>
-                  <TableCell colSpan={groupFields.all.length}>
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
