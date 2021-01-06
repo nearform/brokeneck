@@ -67,25 +67,6 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
-  },
-  tableHead: {
-    '& th': {
-      backgroundColor: theme.palette.headerBackground.main,
-      borderBottom: 0,
-      fontWeight: 'bold'
-    },
-    '& th:first-child': {
-      borderRadius: '10px 0 0 10px'
-    },
-    '& th:last-child': {
-      borderRadius: '0 10px 10px 0'
-    }
-  },
-  tableRow: {
-    cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: theme.palette.tableRowHighlight.main
-    }
   }
 }))
 
@@ -152,7 +133,7 @@ export default function Groups() {
         <TableContainer>
           <Table>
             <TableHead>
-              <TableRow classes={{ head: classes.tableHead }}>
+              <TableRow>
                 {groupFields.all.map(field => (
                   <TableCell
                     align={
@@ -170,7 +151,6 @@ export default function Groups() {
             <TableBody>
               {data?.groups.data.map(group => (
                 <TableRow
-                  classes={{ root: classes.tableRow }}
                   key={group[groupFields.id]}
                   onClick={() =>
                     history.push(`${match.url}/${group[groupFields.id]}`)

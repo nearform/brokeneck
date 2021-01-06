@@ -28,51 +28,75 @@ const typography = {
   h6: { fontSize: '1.15rem' }
 }
 
-export default {
+const palettes = {
   light: {
-    palette: {
-      primary: {
-        main: palette.blue
-      },
-      secondary: {
-        main: palette.lightenedBlue
-      },
-      bodyText: {
-        main: palette.bodyText
-      },
-      headerBackground: {
-        main: palette.grey1
-      },
-      separator: {
-        main: palette.grey2
-      },
-      tableRowHighlight: {
-        main: palette.grey0
-      }
+    primary: {
+      main: palette.blue
     },
-    typography
+    secondary: {
+      main: palette.lightenedBlue
+    },
+    bodyText: {
+      main: palette.bodyText
+    },
+    headerBackground: {
+      main: palette.grey1
+    },
+    separator: {
+      main: palette.grey2
+    },
+    tableRowHighlight: {
+      main: palette.grey0
+    }
   },
   dark: {
-    palette: {
-      primary: {
-        main: palette.blue
+    primary: {
+      main: palette.blue
+    },
+    secondary: {
+      main: palette.lightenedBlue
+    },
+    bodyText: {
+      main: palette.white
+    },
+    headerBackground: {
+      main: palette.grey4
+    },
+    separator: {
+      main: palette.grey3
+    },
+    tableRowHighlight: {
+      main: palette.grey5
+    }
+  }
+}
+
+const overrides = themeType => ({
+  MuiTableRow: {
+    head: {
+      '& th': {
+        backgroundColor: palettes[themeType].headerBackground.main,
+        borderBottom: 0,
+        fontWeight: 'bold'
       },
-      secondary: {
-        main: palette.lightenedBlue
+      '& th:first-child': {
+        borderRadius: '10px 0 0 10px'
       },
-      bodyText: {
-        main: palette.white
-      },
-      headerBackground: {
-        main: palette.grey4
-      },
-      separator: {
-        main: palette.grey3
-      },
-      tableRowHighlight: {
-        main: palette.grey5
+      '& th:last-child': {
+        borderRadius: '0 10px 10px 0'
       }
     },
-    typography
+    root: {
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: palettes[themeType].tableRowHighlight.main
+      }
+    }
   }
+})
+
+export default {
+  palettes,
+  typography,
+  overrides
 }
