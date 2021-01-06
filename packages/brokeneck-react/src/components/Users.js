@@ -100,7 +100,7 @@ export default function Users() {
     currentToken,
     useUpdateToken,
     useTablePagination
-  } = usePagination({ pageSizeOptions: [10, 20, 30] })
+  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
 
   const { data, loading, refetch: loadUsers } = useQuery(
     LOAD_USERS(userFields.all),
