@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Link,
   makeStyles,
   Table,
   TableBody,
@@ -12,7 +13,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { useHistory, useRouteMatch } from 'react-router-dom'
+import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
@@ -81,6 +82,9 @@ const useStyles = makeStyles(theme => ({
   spinner: {
     display: 'flex',
     marginLeft: theme.spacing(2)
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.tableRowHighlight.main
   }
 }))
 
@@ -89,7 +93,6 @@ export default function Groups() {
   const groupFields = useFields('Group')
   const { search, Search } = useSearch()
   const classes = useStyles()
-  const history = useHistory()
   const {
     capabilities: { canSearchGroups }
   } = useProvider()
@@ -168,30 +171,35 @@ export default function Groups() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.groups.data.map(group => (
+              {data?.groups.data.map((group, idx) => (
                 <TableRow
                   key={group[groupFields.id]}
-                  onClick={() =>
-                    history.push(`${match.url}/${group[groupFields.id]}`)
-                  }
-                  onKeyPress={event =>
-                    (event.code === 'Enter' || event.code === 'Space') &&
-                    history.push(`${match.url}/${group[groupFields.id]}`)
-                  }
-                  tabIndex={0}
+                  className={idx % 2 !== 0 ? classes.tableRowOdd : ''}
                 >
                   {groupFields.all.map((field, index) => (
                     <TableCell key={field}>
-                      <Typography
-                        className={index === 0 ? classes.entityName : ''}
-                        align={
-                          groupFields.isType(field, TYPE_NAMES.Boolean)
-                            ? 'center'
-                            : undefined
-                        }
-                      >
-                        {groupFields.format(field, group[field])}
-                      </Typography>
+                      {!index ? (
+                        <Link
+                          className={classes.entityName}
+                          color="secondary"
+                          component={RouterLink}
+                          to={`${match.url}/${group[groupFields.id]}`}
+                        >
+                          <Typography>
+                            {groupFields.format(field, group[field])}
+                          </Typography>
+                        </Link>
+                      ) : (
+                        <Typography
+                          align={
+                            groupFields.isType(field, TYPE_NAMES.Boolean)
+                              ? 'center'
+                              : undefined
+                          }
+                        >
+                          {groupFields.format(field, group[field])}
+                        </Typography>
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

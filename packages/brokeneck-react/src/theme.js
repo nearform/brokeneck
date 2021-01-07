@@ -113,7 +113,6 @@ const overrides = themeType => ({
   },
   MuiTableRow: {
     head: {
-      cursor: 'auto',
       '& th': {
         backgroundColor: palettes[themeType].headerBackground.main,
         borderBottom: 0,
@@ -124,12 +123,6 @@ const overrides = themeType => ({
       },
       '& th:last-child': {
         borderRadius: '0 10px 10px 0'
-      }
-    },
-    root: {
-      cursor: 'pointer',
-      '&:hover, &:focus': {
-        backgroundColor: palettes[themeType].tableRowHighlight.main
       }
     }
   }

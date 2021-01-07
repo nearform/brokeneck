@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Link,
   makeStyles,
   Table,
   TableBody,
@@ -12,7 +13,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { useHistory, useRouteMatch } from 'react-router-dom'
+import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
@@ -80,6 +81,9 @@ const useStyles = makeStyles(theme => ({
   spinner: {
     display: 'flex',
     marginLeft: theme.spacing(2)
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.tableRowHighlight.main
   }
 }))
 
@@ -88,7 +92,6 @@ export default function Users() {
   const classes = useStyles()
   const userFields = useFields('User')
   const { search, Search } = useSearch()
-  const history = useHistory()
 
   const {
     pageSize,
@@ -164,30 +167,35 @@ export default function Users() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.users.data.map(user => (
+              {data?.users.data.map((user, idx) => (
                 <TableRow
                   key={user[userFields.id]}
-                  onClick={() =>
-                    history.push(`${match.url}/${user[userFields.id]}`)
-                  }
-                  onKeyPress={event =>
-                    (event.code === 'Enter' || event.code === 'Space') &&
-                    history.push(`${match.url}/${user[userFields.id]}`)
-                  }
-                  tabIndex={0}
+                  className={idx % 2 !== 0 ? classes.tableRowOdd : ''}
                 >
                   {userFields.all.map((field, index) => (
                     <TableCell key={field}>
-                      <Typography
-                        className={index === 0 ? classes.entityName : ''}
-                        align={
-                          userFields.isType(field, TYPE_NAMES.Boolean)
-                            ? 'center'
-                            : undefined
-                        }
-                      >
-                        {userFields.format(field, user[field])}
-                      </Typography>
+                      {!index ? (
+                        <Link
+                          className={classes.entityName}
+                          color="secondary"
+                          component={RouterLink}
+                          to={`${match.url}/${user[userFields.id]}`}
+                        >
+                          <Typography>
+                            {userFields.format(field, user[field])}
+                          </Typography>
+                        </Link>
+                      ) : (
+                        <Typography
+                          align={
+                            userFields.isType(field, TYPE_NAMES.Boolean)
+                              ? 'center'
+                              : undefined
+                          }
+                        >
+                          {userFields.format(field, user[field])}
+                        </Typography>
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
