@@ -10,8 +10,7 @@ This monorepo contains packages and applications which provide a way to manage u
 - AWS Cognito
 - Azure AD
 
-![Brokeneck Dark](docs/brokeneck-dark.png "Brokeneck Dark")
-![Brokeneck Light](docs/brokeneck-light.png "Brokeneck Light")
+<img src="docs/brokeneck-dark.png" alt="Brokeneck Dark" title="Brokeneck Dark" width="400"> <img src="docs/brokeneck-light.png" alt="Brokeneck Light" title="Brokeneck Light" width="400">
 
 <!-- toc -->
 
