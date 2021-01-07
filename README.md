@@ -141,6 +141,14 @@ You can install `brokeneck-react` in your React application and use the exported
 
 For example, you can provide it as an additional route inside your application.
 
+brokeneck-react has a number of peer dependencies:
+
+- @material-ui/core: ^4.11.2,
+- @material-ui/lab: ^4.0.0-alpha.57,
+- react: ^17.0.1,
+- react-dom: ^17.0.1,
+- react-router-dom: ^5.2.0
+
 You will still need to provide a backend, which you can do either by:
 
 - running `brokeneck-fastify` in standalone mode
