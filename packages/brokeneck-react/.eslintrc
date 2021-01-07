@@ -10,8 +10,10 @@
   ],
   "plugins": ["import"],
   "env": {
+    "node": true,
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "rules": {
     "no-console": "error",
