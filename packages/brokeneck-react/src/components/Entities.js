@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Link,
   makeStyles,
   Table,
   TableBody,
@@ -13,7 +14,7 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { useHistory, useRouteMatch } from 'react-router-dom'
+import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
@@ -39,6 +40,9 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       fill: theme.palette.primary.main,
       marginLeft: theme.spacing(1)
+    },
+    '&:disabled, &[disabled] svg': {
+      opacity: 0.5
     }
   },
   actionIcon: {
@@ -72,6 +76,13 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
+  },
+  spinner: {
+    display: 'flex',
+    marginLeft: theme.spacing(2)
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.tableRowHighlight.main
   }
 }))
 
@@ -87,7 +98,6 @@ export default function Entities({
   const classes = useStyles()
   const fields = useFields(entityName)
   const { search, Search } = useSearch()
-  const history = useHistory()
 
   const {
     pageSize,
@@ -116,7 +126,7 @@ export default function Entities({
       <Square mb={3}>
         <Box mb={3} className={classes.header}>
           <Typography variant="h1">{entitiesName}</Typography>
-          <div className={classes.actions}>
+          <Box className={classes.actions}>
             <Button
               onClick={openDialog}
               title={`Add ${entityName}`}
@@ -124,17 +134,22 @@ export default function Entities({
             >
               Add <PlusIcon className={classes.actionIcon} />
             </Button>
-            <div className={classes.separator}></div>
+            <Box className={classes.separator}></Box>
             <Button
+              disabled={loading}
               onClick={loadEntities}
               title={`Refresh ${entitiesName}`}
               className={classes.actionButton}
             >
               Refresh <RefreshIcon className={classes.actionIcon} />
             </Button>
-          </div>
-          {loading && <CircularProgress />}
-          {canSearch && <div className={classes.search}>{Search}</div>}
+            {loading && (
+              <Box className={classes.spinner}>
+                <CircularProgress size={20} />
+              </Box>
+            )}
+          </Box>
+          {canSearch && <Box className={classes.search}>{Search}</Box>}
         </Box>
         <TableContainer>
           <Table>
@@ -155,30 +170,36 @@ export default function Entities({
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.[entitiesKey].data.map(item => (
+              {data?.[entitiesKey].data.map((item, idx) => (
                 <TableRow
                   key={item[fields.id]}
-                  onClick={() =>
-                    history.push(`${match.url}/${item[fields.id]}`)
-                  }
-                  onKeyPress={event =>
-                    (event.code === 'Enter' || event.code === 'Space') &&
-                    history.push(`${match.url}/${item[fields.id]}`)
-                  }
-                  tabIndex={0}
+                  className={idx % 2 !== 0 ? classes.tableRowOdd : ''}
                 >
                   {fields.all.map((field, index) => (
                     <TableCell key={field}>
-                      <Typography
-                        className={index === 0 ? classes.entityName : ''}
-                        align={
-                          fields.isType(field, TYPE_NAMES.Boolean)
-                            ? 'center'
-                            : undefined
-                        }
-                      >
-                        {fields.format(field, item[field])}
-                      </Typography>
+                      {!index ? (
+                        <Link
+                          className={classes.entityName}
+                          color="secondary"
+                          component={RouterLink}
+                          to={`${match.url}/${item[fields.id]}`}
+                        >
+                          <Typography>
+                            {fields.format(field, item[field])}
+                          </Typography>
+                        </Link>
+                      ) : (
+                        <Typography
+                          className={index === 0 ? classes.entityName : ''}
+                          align={
+                            fields.isType(field, TYPE_NAMES.Boolean)
+                              ? 'center'
+                              : undefined
+                          }
+                        >
+                          {fields.format(field, item[field])}
+                        </Typography>
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>

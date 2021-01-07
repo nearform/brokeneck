@@ -14,17 +14,38 @@ const palette = {
   bubblegum: '#f5b9b7'
 }
 
+const bodyFontFamily = '"Didact Gothic",Arial,Helvetica,sans-serif'
+const headingFontFamily = '"Poppins",Arial,Helvetica,sans-serif'
+
 const typography = {
-  fontFamily: '"Didact Gothic",Arial,Helvetica,sans-serif',
+  fontFamily: bodyFontFamily,
   fontStyle: 'normal',
   fontWeight: '700',
   letterSpacing: '0px',
-  h1: { fontSize: '2.4rem' },
-  h2: { fontSize: '2rem' },
-  h3: { fontSize: '1.75rem' },
-  h4: { fontSize: '1.5rem' },
-  h5: { fontSize: '1.3rem' },
-  h6: { fontSize: '1.15rem' }
+  h1: {
+    fontFamily: headingFontFamily,
+    fontSize: '2.2rem'
+  },
+  h2: {
+    fontFamily: headingFontFamily,
+    fontSize: '2rem'
+  },
+  h3: {
+    fontFamily: headingFontFamily,
+    fontSize: '1.75rem'
+  },
+  h4: {
+    fontFamily: headingFontFamily,
+    fontSize: '1.5rem'
+  },
+  h5: {
+    fontFamily: headingFontFamily,
+    fontSize: '1.3rem'
+  },
+  h6: {
+    fontFamily: headingFontFamily,
+    fontSize: '1.15rem'
+  }
 }
 
 const palettes = {
@@ -71,6 +92,11 @@ const palettes = {
 }
 
 const overrides = themeType => ({
+  MuiButton: {
+    root: {
+      whiteSpace: 'nowrap'
+    }
+  },
   MuiLink: {
     root: {
       '&:visited': {
@@ -90,19 +116,13 @@ const overrides = themeType => ({
       '& th': {
         backgroundColor: palettes[themeType].headerBackground.main,
         borderBottom: 0,
-        fontWeight: 'bold'
+        fontFamily: '"Poppins",Arial,Helvetica,sans-serif'
       },
       '& th:first-child': {
         borderRadius: '10px 0 0 10px'
       },
       '& th:last-child': {
         borderRadius: '0 10px 10px 0'
-      }
-    },
-    root: {
-      cursor: 'pointer',
-      '&:hover, &:focus': {
-        backgroundColor: palettes[themeType].tableRowHighlight.main
       }
     }
   }
