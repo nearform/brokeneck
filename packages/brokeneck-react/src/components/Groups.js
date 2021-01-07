@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  IconButton,
   Link,
   makeStyles,
   Table,
@@ -24,10 +23,55 @@ import usePagination from '../hooks/usePagination'
 import { LOAD_GROUPS } from '../graphql'
 import useProvider from '../hooks/useProvider'
 import useSearch from '../hooks/useSearch'
+import PlusIcon from '../icons/plus'
+import RefreshIcon from '../icons/refresh'
 
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
+  actions: {
+    alignItems: 'center',
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    display: 'flex',
+    marginLeft: theme.spacing(2.5),
+    marginTop: 10,
+    paddingLeft: theme.spacing(1)
+  },
+  actionButton: {
+    textTransform: 'none',
+    '& svg': {
+      fill: theme.palette.primary.main,
+      marginLeft: theme.spacing(1)
+    },
+    '&:disabled, &[disabled] svg': {
+      opacity: 0.5
+    }
+  },
+  actionIcon: {
+    height: 20,
+    width: 20
+  },
+  entityName: {
+    color: theme.palette.secondary.main,
+    fontWeight: 'bold'
+  },
+  header: {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: theme.spacing(2.5)
+  },
+  right: {
+    marginLeft: 'auto'
+  },
+  search: {
+    marginLeft: 'auto'
+  },
+  separator: {
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    height: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
   spacing: {
     display: 'flex',
     alignItems: 'center',
@@ -35,8 +79,12 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(2)
     }
   },
-  right: {
-    marginLeft: 'auto'
+  spinner: {
+    display: 'flex',
+    marginLeft: theme.spacing(2)
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.tableRowHighlight.main
   }
 }))
 
@@ -76,22 +124,34 @@ export default function Groups() {
   return (
     <>
       {dialog}
-      <Square mb={3}>
-        <Box className={classes.spacing} mb={3}>
-          <Button variant="contained" color="primary" onClick={openDialog}>
-            Create Group
+      <Box mb={3} className={classes.header}>
+        <Typography variant="h1">Groups</Typography>
+        <Box className={classes.actions}>
+          <Button
+            onClick={openDialog}
+            title="Add group"
+            className={classes.actionButton}
+          >
+            Add <PlusIcon className={classes.actionIcon} />
           </Button>
-          {canSearchGroups && Search}
-          <div className={classes.right}>
-            <IconButton onClick={loadGroups} title="reload groups">
-              <Typography>
-                <span role="img" aria-label="reload groups">
-                  🔃
-                </span>
-              </Typography>
-            </IconButton>
-          </div>
+          <Box className={classes.separator}></Box>
+          <Button
+            disabled={loading}
+            onClick={loadGroups}
+            title="Refresh groups"
+            className={classes.actionButton}
+          >
+            Refresh <RefreshIcon className={classes.actionIcon} />
+          </Button>
+          {loading && (
+            <Box className={classes.spinner}>
+              <CircularProgress size={20} />
+            </Box>
+          )}
         </Box>
+        {canSearchGroups && <Box className={classes.search}>{Search}</Box>}
+      </Box>
+      <Square mb={3}>
         <TableContainer>
           <Table>
             <TableHead>
@@ -111,12 +171,16 @@ export default function Groups() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.groups.data.map(group => (
-                <TableRow key={group[groupFields.id]}>
+              {data?.groups.data.map((group, idx) => (
+                <TableRow
+                  key={group[groupFields.id]}
+                  className={idx % 2 !== 0 ? classes.tableRowOdd : ''}
+                >
                   {groupFields.all.map((field, index) => (
                     <TableCell key={field}>
                       {!index ? (
                         <Link
+                          className={classes.entityName}
                           color="secondary"
                           component={RouterLink}
                           to={`${match.url}/${group[groupFields.id]}`}
@@ -140,13 +204,6 @@ export default function Groups() {
                   ))}
                 </TableRow>
               ))}
-              {loading && (
-                <TableRow>
-                  <TableCell colSpan={groupFields.all.length}>
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>

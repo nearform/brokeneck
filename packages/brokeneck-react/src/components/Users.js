@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  IconButton,
   Link,
   makeStyles,
   Table,
@@ -23,10 +22,55 @@ import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import usePagination from '../hooks/usePagination'
 import { LOAD_USERS } from '../graphql'
 import useSearch from '../hooks/useSearch'
+import PlusIcon from '../icons/plus'
+import RefreshIcon from '../icons/refresh'
 
 import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
+  actions: {
+    alignItems: 'center',
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    display: 'flex',
+    marginLeft: theme.spacing(2.5),
+    marginTop: 10,
+    paddingLeft: theme.spacing(1)
+  },
+  actionButton: {
+    textTransform: 'none',
+    '& svg': {
+      fill: theme.palette.primary.main,
+      marginLeft: theme.spacing(1)
+    },
+    '&:disabled, &[disabled] svg': {
+      opacity: 0.5
+    }
+  },
+  actionIcon: {
+    height: 20,
+    width: 20
+  },
+  header: {
+    alignItems: 'center',
+    display: 'flex',
+    marginLeft: theme.spacing(2.5)
+  },
+  entityName: {
+    color: theme.palette.secondary.main,
+    fontWeight: 'bold'
+  },
+  right: {
+    marginLeft: 'auto'
+  },
+  search: {
+    marginLeft: 'auto'
+  },
+  separator: {
+    borderLeft: `1px solid ${theme.palette.separator.main}`,
+    height: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
   spacing: {
     display: 'flex',
     alignItems: 'center',
@@ -34,8 +78,12 @@ const useStyles = makeStyles(theme => ({
       marginLeft: theme.spacing(2)
     }
   },
-  right: {
-    marginLeft: 'auto'
+  spinner: {
+    display: 'flex',
+    marginLeft: theme.spacing(2)
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.tableRowHighlight.main
   }
 }))
 
@@ -72,22 +120,34 @@ export default function Users() {
   return (
     <>
       {dialog}
-      <Square mb={3}>
-        <Box className={classes.spacing} mb={3}>
-          <Button variant="contained" color="primary" onClick={openDialog}>
-            Create User
+      <Box mb={3} className={classes.header}>
+        <Typography variant="h1">Users</Typography>
+        <Box className={classes.actions}>
+          <Button
+            onClick={openDialog}
+            title="Add user"
+            className={classes.actionButton}
+          >
+            Add <PlusIcon className={classes.actionIcon} />
           </Button>
-          {Search}
-          <div className={classes.right}>
-            <IconButton onClick={loadUsers} title="reload users">
-              <Typography>
-                <span role="img" aria-label="reload users">
-                  🔃
-                </span>
-              </Typography>
-            </IconButton>
-          </div>
+          <Box className={classes.separator}></Box>
+          <Button
+            disabled={loading}
+            onClick={loadUsers}
+            title="Refresh groups"
+            className={classes.actionButton}
+          >
+            Refresh <RefreshIcon className={classes.actionIcon} />
+          </Button>
+          {loading && (
+            <Box className={classes.spinner}>
+              <CircularProgress size={20} />
+            </Box>
+          )}
         </Box>
+        <Box className={classes.search}>{Search}</Box>
+      </Box>
+      <Square mb={3}>
         <TableContainer>
           <Table>
             <TableHead>
@@ -107,12 +167,16 @@ export default function Users() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.users.data.map(user => (
-                <TableRow key={user[userFields.id]}>
+              {data?.users.data.map((user, idx) => (
+                <TableRow
+                  key={user[userFields.id]}
+                  className={idx % 2 !== 0 ? classes.tableRowOdd : ''}
+                >
                   {userFields.all.map((field, index) => (
                     <TableCell key={field}>
                       {!index ? (
                         <Link
+                          className={classes.entityName}
                           color="secondary"
                           component={RouterLink}
                           to={`${match.url}/${user[userFields.id]}`}
@@ -136,13 +200,6 @@ export default function Users() {
                   ))}
                 </TableRow>
               ))}
-              {loading && (
-                <TableRow>
-                  <TableCell colSpan={userFields.all.length}>
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              )}
             </TableBody>
           </Table>
         </TableContainer>
