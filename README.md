@@ -10,7 +10,7 @@ This monorepo contains packages and applications which provide a way to manage u
 - AWS Cognito
 - Azure AD
 
-![Brokeneck](docs/brokeneck.png "Brokeneck")
+<img src="docs/brokeneck-dark.png" alt="Brokeneck Dark" title="Brokeneck Dark" width="400"> <img src="docs/brokeneck-light.png" alt="Brokeneck Light" title="Brokeneck Light" width="400">
 
 <!-- toc -->
 
@@ -140,6 +140,12 @@ They will be two independent applications.
 You can install `brokeneck-react` in your React application and use the exported component.
 
 For example, you can provide it as an additional route inside your application.
+
+brokeneck-react has a number of peer dependencies that you have to add to your application:
+
+`npm install @material-ui/core @material-ui/lab react react-dom react-router-dom`
+
+Please check the exact versions of these packages that are required when installing brokeneck-react.
 
 You will still need to provide a backend, which you can do either by:
 
