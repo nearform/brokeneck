@@ -28,8 +28,8 @@ export default function User({ userId }) {
     loadUser
   )
   const [confirmDeleteDialog, confirmDelete] = useConfirmDialog({
-    title: `Delete user`,
-    text: `Are you sure you want to delete this user?`,
+    title: 'Delete user',
+    text: 'Are you sure you want to delete this user?',
     action: 'Confirm'
   })
   const [
@@ -37,7 +37,7 @@ export default function User({ userId }) {
     confirmRemoveFromGroup
   ] = useConfirmDialog({
     title: 'Remove from group',
-    text: `Are you sure you want to remove user from group?`,
+    text: 'Are you sure you want to remove user from group?',
     action: 'Confirm'
   })
   const [removeUserFromGroup] = useMutation(REMOVE_USER_FROM_GROUP)
