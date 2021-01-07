@@ -11,13 +11,13 @@ import debounce from 'lodash.debounce'
 import IconCross from '../icons/cross'
 
 const useStyles = makeStyles(theme => ({
-  adornmentButton: {
+  clearButton: {
     padding: 0,
     '& svg': {
       fill: theme.palette.bodyText.main
     }
   },
-  inputIcon: {
+  clearIcon: {
     width: 14
   }
 }))
@@ -37,9 +37,9 @@ const Search = ({ search, onChange }) => {
           <InputAdornment position="end">
             <IconButton
               onClick={() => onChange('')}
-              className={classes.adornmentButton}
+              className={classes.clearButton}
             >
-              <IconCross className={classes.inputIcon} />
+              <IconCross className={classes.clearIcon} />
             </IconButton>
           </InputAdornment>
         )
