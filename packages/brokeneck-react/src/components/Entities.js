@@ -40,6 +40,9 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       fill: theme.palette.primary.main,
       marginLeft: theme.spacing(1)
+    },
+    '&:disabled, &[disabled] svg': {
+      opacity: 0.5
     }
   },
   actionIcon: {
@@ -73,6 +76,13 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
+  },
+  spinner: {
+    display: 'flex',
+    marginLeft: theme.spacing(2)
+  },
+  tableRowOdd: {
+    backgroundColor: theme.palette.tableRowHighlight.main
   }
 }))
 
@@ -111,6 +121,43 @@ export default function Entities({
   const tablePagination = useTablePagination(data?.[entitiesKey])
 
   return (
+    // <>
+    //   {dialog}
+    //   {/* <Square mb={3}> */}
+    //     <Box mb={3} className={classes.header}>
+    //       <Typography variant="h1">{entitiesName}</Typography>
+    //       <Box className={classes.actions}>
+    //         <Button
+    //           onClick={openDialog}
+    //           title={`Add ${entityName}`}
+    //           className={classes.actionButton}
+    //         >
+    //           Add <PlusIcon className={classes.actionIcon} />
+    //         </Button>
+    //         <Box className={classes.separator}></Box>
+    //         <Button
+    //           disabled={loading}
+    //           onClick={loadEntities}
+    //           title={`Refresh ${entitiesName}`}
+    //           className={classes.actionButton}
+    //         >
+    //           Refresh <RefreshIcon className={classes.actionIcon} />
+    //         </Button>
+    //         {loading && (
+    //           <Box className={classes.spinner}>
+    //             <CircularProgress size={20} />
+    //           </Box>
+    //         )}
+    //       </Box>
+    //       {canSearch && <Box className={classes.search}>{Search}</Box>}
+    //     </Box>
+    //     {loading && (
+    //       <Box className={classes.spinner}>
+    //         <CircularProgress size={20} />
+    //       </Box>
+    //     )}
+    //     {canSearch && <Box className={classes.search}>{Search}</Box>}
+    //   </Box>
     <>
       {dialog}
       <Box mb={3} className={classes.header}>
@@ -132,12 +179,12 @@ export default function Entities({
           >
             Refresh <RefreshIcon className={classes.actionIcon} />
           </Button>
+          {loading && (
+            <Box className={classes.spinner}>
+              <CircularProgress size={20} />
+            </Box>
+          )}
         </Box>
-        {loading && (
-          <Box className={classes.spinner}>
-            <CircularProgress size={20} />
-          </Box>
-        )}
         {canSearch && <Box className={classes.search}>{Search}</Box>}
       </Box>
       <Square mb={3}>
