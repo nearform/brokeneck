@@ -41,6 +41,9 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       fill: theme.palette.primary.main,
       marginLeft: theme.spacing(1)
+    },
+    '&:disabled, &[disabled] svg': {
+      opacity: 0.5
     }
   },
   actionIcon: {
@@ -74,6 +77,10 @@ const useStyles = makeStyles(theme => ({
     '& > * + *': {
       marginLeft: theme.spacing(2)
     }
+  },
+  spinner: {
+    display: 'flex',
+    marginLeft: theme.spacing(2)
   }
 }))
 
@@ -116,7 +123,7 @@ export default function Groups() {
       {dialog}
       <Box mb={3} className={classes.header}>
         <Typography variant="h1">Groups</Typography>
-        <div className={classes.actions}>
+        <Box className={classes.actions}>
           <Button
             onClick={openDialog}
             title="Add group"
@@ -124,17 +131,22 @@ export default function Groups() {
           >
             Add <PlusIcon className={classes.actionIcon} />
           </Button>
-          <div className={classes.separator}></div>
+          <Box className={classes.separator}></Box>
           <Button
+            disabled={loading}
             onClick={loadGroups}
             title="Refresh groups"
             className={classes.actionButton}
           >
             Refresh <RefreshIcon className={classes.actionIcon} />
           </Button>
-        </div>
-        {loading && <CircularProgress />}
-        {canSearchGroups && <div className={classes.search}>{Search}</div>}
+          {loading && (
+            <Box className={classes.spinner}>
+              <CircularProgress size={20} />
+            </Box>
+          )}
+        </Box>
+        {canSearchGroups && <Box className={classes.search}>{Search}</Box>}
       </Box>
       <Square mb={3}>
         <TableContainer>

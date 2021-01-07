@@ -43,9 +43,6 @@ const useStyles = makeStyles(theme => ({
   },
   tabRoot: {
     minWidth: 120
-  },
-  tabWrapper: {
-    flexDirection: 'row'
   }
 }))
 
@@ -60,7 +57,7 @@ export default function Navigation() {
     <AppBar position="static" className={classes.appBar}>
       <Tabs value={currentTab}>
         <Tab
-          classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
+          classes={{ root: classes.tabRoot }}
           component={NavLink}
           to="/users"
           label={
@@ -71,7 +68,7 @@ export default function Navigation() {
           value="users"
         />
         <Tab
-          classes={{ root: classes.tabRoot, wrapper: classes.tabWrapper }}
+          classes={{ root: classes.tabRoot }}
           component={NavLink}
           to="/groups"
           label={

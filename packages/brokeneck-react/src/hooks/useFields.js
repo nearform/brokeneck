@@ -39,12 +39,12 @@ function getFormType(field) {
   return 'text'
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   fieldIcon: {
     height: 18,
     width: 18
   }
-}))
+})
 
 export default function useFields(typeName) {
   const schema = useSchema(typeName)
