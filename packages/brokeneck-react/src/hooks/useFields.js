@@ -109,19 +109,13 @@ export default function useFields(typeName) {
   return fields
 }
 
-function formatField(
-  field,
-  value,
-  fieldMetadata,
-  theme = { palette: {} },
-  classes
-) {
+function formatField(field, value, fieldMetadata, theme, classes) {
   if (isNil(value)) {
     return '-'
   }
 
   const {
-    palette: { success = {}, error = {} }
+    palette: { success, error }
   } = theme
 
   switch (fieldMetadata[field].typeName) {
