@@ -121,43 +121,6 @@ export default function Entities({
   const tablePagination = useTablePagination(data?.[entitiesKey])
 
   return (
-    // <>
-    //   {dialog}
-    //   {/* <Square mb={3}> */}
-    //     <Box mb={3} className={classes.header}>
-    //       <Typography variant="h1">{entitiesName}</Typography>
-    //       <Box className={classes.actions}>
-    //         <Button
-    //           onClick={openDialog}
-    //           title={`Add ${entityName}`}
-    //           className={classes.actionButton}
-    //         >
-    //           Add <PlusIcon className={classes.actionIcon} />
-    //         </Button>
-    //         <Box className={classes.separator}></Box>
-    //         <Button
-    //           disabled={loading}
-    //           onClick={loadEntities}
-    //           title={`Refresh ${entitiesName}`}
-    //           className={classes.actionButton}
-    //         >
-    //           Refresh <RefreshIcon className={classes.actionIcon} />
-    //         </Button>
-    //         {loading && (
-    //           <Box className={classes.spinner}>
-    //             <CircularProgress size={20} />
-    //           </Box>
-    //         )}
-    //       </Box>
-    //       {canSearch && <Box className={classes.search}>{Search}</Box>}
-    //     </Box>
-    //     {loading && (
-    //       <Box className={classes.spinner}>
-    //         <CircularProgress size={20} />
-    //       </Box>
-    //     )}
-    //     {canSearch && <Box className={classes.search}>{Search}</Box>}
-    //   </Box>
     <>
       {dialog}
       <Box mb={3} className={classes.header}>
