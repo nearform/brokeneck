@@ -3,33 +3,50 @@ import T from 'prop-types'
 import {
   IconButton,
   InputAdornment,
-  TextField,
-  Typography
+  makeStyles,
+  TextField
 } from '@material-ui/core'
 import debounce from 'lodash.debounce'
 
-const Search = ({ search, onChange }) => (
-  <TextField
-    label="Search"
-    variant="outlined"
-    size="small"
-    value={search}
-    onChange={e => onChange(e.target.value)}
-    InputProps={{
-      endAdornment: search && (
-        <InputAdornment position="end">
-          <IconButton onClick={() => onChange('')}>
-            <Typography>
-              <span role="img" aria-label="clear">
-                ❌
-              </span>
-            </Typography>
-          </IconButton>
-        </InputAdornment>
-      )
-    }}
-  />
-)
+import IconCross from '../icons/cross'
+
+const useStyles = makeStyles(theme => ({
+  adornmentButton: {
+    padding: 0,
+    '& svg': {
+      fill: theme.palette.bodyText.main
+    }
+  },
+  inputIcon: {
+    width: 14
+  }
+}))
+
+const Search = ({ search, onChange }) => {
+  const classes = useStyles()
+
+  return (
+    <TextField
+      label="Search"
+      variant="outlined"
+      size="small"
+      value={search}
+      onChange={e => onChange(e.target.value)}
+      InputProps={{
+        endAdornment: search && (
+          <InputAdornment position="end">
+            <IconButton
+              onClick={() => onChange('')}
+              className={classes.adornmentButton}
+            >
+              <IconCross className={classes.inputIcon} />
+            </IconButton>
+          </InputAdornment>
+        )
+      }}
+    />
+  )
+}
 
 Search.propTypes = {
   search: T.string,
@@ -48,7 +65,7 @@ export default function useSearch(minLength = 3) {
     search => {
       setSearch(s => ({ ...s, immediate: search }))
 
-      if (search.length >= minLength)
+      if (search.length === 0 || search.length >= minLength)
         debouncedSetSearch(s => ({ ...s, debounced: search }))
     },
     [debouncedSetSearch, minLength]
