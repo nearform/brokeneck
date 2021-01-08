@@ -4,7 +4,7 @@ import { screen, render } from '@testing-library/react'
 import Square from './Square'
 
 describe('Square', () => {
-  it('should render a Box with the given children', () => {
+  it('should render with the given children', () => {
     render(
       <Square>
         <span data-testid="child">Child</span>

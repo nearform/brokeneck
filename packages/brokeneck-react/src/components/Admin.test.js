@@ -1,14 +1,18 @@
 import React from 'react'
 import { screen, render } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import deepmerge from 'deepmerge'
 
-import ThemeSwitcherProvider from '../components/ThemeSwitcherProvider'
+import { withThemeSwitcher, withRouter } from '../test-utils/providers'
 import mockRootContext from '../test-utils/mockRootContext'
 import { LOAD_ROOT } from '../graphql'
 
 import Admin from './Admin'
+
+const withProviders = (children, options) => {
+  const { path = '/users' } = options || {}
+  return withThemeSwitcher(withRouter(children, path))
+}
 
 const mockUseQuery = (overrides = {}) => query => {
   let data = {}
@@ -77,13 +81,7 @@ describe('Admin', () => {
       })
     )
 
-    render(
-      <ThemeSwitcherProvider>
-        <MemoryRouter>
-          <Admin />
-        </MemoryRouter>
-      </ThemeSwitcherProvider>
-    )
+    render(withProviders(<Admin />))
 
     expect(screen.getByRole('progressbar')).toBeInTheDocument()
   })
@@ -91,13 +89,7 @@ describe('Admin', () => {
   it('should render Admin component when data has loaded for users', () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(
-      <ThemeSwitcherProvider>
-        <MemoryRouter initialEntries={['/users']}>
-          <Admin />
-        </MemoryRouter>
-      </ThemeSwitcherProvider>
-    )
+    render(withProviders(<Admin />, { path: '/users' }))
 
     expect(screen.getByTestId('navigation')).toBeInTheDocument()
   })
@@ -105,13 +97,7 @@ describe('Admin', () => {
   it('should render Admin component when data has loaded for a single user', () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(
-      <ThemeSwitcherProvider>
-        <MemoryRouter initialEntries={['/users/a-user']}>
-          <Admin />
-        </MemoryRouter>
-      </ThemeSwitcherProvider>
-    )
+    render(withProviders(<Admin />, { path: '/users/a-user' }))
 
     expect(screen.getByTestId('navigation')).toBeInTheDocument()
   })
@@ -119,13 +105,7 @@ describe('Admin', () => {
   it('should render Admin component when data has loaded for groups', () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(
-      <ThemeSwitcherProvider>
-        <MemoryRouter initialEntries={['/groups']}>
-          <Admin />
-        </MemoryRouter>
-      </ThemeSwitcherProvider>
-    )
+    render(withProviders(<Admin />, { path: '/groups' }))
 
     expect(screen.getByTestId('navigation')).toBeInTheDocument()
   })
@@ -133,13 +113,7 @@ describe('Admin', () => {
   it('should render Admin component when data has loaded for a single group', () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(
-      <ThemeSwitcherProvider>
-        <MemoryRouter initialEntries={['/groups/another-group']}>
-          <Admin />
-        </MemoryRouter>
-      </ThemeSwitcherProvider>
-    )
+    render(withProviders(<Admin />, { path: '/groups/another-group' }))
 
     expect(screen.getByTestId('navigation')).toBeInTheDocument()
   })

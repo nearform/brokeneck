@@ -1,20 +1,15 @@
-import React from 'react'
 import T from 'prop-types'
 import { screen, render } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import RootContext from '../components/RootContext'
+import { withRootContext } from '../test-utils/providers'
 
 import useDialog from './useDialog'
 
-const contextProviderValue = { provider: { name: 'coginto' } }
+const contextProviderValue = { provider: { name: 'cognito' } }
 
 function Wrapper({ children }) {
-  return (
-    <RootContext.Provider value={contextProviderValue}>
-      {children}
-    </RootContext.Provider>
-  )
+  return withRootContext(children, contextProviderValue)
 }
 
 Wrapper.propTypes = {
