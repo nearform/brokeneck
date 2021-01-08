@@ -21,6 +21,7 @@ import { Link as RouterLink, useHistory } from 'react-router-dom'
 import { useQuery, useMutation } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
+import useEditGroupDialog from '../hooks/useEditGroupDialog'
 import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
 import {
   DELETE_GROUP,
@@ -70,6 +71,11 @@ export default function Group({ groupId }) {
   useUpdateToken(data?.group.users.nextPage)
 
   const tablePagination = useTablePagination(data?.group.users)
+
+  const [editGroupDialog, openEditGroup] = useEditGroupDialog(
+    data !== undefined ? data.group : {},
+    loadGroup
+  )
 
   const [addUsersToGroupDialog, openAddUsersToGroup] = useAddUsersToGroupDialog(
     groupId,
@@ -139,6 +145,7 @@ export default function Group({ groupId }) {
 
   return (
     <>
+      {editGroupDialog}
       {addUsersToGroupDialog}
       {confirmDeleteDialog}
       {confirmRemoveUserDialog}
@@ -169,6 +176,9 @@ export default function Group({ groupId }) {
           onClick={openAddUsersToGroup}
         >
           Add users
+        </Button>
+        <Button variant="contained" color="primary" onClick={openEditGroup}>
+          Edit group
         </Button>
         <Button variant="outlined" onClick={handleDeleteGroup}>
           Delete group
