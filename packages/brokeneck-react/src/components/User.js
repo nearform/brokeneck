@@ -13,6 +13,7 @@ import {
 import { Link as RouterLink, useHistory } from 'react-router-dom'
 import { useQuery, useMutation } from 'graphql-hooks'
 
+import useEditUserDialog from '../hooks/useEditUserDialog'
 import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
 import {
   DELETE_USER,
@@ -45,6 +46,11 @@ export default function User({ userId }) {
     {
       variables: { id: userId }
     }
+  )
+
+  const [editUserDialog, openUserEdit] = useEditUserDialog(
+    data !== undefined ? data : {},
+    loadUser
   )
 
   const [addUserToGroupDialog, openAddUserToGroup] = useAddUserToGroupDialog(
@@ -118,6 +124,7 @@ export default function User({ userId }) {
 
   return (
     <>
+      {editUserDialog}
       {addUserToGroupDialog}
       {confirmDeleteDialog}
       {confirmRemoveFromGroupDialog}
@@ -148,6 +155,9 @@ export default function User({ userId }) {
           onClick={openAddUserToGroup}
         >
           Add to group
+        </Button>
+        <Button variant="contained" color="primary" onClick={openUserEdit}>
+          Edit user
         </Button>
         <Button variant="outlined" onClick={handleDeleteUser}>
           Delete user

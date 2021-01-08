@@ -74,5 +74,5 @@ const EditableListItem = (field, val, id, editHandler) => {
 EntityFields.propTypes = {
   typeName: T.string.isRequired,
   data: T.object,
-  editHandler: T.object
+  editHandler: T.func
 }
