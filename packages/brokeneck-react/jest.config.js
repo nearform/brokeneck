@@ -42,7 +42,16 @@ module.exports = {
   // ],
 
   // An object that configures minimum threshold enforcement for coverage results
-  // coverageThreshold: undefined,
+  // TODO: update these values when we have a better test suite.
+  //  This should be good enought to fail coverage until more tests are written.
+  coverageThreshold: {
+    global: {
+      branches: 75,
+      functions: 75,
+      lines: 75,
+      statements: 75
+    }
+  },
 
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
