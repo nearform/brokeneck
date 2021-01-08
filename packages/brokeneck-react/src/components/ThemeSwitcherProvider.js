@@ -36,19 +36,26 @@ export default function ThemeSwitcherProvider({ children }) {
   const theme = useMemo(
     () =>
       createMuiTheme({
-        ...themeObject,
         palette: {
           type: themeType,
-          ...themeObject.palette
-        }
+          ...themeObject.palettes[themeType]
+        },
+        typography: themeObject.typography,
+        overrides: themeObject.overrides(themeType)
       }),
     [themeType]
   )
 
+  const providerValue = useMemo(() => ({ toggleThemeType, themeType, theme }), [
+    toggleThemeType,
+    themeType,
+    theme
+  ])
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ThemeSwitcherContext.Provider value={toggleThemeType}>
+      <ThemeSwitcherContext.Provider value={providerValue}>
         {children}
       </ThemeSwitcherContext.Provider>
     </ThemeProvider>

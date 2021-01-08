@@ -6,10 +6,22 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  FormHelperText
+  FormHelperText,
+  makeStyles
 } from '@material-ui/core'
 
 import FormField from '../components/FormField'
+
+const useStyles = makeStyles(theme => ({
+  form: {
+    padding: theme.spacing(3)
+  },
+  dialogActions: {
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
+    paddingBottom: theme.spacing(2)
+  }
+}))
 
 export default function useDialog({
   onConfirm,
@@ -24,6 +36,7 @@ export default function useDialog({
   const [error, setError] = useState()
   const form = useRef()
   const [isValid, setIsValid] = useState()
+  const classes = useStyles()
 
   useEffect(() => {
     if (!form.current) {
@@ -67,7 +80,12 @@ export default function useDialog({
 
   const dialog = (
     <Dialog open={open} onClose={handleClose}>
-      <form ref={form} noValidate onSubmit={handleConfirm}>
+      <form
+        ref={form}
+        noValidate
+        onSubmit={handleConfirm}
+        className={classes.form}
+      >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           {text && <DialogContentText>{text}</DialogContentText>}
@@ -81,7 +99,7 @@ export default function useDialog({
           ))}
           {error && <FormHelperText error>{error.message}</FormHelperText>}
         </DialogContent>
-        <DialogActions>
+        <DialogActions className={classes.dialogActions}>
           <Button fullWidth variant="outlined" onClick={handleClose}>
             Cancel
           </Button>
