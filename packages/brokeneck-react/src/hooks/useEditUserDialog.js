@@ -10,9 +10,14 @@ export default function useEditUserDialog(userData, onConfirm) {
   const userFields = useFields('User')
   const [editUser] = useMutation(EDIT_USER(userFields.all))
 
+  const formData = {}
+  userFields.all.map(field => {
+    if (field !== userFields.id) formData[field] = userData[field]
+  })
+
   const handleSubmit = async input => {
     const { error } = await editUser({
-      variables: { input, skipErrorHandling: true }
+      variables: { id: userData[userFields.id], input, skipErrorHandling: true }
     })
 
     if (error) {
@@ -24,9 +29,9 @@ export default function useEditUserDialog(userData, onConfirm) {
 
   return useDialogFormik({
     title: 'Edit user',
-    text: 'Use this form to edit a user',
+    text: `Use this form to edit the user ${userData[userFields.id]}`,
     action: 'Edit',
-    fields: userData.user,
+    fields: formData,
     handleSubmit
   })
 }

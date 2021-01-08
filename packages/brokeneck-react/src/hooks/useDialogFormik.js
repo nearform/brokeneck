@@ -35,6 +35,7 @@ export default function useDialogFormik({
   const classes = useStyles()
 
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
       ...fields
     },
@@ -62,6 +63,7 @@ export default function useDialogFormik({
           {text && <DialogContentText>{text}</DialogContentText>}
           {fieldList.map(field => (
             <TextField
+              fullWidth
               key={field}
               label={startCase(field)}
               name={field}
@@ -70,7 +72,6 @@ export default function useDialogFormik({
               error={
                 formik.touched[field.name] && Boolean(formik.errors[field.name])
               }
-              fullWidth
               variant="outlined"
               size="small"
             ></TextField>

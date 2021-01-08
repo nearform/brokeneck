@@ -15,12 +15,7 @@ import { useQuery, useMutation } from 'graphql-hooks'
 
 import useEditUserDialog from '../hooks/useEditUserDialog'
 import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
-import {
-  DELETE_USER,
-  LOAD_USER,
-  EDIT_USER,
-  REMOVE_USER_FROM_GROUP
-} from '../graphql'
+import { DELETE_USER, LOAD_USER, REMOVE_USER_FROM_GROUP } from '../graphql'
 import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
 
@@ -49,7 +44,7 @@ export default function User({ userId }) {
   )
 
   const [editUserDialog, openUserEdit] = useEditUserDialog(
-    data !== undefined ? data : {},
+    data !== undefined ? data.user : {},
     loadUser
   )
 
@@ -72,18 +67,6 @@ export default function User({ userId }) {
   })
   const [removeUserFromGroup] = useMutation(REMOVE_USER_FROM_GROUP)
   const [deleteUser] = useMutation(DELETE_USER)
-  const [editUser] = useMutation(EDIT_USER(userFields.all))
-
-  async function handleEditUser(fields) {
-    await editUser({
-      variables: {
-        id: userId,
-        input: {
-          ...fields
-        }
-      }
-    })
-  }
 
   async function handleRemoveUserFromGroup(groupId) {
     if (!(await confirmRemoveFromGroup())) {
@@ -165,11 +148,7 @@ export default function User({ userId }) {
       </Box>
       <Square mb={3}>
         <Typography variant="h6">User</Typography>
-        <EntityFields
-          typeName="User"
-          data={data.user}
-          editHandler={handleEditUser}
-        />
+        <EntityFields typeName="User" data={data.user} />
       </Square>
       <Square mb={3}>
         <Typography variant="h6" gutterBottom>
