@@ -54,7 +54,11 @@ export default function Navigation() {
   const currentTab = isGroups ? 'groups' : 'users'
 
   return (
-    <AppBar position="static" className={classes.appBar}>
+    <AppBar
+      position="static"
+      className={classes.appBar}
+      data-testid="navigation"
+    >
       <Tabs value={currentTab}>
         <Tab
           classes={{ root: classes.tabRoot }}
@@ -88,9 +92,15 @@ export default function Navigation() {
         className={classes.switcher}
       >
         {themeType === 'dark' ? (
-          <SunIcon className={classes.switcherIcon} />
+          <SunIcon
+            className={classes.switcherIcon}
+            data-testid="switch-to-light-theme"
+          />
         ) : (
-          <MoonIcon className={classes.switcherIcon} />
+          <MoonIcon
+            className={classes.switcherIcon}
+            data-testid="switch-to-dark-theme"
+          />
         )}
       </IconButton>
     </AppBar>

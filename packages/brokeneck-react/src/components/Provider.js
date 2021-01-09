@@ -35,7 +35,7 @@ export default function Provider() {
   return (
     <div className={classes.wrapper}>
       Provider:
-      {Icon && <Icon className={classes.icon} />}
+      {Icon && <Icon className={classes.icon} data-testid="provider-icon" />}
       <span className={classes.text}>{name}</span>
     </div>
   )
