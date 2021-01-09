@@ -17,7 +17,7 @@ module.exports = {
   // clearMocks: false,
 
   // Indicates whether the coverage information should be collected while executing the test
-  // collectCoverage: false,
+  collectCoverage: !!process.env.CI,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
   collectCoverageFrom: ['src/**/*.js'],
@@ -43,13 +43,13 @@ module.exports = {
 
   // An object that configures minimum threshold enforcement for coverage results
   // TODO: update these values when we have a better test suite.
-  //  This should be good enought to fail coverage until more tests are written.
+  //  This should be good enough to fail coverage until more tests are written.
   coverageThreshold: {
     global: {
-      branches: 75,
-      functions: 75,
-      lines: 75,
-      statements: 75
+      branches: 41,
+      functions: 60,
+      lines: 68,
+      statements: 69
     }
   },
 
