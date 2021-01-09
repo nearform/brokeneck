@@ -1,51 +1,51 @@
-import T from 'prop-types'
 import { screen, render } from '@testing-library/react'
 import { act, renderHook } from '@testing-library/react-hooks'
 
-import { withRootContext } from '../test-utils/providers'
-
 import useDialog from './useDialog'
 
-const contextProviderValue = { provider: { name: 'cognito' } }
+describe('useDialog', () => {
+  const setup = options => renderHook(() => useDialog(options))
 
-function Wrapper({ children }) {
-  return withRootContext(children, contextProviderValue)
-}
+  it('should open the dialog', async () => {
+    const dialogTitle = 'Dialog Title'
+    const dialogText = 'Are you sure you want to do this action?'
+    const dialogAction = 'Confirm'
 
-Wrapper.propTypes = {
-  children: T.node
-}
-
-// skipped for now as this still fails
-describe.skip('useDialog', () => {
-  const setup = options =>
-    renderHook(() => useDialog(options), { wrapper: Wrapper })
-
-  it('should render the dialog', async () => {
-    const onConfirm = jest.fn()
-    const {
-      result: {
-        current: [DialogComponent, openDialog]
-      }
-    } = setup({
-      onConfirm,
-      title: 'Dialog Title',
-      text: 'Are you sure you want to do this action?',
-      action: 'Confirm'
+    const { result } = setup({
+      title: dialogTitle,
+      text: dialogText,
+      action: dialogAction
     })
 
-    const { debug /* , rerender */ } = render(DialogComponent)
+    const openDialog = result.current[1]
 
-    act(() => {
-      openDialog()
-      // rerender(DialogComponent)
+    expect(typeof result.current[0]).toBe('object')
+    expect(typeof openDialog).toBe('function')
+
+    act(openDialog)
+
+    render(result.current[0])
+
+    expect(screen.getByText(dialogTitle)).toBeInTheDocument()
+    expect(screen.getByText(dialogText)).toBeInTheDocument()
+    expect(screen.getByText(dialogAction)).toBeInTheDocument()
+  })
+
+  it('should invoke the onClose callback when when closing the dialog', async () => {
+    const onClose = jest.fn()
+
+    const { result } = setup({
+      onClose
     })
 
-    debug()
+    const openDialog = result.current[1]
 
-    expect(screen.getByText(/Dialog Title/i)).toBeInTheDocument()
+    act(openDialog)
 
-    // expect(typeof DialogComponent).toBe('object')
-    // expect(typeof openDialog).toBe('function')
+    render(result.current[0])
+
+    act(() => screen.getByText('Cancel').click())
+
+    expect(onClose).toHaveBeenCalled()
   })
 })
