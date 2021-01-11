@@ -1,13 +1,8 @@
 import React from 'react'
 import {
-  Box,
-  Breadcrumbs,
   Button,
-  Chip,
-  CircularProgress,
   IconButton,
   Link,
-  makeStyles,
   Table,
   TableBody,
   TableCell,
@@ -27,20 +22,9 @@ import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
 import usePagination from '../hooks/usePagination'
 
-import Square from './Square'
-import EntityFields from './EntityFields'
-
-const useStyles = makeStyles(theme => ({
-  spacing: {
-    '& > * + *': {
-      marginLeft: theme.spacing(2)
-    }
-  }
-}))
-
+import Entity from './Entity'
 export default function Group({ groupId }) {
   const history = useHistory()
-  const classes = useStyles()
   const groupFields = useFields('Group')
   const userFields = useFields('User')
 
@@ -116,97 +100,76 @@ export default function Group({ groupId }) {
     history.goBack()
   }
 
-  if (loading) {
-    return <CircularProgress />
-  }
-
   return (
-    <>
+    <Entity
+      name="Group"
+      pluralName="Groups"
+      description={data?.group[groupFields.description]}
+      entityData={data?.group}
+      loading={loading}
+      entityMutationButtons={
+        <>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={openAddUsersToGroup}
+          >
+            Add users
+          </Button>
+          <Button variant="outlined" onClick={handleDeleteGroup}>
+            Delete group
+          </Button>
+        </>
+      }
+      SecondaryComponent={() => (
+        <>
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>{startCase(userFields.description)}</TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.group.users.data?.map(user => (
+                  <TableRow key={user[userFields.id]}>
+                    <TableCell>
+                      <Link
+                        color="secondary"
+                        component={RouterLink}
+                        to={`../users/${user[userFields.id]}`}
+                      >
+                        <Typography>{user[userFields.description]}</Typography>
+                      </Link>
+                    </TableCell>
+                    <TableCell align="right">
+                      <IconButton
+                        title="remove user from group"
+                        onClick={() =>
+                          handleRemoveUserFromGroup(user[userFields.id])
+                        }
+                      >
+                        <Typography>
+                          <span role="img" aria-label="remove from group">
+                            ❌
+                          </span>
+                        </Typography>
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {tablePagination}
+        </>
+      )}
+    >
       {addUsersToGroupDialog}
       {confirmDeleteDialog}
       {confirmRemoveUserDialog}
-      <Box mb={3}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Chip
-            label={
-              <Typography>
-                <Link component={RouterLink} color="inherit" to=".">
-                  Groups
-                </Link>
-              </Typography>
-            }
-          />
-          <Chip
-            label={
-              <Typography color="textPrimary">
-                {data.group[groupFields.description]}
-              </Typography>
-            }
-          />
-        </Breadcrumbs>
-      </Box>
-      <Box mb={3} className={classes.spacing}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={openAddUsersToGroup}
-        >
-          Add users
-        </Button>
-        <Button variant="outlined" onClick={handleDeleteGroup}>
-          Delete group
-        </Button>
-      </Box>
-      <Square mb={3}>
-        <Typography variant="h6">Group</Typography>
-        <EntityFields typeName="Group" data={data.group} />
-      </Square>
-      <Square mb={3}>
-        <Typography variant="h6" gutterBottom>
-          Users
-        </Typography>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>{startCase(userFields.description)}</TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.group.users.data?.map(user => (
-                <TableRow key={user[userFields.id]}>
-                  <TableCell>
-                    <Link
-                      color="secondary"
-                      component={RouterLink}
-                      to={`../users/${user[userFields.id]}`}
-                    >
-                      <Typography>{user[userFields.description]}</Typography>
-                    </Link>
-                  </TableCell>
-                  <TableCell align="right">
-                    <IconButton
-                      title="remove user from group"
-                      onClick={() =>
-                        handleRemoveUserFromGroup(user[userFields.id])
-                      }
-                    >
-                      <Typography>
-                        <span role="img" aria-label="remove from group">
-                          ❌
-                        </span>
-                      </Typography>
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        {tablePagination}
-      </Square>
-    </>
+    </Entity>
   )
 }
 
