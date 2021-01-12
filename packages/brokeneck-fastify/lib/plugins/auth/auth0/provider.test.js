@@ -183,6 +183,17 @@ tap.test('auth0 provider', async t => {
     sinon.assert.calledWith(auth0.createUser, sinon.match(user))
   })
 
+  t.test('edits user', async t => {
+    const id = faker.random.uuid()
+    const input = { property: faker.random.word() }
+
+    auth0.updateUser = sinon.stub().resolves()
+
+    await provider.editUser(id, input)
+
+    sinon.assert.calledWith(auth0.updateUser, { id }, input)
+  })
+
   t.test('creates group', async t => {
     const groupName = faker.random.uuid()
     const group = { groupName }
@@ -194,6 +205,17 @@ tap.test('auth0 provider', async t => {
     t.equal(result, group)
 
     sinon.assert.calledWith(auth0.createRole, sinon.match(group))
+  })
+
+  t.test('edits group', async t => {
+    const id = faker.random.uuid()
+    const input = { property: faker.random.word() }
+
+    auth0.updateRole = sinon.stub().resolves()
+
+    await provider.editGroup(id, input)
+
+    sinon.assert.calledWith(auth0.updateRole, { id }, input)
   })
 
   t.test('lists groups for user', async t => {

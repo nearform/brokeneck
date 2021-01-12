@@ -4,17 +4,24 @@ import { Box, Button, Chip, Typography } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { useQuery, useMutation } from 'graphql-hooks'
 
-import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
-import { DELETE_USER, LOAD_USER, REMOVE_USER_FROM_GROUP } from '../graphql'
+import {
+  DELETE_USER,
+  EDIT_USER,
+  LOAD_USER,
+  REMOVE_USER_FROM_GROUP
+} from '../graphql'
 import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
+import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
+import useEditEntityDialog from '../hooks/useEditEntityDialog'
+import TYPES from '../types'
 
 import Entity from './Entity'
 
 export default function User({ userId }) {
   const history = useHistory()
-  const userFields = useFields('User')
-  const groupFields = useFields('Group')
+  const userFields = useFields(TYPES.User)
+  const groupFields = useFields(TYPES.Group)
 
   const { data, loading, refetch: loadUser } = useQuery(
     LOAD_USER(userFields.all, groupFields.all),
@@ -26,6 +33,14 @@ export default function User({ userId }) {
   const [addUserToGroupDialog, openAddUserToGroup] = useAddUserToGroupDialog(
     userId,
     loadUser
+  )
+  const [editUserDialog, openEditUser] = useEditEntityDialog(
+    userId,
+    data?.user,
+    loadUser,
+    TYPES.EditUserInput,
+    TYPES.User,
+    EDIT_USER
   )
   const [confirmDeleteDialog, confirmDelete] = useConfirmDialog({
     title: 'Delete user',
@@ -92,6 +107,9 @@ export default function User({ userId }) {
           >
             Add to group
           </Button>
+          <Button variant="contained" color="secondary" onClick={openEditUser}>
+            Edit user
+          </Button>
           <Button variant="outlined" onClick={handleDeleteUser}>
             Delete user
           </Button>
@@ -103,6 +121,7 @@ export default function User({ userId }) {
             Groups
           </Typography>
           <Box className={classes.spacing}>
+            {!data.user.groups.length && <Typography>No groups</Typography>}
             {data.user.groups?.map(group => (
               <Chip
                 key={group[groupFields.id]}
@@ -120,6 +139,7 @@ export default function User({ userId }) {
       {addUserToGroupDialog}
       {confirmDeleteDialog}
       {confirmRemoveFromGroupDialog}
+      {editUserDialog}
     </Entity>
   )
 }

@@ -84,12 +84,20 @@ function Auth0Provider(options, logger) {
 
       return user
     },
+    async editUser(id, input) {
+      await auth0.updateUser({ id }, input)
+      return true
+    },
     async createGroup(input) {
       const group = await auth0.createRole(input)
 
       logger.debug({ group })
 
       return group
+    },
+    async editGroup(id, input) {
+      await auth0.updateRole({ id }, input)
+      return true
     },
     async listGroupsForUser(user) {
       const groups = await auth0.getUserRoles({ id: user.user_id })

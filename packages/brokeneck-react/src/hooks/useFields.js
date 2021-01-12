@@ -46,7 +46,7 @@ const useStyles = makeStyles({
   }
 })
 
-export default function useFields(typeName) {
+export default function useFields(typeName, instance) {
   const schema = useSchema(typeName)
   const theme = useTheme()
   const classes = useStyles()
@@ -71,7 +71,11 @@ export default function useFields(typeName) {
       [field.name]: {
         required: type !== CHECKBOX && field.type.kind === NON_NULL,
         type,
-        initialValue: type === CHECKBOX ? false : ''
+        initialValue: instance
+          ? instance[field.name]
+          : type === CHECKBOX
+          ? false
+          : ''
       }
     }
   }, {})

@@ -25,7 +25,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.1",
+    "@material-ui/core": "^4.11.2",
     "@nearform/brokeneck-react": "^1.0.0-spinal.8",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
