@@ -6,12 +6,13 @@ import debounce from 'lodash.debounce'
 
 import { ADD_USER_TO_GROUP, LOAD_USERS } from '../graphql'
 import GraphQLError from '../GraphQLError'
+import TYPES from '../types'
 
 import useDialog from './useDialog'
 import useFields from './useFields'
 
 export default function useAddUsersToGroupDialog(groupId, onConfirm) {
-  const userFields = useFields('User')
+  const userFields = useFields(TYPES.User)
   const [search, setSearch] = useState()
 
   const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
@@ -83,12 +84,12 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
               InputProps={{
                 ...params.InputProps,
                 endAdornment: (
-                  <React.Fragment>
+                  <>
                     {loading ? (
                       <CircularProgress color="inherit" size={20} />
                     ) : null}
                     {params.InputProps.endAdornment}
-                  </React.Fragment>
+                  </>
                 )
               }}
             />

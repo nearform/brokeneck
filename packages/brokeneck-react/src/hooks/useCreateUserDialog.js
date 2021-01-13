@@ -3,13 +3,14 @@ import startCase from 'lodash.startcase'
 
 import { CREATE_USER } from '../graphql'
 import GraphQLError from '../GraphQLError'
+import TYPES from '../types'
 
 import useDialog from './useDialog'
 import useFields from './useFields'
 
 export default function useCreateUserDialog(onConfirm) {
-  const inputFields = useFields('UserInput')
-  const userFields = useFields('User')
+  const inputFields = useFields(TYPES.UserInput)
+  const userFields = useFields(TYPES.User)
   const [createUser] = useMutation(CREATE_USER(userFields.all))
 
   const handleConfirm = async input => {

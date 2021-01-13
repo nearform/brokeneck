@@ -3,13 +3,14 @@ import startCase from 'lodash.startcase'
 
 import { CREATE_GROUP } from '../graphql'
 import GraphQLError from '../GraphQLError'
+import TYPES from '../types'
 
 import useDialog from './useDialog'
 import useFields from './useFields'
 
 export default function useCreateGroupDialog(onConfirm) {
-  const inputFields = useFields('GroupInput')
-  const groupFields = useFields('Group')
+  const inputFields = useFields(TYPES.GroupInput)
+  const groupFields = useFields(TYPES.Group)
   const [createGroup] = useMutation(CREATE_GROUP(groupFields.all))
 
   const handleConfirm = async input => {

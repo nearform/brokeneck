@@ -101,6 +101,17 @@ tap.test('resolvers', async t => {
       sinon.assert.calledWith(fastify.provider.createUser, user)
     })
 
+    t.test('editUser', async t => {
+      const id = faker.random.uuid()
+      const input = { property: faker.random.word() }
+
+      fastify.provider.editUser = sinon.stub().resolves()
+
+      await resolvers.Mutation.editUser(null, { id, input })
+
+      sinon.assert.calledWith(fastify.provider.editUser, id, input)
+    })
+
     t.test('createGroup', async t => {
       const group = { id: faker.random.uuid() }
 
@@ -112,6 +123,17 @@ tap.test('resolvers', async t => {
 
       t.equal(result, group)
       sinon.assert.calledWith(fastify.provider.createGroup, group)
+    })
+
+    t.test('editGroup', async t => {
+      const id = faker.random.uuid()
+      const input = { property: faker.random.word() }
+
+      fastify.provider.editGroup = sinon.stub().resolves()
+
+      await resolvers.Mutation.editGroup(null, { id, input })
+
+      sinon.assert.calledWith(fastify.provider.editGroup, id, input)
     })
 
     t.test('addUserToGroup', async t => {

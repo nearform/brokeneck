@@ -83,8 +83,16 @@ function AzureProvider(options, credentials, logger) {
         }
       })
     },
+    async editUser(id, input) {
+      await azure.users.update(id, input)
+      return true
+    },
     createGroup(input) {
       return azure.groups.create(input)
+    },
+    async editGroup(id, input) {
+      await azure.groups.update(id, input)
+      return true
     },
     async listGroupsForUser(user) {
       const userGroupsIds = await azure.users.getMemberGroups(user.objectId, {

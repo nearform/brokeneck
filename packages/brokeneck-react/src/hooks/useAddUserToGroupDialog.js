@@ -5,12 +5,13 @@ import startCase from 'lodash.startcase'
 
 import { ADD_USER_TO_GROUP, LOAD_GROUPS } from '../graphql'
 import GraphQLError from '../GraphQLError'
+import TYPES from '../types'
 
 import useDialog from './useDialog'
 import useFields from './useFields'
 
 export default function useAddUserToGroupDialog(userId, onConfirm) {
-  const groupFields = useFields('Group')
+  const groupFields = useFields(TYPES.Group)
   const { data, loading } = useQuery(LOAD_GROUPS(groupFields.all))
   const [addUserToGroup] = useMutation(ADD_USER_TO_GROUP)
 

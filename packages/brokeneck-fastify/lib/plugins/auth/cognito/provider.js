@@ -81,6 +81,27 @@ function CognitoProvider(options, logger) {
 
       return result.User
     },
+    async editUser(id, input) {
+      const { Enabled } = input
+
+      if (Enabled) {
+        await cognito
+          .adminEnableUser({
+            UserPoolId,
+            Username: id
+          })
+          .promise()
+      } else {
+        await cognito
+          .adminDisableUser({
+            UserPoolId,
+            Username: id
+          })
+          .promise()
+      }
+
+      return true
+    },
     async createGroup(input) {
       const result = await cognito
         .createGroup({
@@ -90,6 +111,16 @@ function CognitoProvider(options, logger) {
         .promise()
 
       return result.Group
+    },
+    async editGroup(id, input) {
+      await cognito
+        .updateGroup({
+          UserPoolId,
+          GroupName: id,
+          ...input
+        })
+        .promise()
+      return true
     },
     async listGroupsForUser(user) {
       const userGroups = await cognito
