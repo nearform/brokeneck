@@ -46,10 +46,10 @@ module.exports = {
   //  This should be good enough to fail coverage until more tests are written.
   coverageThreshold: {
     global: {
-      branches: 41,
-      functions: 60,
-      lines: 68,
-      statements: 69
+      branches: 50,
+      functions: 73,
+      lines: 79,
+      statements: 79
     }
   },
 
