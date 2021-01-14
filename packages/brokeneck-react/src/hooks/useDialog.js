@@ -85,6 +85,7 @@ export default function useDialog({
         noValidate
         onSubmit={handleConfirm}
         className={classes.form}
+        data-testid="dialog-form"
       >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
