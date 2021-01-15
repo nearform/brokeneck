@@ -116,7 +116,7 @@ describe('Group', () => {
     render(withProviders(<Group groupId="1234" />), {
       wrapper: RootContextWrapper
     })
-    screen.getAllByRole('button', { name: /Delete group/i })[0].click()
+    screen.getByRole('button', { name: /Delete group/i }).click()
 
     expect(screen.getByTestId('dialog-form')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument()
@@ -128,7 +128,7 @@ describe('Group', () => {
     render(withProviders(<Group groupId="1234" />), {
       wrapper: RootContextWrapper
     })
-    screen.getAllByRole('button', { name: /Delete group/i })[0].click()
+    screen.getByRole('button', { name: /Delete group/i }).click()
 
     fireEvent.submit(screen.getByTestId('dialog-form'))
 

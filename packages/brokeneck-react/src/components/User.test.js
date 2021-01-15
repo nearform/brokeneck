@@ -132,7 +132,7 @@ describe('user', () => {
     render(withProviders(<User userId="1234" />), {
       wrapper: RootContextWrapper
     })
-    screen.getAllByRole('button', { name: /Delete user/i })[0].click()
+    screen.getByRole('button', { name: /Delete user/i }).click()
 
     expect(screen.getByTestId('dialog-form')).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'Confirm' })).toBeInTheDocument()
@@ -144,7 +144,7 @@ describe('user', () => {
     render(withProviders(<User userId="1234" />), {
       wrapper: RootContextWrapper
     })
-    screen.getAllByRole('button', { name: /Delete user/i })[0].click()
+    screen.getByRole('button', { name: /Delete user/i }).click()
 
     fireEvent.submit(screen.getByTestId('dialog-form'))
 
