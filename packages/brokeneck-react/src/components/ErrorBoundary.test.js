@@ -18,18 +18,14 @@ beforeEach(() => {
 
 describe('ErrorBoundary', () => {
   it('should render ErrorBoundary component when child throws error', () => {
-    const { rerender } = render(<ThrowError />, { wrapper: ErrorBoundary })
-
-    rerender(<ThrowError shouldThrow={true} />)
+    render(<ThrowError shouldThrow={true} />, { wrapper: ErrorBoundary })
 
     expect(screen.getByText(/Something went wrong./i)).toBeInTheDocument()
     expect(screen.getByText(/Custom error message/i)).toBeInTheDocument()
   })
 
   it('should not render ErrorBoundary component when child renders without error', () => {
-    const { rerender } = render(<ThrowError />, { wrapper: ErrorBoundary })
-
-    rerender(<ThrowError />)
+    render(<ThrowError />, { wrapper: ErrorBoundary })
 
     expect(screen.queryByText(/Something went wrong./i)).not.toBeInTheDocument()
     expect(screen.queryByText(/Custom error message/i)).not.toBeInTheDocument()
