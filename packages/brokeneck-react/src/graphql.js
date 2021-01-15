@@ -83,6 +83,18 @@ mutation CreateUser($input: UserInput!) {
 }
 `
 
+export const EDIT_USER = () => `
+mutation EditUser($id: String!, $input: EditUserInput!) {
+  editUser(id: $id, input: $input)
+}
+`
+
+export const EDIT_GROUP = () => `
+mutation EditGroup($id: String!, $input: EditGroupInput!) {
+  editGroup(id: $id, input: $input)
+}
+`
+
 export const LOAD_ROOT = `
 {
   provider {

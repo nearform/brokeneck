@@ -5,7 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 
 export default function FormField({
   // eslint-disable-next-line no-unused-vars
-  field: { initialValue, autocomplete, getValueFromObject, ...field },
+  field: { autocomplete, getValueFromObject, initialValue, ...field },
   handleChange,
   formValues
 }) {
@@ -22,11 +22,7 @@ export default function FormField({
             label={field.label}
             control={
               <Checkbox
-                checked={
-                  field.name in formValues
-                    ? formValues[field.name]
-                    : initialValue
-                }
+                checked={formValues[field.name]}
                 onChange={handleChange}
                 {...field}
               />
@@ -44,9 +40,7 @@ export default function FormField({
             variant="outlined"
             size="small"
             onChange={handleChange}
-            value={
-              field.name in formValues ? formValues[field.name] : initialValue
-            }
+            value={formValues[field.name]}
             {...field}
           />
         </Box>
@@ -59,7 +53,7 @@ FormField.propTypes = {
     name: T.string.isRequired,
     label: T.string.isRequired,
     type: T.string.isRequired,
-    initialValue: T.any.isRequired,
+    initialValue: T.any,
     autocomplete: T.bool,
     getValueFromObject: T.func
   }).isRequired,

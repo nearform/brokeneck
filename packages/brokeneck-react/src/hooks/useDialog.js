@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Button,
   Dialog,
@@ -9,6 +9,7 @@ import {
   FormHelperText,
   makeStyles
 } from '@material-ui/core'
+import { useFormik } from 'formik'
 
 import FormField from '../components/FormField'
 
@@ -31,59 +32,75 @@ export default function useDialog({
   fields = [],
   onClose = () => {}
 }) {
+  const initialValid = useCallback(() => fields.length === 0, [fields.length])
+
   const [open, setOpen] = useState(false)
-  const [formValues, setFormValues] = useState({})
   const [error, setError] = useState()
-  const form = useRef()
-  const [isValid, setIsValid] = useState()
+  const formRef = useRef()
+  const [isValid, setIsValid] = useState(initialValid)
   const classes = useStyles()
 
+  const initialValues = fields.reduce(
+    (acc, f) => ({ ...acc, [f.name]: f.initialValue }),
+    {}
+  )
+
+  const handleConfirm = useCallback(
+    async values => {
+      try {
+        await onConfirm(values)
+      } catch (err) {
+        return setError(err)
+      }
+
+      closeDialog()
+    },
+    [closeDialog, onConfirm]
+  )
+
+  const formik = useFormik({
+    initialValues,
+    onSubmit: handleConfirm,
+    enableReinitialize: true
+  })
+
   useEffect(() => {
-    if (!form.current) {
+    if (!formRef.current) {
       return
     }
 
-    setIsValid(form.current.checkValidity())
-  }, [formValues])
+    setIsValid(formRef.current.checkValidity())
+  }, [formik.values])
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     closeDialog()
     onClose()
-  }
+  }, [closeDialog, onClose])
 
-  const handleChange = field => (e, value) => {
-    return setFormValues(s => ({
-      ...s,
-      [field.name]: field.getValueFromObject
-        ? field.getValueFromObject(value)
-        : e.target[e.target.type === 'checkbox' ? 'checked' : 'value']
-    }))
-  }
+  const handleChange = useCallback(
+    field => (e, value) =>
+      formik.setFieldValue(
+        field.name,
+        field.getValueFromObject
+          ? field.getValueFromObject(value)
+          : e.target[e.target.type === 'checkbox' ? 'checked' : 'value']
+      ),
+    [formik]
+  )
 
-  const handleConfirm = async e => {
-    e.preventDefault()
-
-    try {
-      await onConfirm(formValues)
-    } catch (err) {
-      return setError(err)
-    }
-
-    closeDialog()
-  }
-
-  const closeDialog = () => {
-    setFormValues({})
+  const closeDialog = useCallback(() => {
+    formik.resetForm()
     setError()
+    setIsValid(initialValid)
     setOpen(false)
-  }
+  }, [formik, initialValid])
 
   const dialog = (
     <Dialog open={open} onClose={handleClose}>
       <form
-        ref={form}
+        ref={formRef}
         noValidate
-        onSubmit={handleConfirm}
+        onSubmit={formik.handleSubmit}
         className={classes.form}
         data-testid="dialog-form"
       >
@@ -95,7 +112,7 @@ export default function useDialog({
               key={field.name}
               field={field}
               handleChange={handleChange(field)}
-              formValues={formValues}
+              formValues={formik.values}
             />
           ))}
           {error && <FormHelperText error>{error.message}</FormHelperText>}

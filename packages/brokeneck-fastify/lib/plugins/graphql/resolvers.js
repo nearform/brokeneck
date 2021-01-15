@@ -32,8 +32,14 @@ module.exports = function makeResolvers(fastify) {
       createUser(_, { input }) {
         return fastify.provider.createUser(input)
       },
+      editUser(_, { id, input }) {
+        return fastify.provider.editUser(id, input)
+      },
       createGroup(_, { input }) {
         return fastify.provider.createGroup(input)
+      },
+      editGroup(_, { id, input }) {
+        return fastify.provider.editGroup(id, input)
       },
       async addUserToGroup(_, { input }) {
         await fastify.provider.addUserToGroup(input)

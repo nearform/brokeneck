@@ -141,6 +141,19 @@ tap.test('azure provider', async t => {
     )
   })
 
+  t.test('updates user', async t => {
+    const id = faker.random.uuid()
+    const property = faker.random.word()
+
+    const input = { property }
+
+    azure.users.update = sinon.stub().resolves()
+
+    await provider.editUser(id, input)
+
+    sinon.assert.calledWith(azure.users.update, id, input)
+  })
+
   t.test('creates group', async t => {
     const groupName = faker.random.uuid()
     const group = { groupName }
@@ -152,6 +165,19 @@ tap.test('azure provider', async t => {
     t.equal(result, group)
 
     sinon.assert.calledWith(azure.groups.create, sinon.match(group))
+  })
+
+  t.test('updates group', async t => {
+    const id = faker.random.uuid()
+    const property = faker.random.word()
+
+    const input = { property }
+
+    azure.groups.update = sinon.stub().resolves()
+
+    await provider.editGroup(id, input)
+
+    sinon.assert.calledWith(azure.groups.update, id, input)
   })
 
   t.test('lists groups for user', async t => {

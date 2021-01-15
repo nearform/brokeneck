@@ -17,16 +17,24 @@ import { useQuery, useMutation } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
 
 import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
-import { DELETE_GROUP, LOAD_GROUP, REMOVE_USER_FROM_GROUP } from '../graphql'
+import {
+  DELETE_GROUP,
+  EDIT_GROUP,
+  LOAD_GROUP,
+  REMOVE_USER_FROM_GROUP
+} from '../graphql'
 import useFields from '../hooks/useFields'
 import useConfirmDialog from '../hooks/useConfirmDialog'
 import usePagination from '../hooks/usePagination'
+import useEditEntityDialog from '../hooks/useEditEntityDialog'
+import TYPES from '../types'
 
 import Entity from './Entity'
+
 export default function Group({ groupId }) {
   const history = useHistory()
-  const groupFields = useFields('Group')
-  const userFields = useFields('User')
+  const groupFields = useFields(TYPES.Group)
+  const userFields = useFields(TYPES.User)
 
   const {
     pageSize,
@@ -53,6 +61,14 @@ export default function Group({ groupId }) {
   const [addUsersToGroupDialog, openAddUsersToGroup] = useAddUsersToGroupDialog(
     groupId,
     loadGroup
+  )
+  const [editGroupDialog, openEditGroup] = useEditEntityDialog(
+    groupId,
+    data?.group,
+    loadGroup,
+    TYPES.EditGroupInput,
+    TYPES.Group,
+    EDIT_GROUP
   )
   const [confirmDeleteDialog, confirmDelete] = useConfirmDialog({
     title: 'Delete group',
@@ -116,6 +132,9 @@ export default function Group({ groupId }) {
           >
             Add users
           </Button>
+          <Button variant="contained" color="secondary" onClick={openEditGroup}>
+            Edit group
+          </Button>
           <Button variant="outlined" onClick={handleDeleteGroup}>
             Delete group
           </Button>
@@ -123,52 +142,64 @@ export default function Group({ groupId }) {
       }
       SecondaryComponent={() => (
         <>
-          <TableContainer>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>{startCase(userFields.description)}</TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data.group.users.data?.map(user => (
-                  <TableRow key={user[userFields.id]}>
-                    <TableCell>
-                      <Link
-                        color="secondary"
-                        component={RouterLink}
-                        to={`../users/${user[userFields.id]}`}
-                      >
-                        <Typography>{user[userFields.description]}</Typography>
-                      </Link>
-                    </TableCell>
-                    <TableCell align="right">
-                      <IconButton
-                        title="remove user from group"
-                        onClick={() =>
-                          handleRemoveUserFromGroup(user[userFields.id])
-                        }
-                      >
-                        <Typography>
-                          <span role="img" aria-label="remove from group">
-                            ❌
-                          </span>
-                        </Typography>
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          {tablePagination}
+          <Typography variant="h6" gutterBottom>
+            Users
+          </Typography>
+          {!data.group.users.data.length ? (
+            <Typography>No users</Typography>
+          ) : (
+            <>
+              <TableContainer>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>{startCase(userFields.description)}</TableCell>
+                      <TableCell></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data.group.users.data?.map(user => (
+                      <TableRow key={user[userFields.id]}>
+                        <TableCell>
+                          <Link
+                            color="secondary"
+                            component={RouterLink}
+                            to={`../users/${user[userFields.id]}`}
+                          >
+                            <Typography>
+                              {user[userFields.description]}
+                            </Typography>
+                          </Link>
+                        </TableCell>
+                        <TableCell align="right">
+                          <IconButton
+                            title="remove user from group"
+                            onClick={() =>
+                              handleRemoveUserFromGroup(user[userFields.id])
+                            }
+                          >
+                            <Typography>
+                              <span role="img" aria-label="remove from group">
+                                ❌
+                              </span>
+                            </Typography>
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              {tablePagination}
+            </>
+          )}
         </>
       )}
     >
       {addUsersToGroupDialog}
       {confirmDeleteDialog}
       {confirmRemoveUserDialog}
+      {editGroupDialog}
     </Entity>
   )
 }

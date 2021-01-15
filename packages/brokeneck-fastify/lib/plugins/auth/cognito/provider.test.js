@@ -140,6 +140,36 @@ tap.test('cognito provider', async t => {
     sinon.assert.calledWith(awsCognito.adminCreateUser, sinon.match(user))
   })
 
+  t.test('user update', async t => {
+    t.test('enables user', async () => {
+      const id = faker.random.uuid()
+      const input = { Enabled: true }
+
+      awsCognito.adminEnableUser = stubAws(p => p.resolves())
+
+      await provider.editUser(id, input)
+
+      sinon.assert.calledWith(
+        awsCognito.adminEnableUser,
+        sinon.match({ Username: id })
+      )
+    })
+
+    t.test('disables user', async () => {
+      const id = faker.random.uuid()
+      const input = { Enabled: false }
+
+      awsCognito.adminDisableUser = stubAws(p => p.resolves())
+
+      await provider.editUser(id, input)
+
+      sinon.assert.calledWith(
+        awsCognito.adminDisableUser,
+        sinon.match({ Username: id })
+      )
+    })
+  })
+
   t.test('creates group', async t => {
     const GroupName = faker.random.uuid()
     const group = { GroupName }
@@ -151,6 +181,20 @@ tap.test('cognito provider', async t => {
     t.equal(result, group)
 
     sinon.assert.calledWith(awsCognito.createGroup, sinon.match(group))
+  })
+
+  t.test('edits group', async () => {
+    const id = faker.random.uuid()
+    const input = { property: faker.random.word() }
+
+    awsCognito.updateGroup = stubAws(p => p.resolves())
+
+    await provider.editGroup(id, input)
+
+    sinon.assert.calledWith(
+      awsCognito.updateGroup,
+      sinon.match({ GroupName: id, ...input })
+    )
   })
 
   t.test('lists groups for user', async t => {
