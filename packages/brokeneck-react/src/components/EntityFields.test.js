@@ -25,11 +25,9 @@ describe('EntityFields', () => {
       <EntityFields
         typeName="User"
         data={{
-          Username: 'Bobby',
-          Enabled: false,
-          UserStatus: 'Sample User Status',
-          UserCreateDate: new Date(2020, 11, 25),
-          UserLastModifiedDate: new Date(2020, 11, 31)
+          objectId: '1234-5678',
+          displayName: 'Bobby',
+          createdDateTime: new Date(2020, 11, 25)
         }}
       />,
       {
@@ -37,10 +35,9 @@ describe('EntityFields', () => {
       }
     )
 
-    expect(screen.getByText(/Bobby/i)).toBeInTheDocument()
-    expect(screen.getByText(/Sample User Status/i)).toBeInTheDocument()
+    expect(screen.getByText(/1234/i)).toBeInTheDocument()
+    expect(screen.getByText(/1234-5678/i)).toBeInTheDocument()
     expect(screen.getByText(/2020-12-25, 12:00:00 a.m./i)).toBeInTheDocument()
-    expect(screen.getByText(/2020-12-31, 12:00:00 a.m./i)).toBeInTheDocument()
 
     expect(screen.getAllByRole('listitem').length).toEqual(5)
   })

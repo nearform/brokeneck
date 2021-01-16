@@ -51,10 +51,8 @@ const mockUseQuery = (overrides = {}) => query => {
         UserLastModifiedDate: '2021-01-07T12:33:07.571Z',
         groups: [
           {
-            GroupName: 'AnotherGroup',
-            Description: 'Another group description',
-            CreationDate: '2021-01-05T10:42:20.733Z',
-            LastModifiedDate: '2021-01-05T10:42:20.733Z',
+            objectId: 'AnotherGroup',
+            createdDateTime: '2021-01-05T10:42:20.733Z',
             users: { data: [], nextPage: '234567' }
           }
         ]

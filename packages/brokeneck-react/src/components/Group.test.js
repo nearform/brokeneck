@@ -51,11 +51,9 @@ const mockUseQuery = (overrides = {}) => query => {
         users: {
           data: [
             {
-              Username: 'a_user',
-              Enabled: true,
-              UserStatus: 'FORCE_CHANGE_PASSWORD',
-              UserCreateDate: '2021-01-07T12:33:07.571Z',
-              UserLastModifiedDate: '2021-01-07T12:33:07.571Z',
+              objectId: 'a_user',
+              displayName: 'Bobby',
+              createdDateTime: '2021-01-07T12:33:07.571Z',
               groups: []
             }
           ],
