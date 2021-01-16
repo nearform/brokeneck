@@ -26,8 +26,7 @@ describe('EntityFields', () => {
         typeName="User"
         data={{
           objectId: '1234-5678',
-          displayName: 'Bobby',
-          createdDateTime: new Date(2020, 11, 25)
+          displayName: 'Bobby'
         }}
       />,
       {
@@ -37,7 +36,6 @@ describe('EntityFields', () => {
 
     expect(screen.getByText(/1234/i)).toBeInTheDocument()
     expect(screen.getByText(/1234-5678/i)).toBeInTheDocument()
-    expect(screen.getByText(/2020-12-25, 12:00:00 a.m./i)).toBeInTheDocument()
 
     expect(screen.getAllByRole('listitem').length).toEqual(5)
   })
