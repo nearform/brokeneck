@@ -130,6 +130,7 @@ export default function User({ userId }) {
                   handleRemoveUserFromGroup(group[groupFields.id])
                 }
                 color="primary"
+                data-testid="user-group-chip"
               ></Chip>
             ))}
           </Box>

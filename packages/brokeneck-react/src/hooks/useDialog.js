@@ -102,6 +102,7 @@ export default function useDialog({
         noValidate
         onSubmit={formik.handleSubmit}
         className={classes.form}
+        data-testid="dialog-form"
       >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
