@@ -37,7 +37,25 @@ const mockUseQuery = (overrides = {}) => query => {
 
   if (/query LoadUsers\(/.test(query)) {
     data = {
-      users: { data: [], nextPage: '234567' }
+      users: {
+        data: [
+          {
+            objectId: 'user_alice',
+            displayName: 'Alice',
+            mailNickname: 'Alice123',
+            createdDateTime: '2020-11-29T18:04:56Z',
+            accountEnabled: true
+          },
+          {
+            objectId: 'user_charlie',
+            displayName: 'Charlie',
+            mailNickname: 'Charlie123',
+            createdDateTime: '2020-11-29T18:04:56Z',
+            accountEnabled: true
+          }
+        ],
+        nextPage: '234567'
+      }
     }
   }
 
@@ -60,7 +78,25 @@ const mockUseQuery = (overrides = {}) => query => {
           nextPage: '234567'
         }
       },
-      users: { data: [], nextPage: '234567' }
+      users: {
+        data: [
+          {
+            objectId: 'user_alice',
+            displayName: 'Alice',
+            mailNickname: 'Alice123',
+            createdDateTime: '2020-11-29T18:04:56Z',
+            accountEnabled: true
+          },
+          {
+            objectId: 'user_charlie',
+            displayName: 'Charlie',
+            mailNickname: 'Charlie123',
+            createdDateTime: '2020-11-29T18:04:56Z',
+            accountEnabled: true
+          }
+        ],
+        nextPage: '234567'
+      }
     }
   }
 
@@ -106,6 +142,51 @@ describe('Group', () => {
     expect(screen.getByText(/Add users/i)).toBeInTheDocument()
     expect(screen.getByText(/Delete group/i)).toBeInTheDocument()
     expect(screen.getAllByRole('row').length).toEqual(2)
+  })
+
+  it('should open add dialog when "Add users" clicked', async () => {
+    useQuery.mockImplementation(mockUseQuery())
+
+    render(withProviders(<Group groupId="1234" />), {
+      wrapper: RootContextWrapper
+    })
+    screen.getByRole('button', { name: /Add users/i }).click()
+
+    expect(screen.getByTestId('dialog-form')).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: 'Add to group' })
+    ).toBeInTheDocument()
+  })
+
+  it('should add selected user when "Add users" dialog submitted', async () => {
+    useQuery.mockImplementation(mockUseQuery())
+
+    render(withProviders(<Group groupId="1234" />), {
+      wrapper: RootContextWrapper
+    })
+    screen.getByRole('button', { name: /Add users/i }).click()
+
+    const submitButton = screen.getByRole('button', { name: 'Add to group' })
+    expect(submitButton).toBeDisabled()
+
+    const input = screen.getByLabelText(/Display Name/i)
+    fireEvent.focus(input)
+    fireEvent.keyDown(input, { key: 'ArrowDown' })
+
+    screen.getByText(/Alice/i).click()
+    submitButton.click()
+
+    await waitFor(() => {
+      expect(mockMutation).toBeCalledWith({
+        variables: {
+          skipErrorHandling: true,
+          input: {
+            groupId: '1234',
+            userId: 'user_alice'
+          }
+        }
+      })
+    })
   })
 
   it('should open delete dialog when "Delete group" clicked', async () => {
