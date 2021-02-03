@@ -47,7 +47,9 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
     debouncedSetSearch(search)
   }
 
-  const getValueFromObject = useCallback(o => o[userFields.id], [userFields.id])
+  const getValueFromObject = useCallback(o => o?.[userFields.id], [
+    userFields.id
+  ])
 
   return useDialog({
     onConfirm: handleConfirm,
