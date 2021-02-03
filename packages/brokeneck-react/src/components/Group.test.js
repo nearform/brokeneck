@@ -1,6 +1,6 @@
 import React from 'react'
 import T from 'prop-types'
-import { screen, render, waitFor, fireEvent } from '@testing-library/react'
+import { screen, render, waitFor, fireEvent, act } from '@testing-library/react'
 import { useQuery } from 'graphql-hooks'
 import deepmerge from 'deepmerge'
 
@@ -151,23 +151,34 @@ describe('Group', () => {
     })
     screen.getByRole('button', { name: /Add users/i }).click()
 
+    // should not be able to submit without a value
     const submitButton = screen.getByRole('button', { name: 'Add to group' })
     expect(submitButton).toBeDisabled()
 
+    // open autosuggest dropdown
     const input = screen.getByLabelText(/Display Name/i)
     fireEvent.focus(input)
     fireEvent.keyDown(input, { key: 'ArrowDown' })
 
-    screen.getByText(/Alice/i).click()
-    submitButton.click()
+    // select some value, clear it and check submit disabled again
+    act(() => screen.getByText(/Alice/i).click())
+    await waitFor(() => screen.getByRole('button', { name: /Clear/i }).click())
+    expect(submitButton).toBeDisabled()
 
+    // open dropdown again
+    fireEvent.focus(input)
+    fireEvent.keyDown(input, { key: 'ArrowDown' })
+
+    // check adding selected user works
+    act(() => screen.getByText(/Charlie/i).click())
+    submitButton.click()
     await waitFor(() => {
       expect(mockMutation).toBeCalledWith({
         variables: {
           skipErrorHandling: true,
           input: {
             groupId: '1234',
-            userId: 'user_alice'
+            userId: 'user_charlie'
           }
         }
       })
