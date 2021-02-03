@@ -104,7 +104,7 @@ export default function Entities({
     currentToken,
     useUpdateToken,
     useTablePagination
-  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination()
 
   const { data, loading, refetch: loadEntities } = useQuery(query(fields.all), {
     variables: {
