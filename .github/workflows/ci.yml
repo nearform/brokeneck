@@ -15,12 +15,30 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npx lerna bootstrap
-      - run: npx lerna run lint
-      - run: npx lerna run build
-      - run: npx lerna run test
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }} 
+      
+      - name: Install node_modules
+        run: npx lerna bootstrap
+
+      - name: Lint
+        run: npx lerna run lint
+
+      - name: Build
+        run: npx lerna run build
+
+      - name: Test
+        run: npx lerna run test
+
