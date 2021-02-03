@@ -30,15 +30,8 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }} 
       
-      - name: Install node_modules
-        run: npx lerna bootstrap
-
-      - name: Lint
-        run: npx lerna run lint
-
-      - name: Build
-        run: npx lerna run build
-
-      - name: Test
-        run: npx lerna run test
+      - run: npx lerna bootstrap
+      - run: npx lerna run lint
+      - run: npx lerna run build
+      - run: npx lerna run test
 
