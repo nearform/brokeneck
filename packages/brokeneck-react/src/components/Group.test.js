@@ -160,16 +160,15 @@ describe('Group', () => {
     fireEvent.focus(input)
     fireEvent.keyDown(input, { key: 'ArrowDown' })
 
-    // select some value, clear it and check submit disabled again
+    // check clearing value works
     act(() => screen.getByText(/Alice/i).click())
-    await waitFor(() => screen.getByRole('button', { name: /Clear/i }).click())
+    screen.getByLabelText(/Clear/i).click()
     expect(submitButton).toBeDisabled()
 
-    // open dropdown again
+    // check adding works
     fireEvent.focus(input)
     fireEvent.keyDown(input, { key: 'ArrowDown' })
 
-    // check adding selected user works
     act(() => screen.getByText(/Charlie/i).click())
     submitButton.click()
     await waitFor(() => {
