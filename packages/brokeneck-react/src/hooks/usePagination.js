@@ -2,7 +2,10 @@ import React, { useCallback } from 'react'
 import { TablePagination } from '@material-ui/core'
 import useTokenPagination from 'token-pagination-hooks'
 
-export default function usePagination({ pageSizeOptions = [5, 10, 20] }) {
+export default function usePagination(
+  options = { pageSizeOptions: [5, 10, 20] }
+) {
+  const { pageSizeOptions } = options
   const [defaultPageSize] = pageSizeOptions
 
   const {

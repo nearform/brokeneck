@@ -41,7 +41,7 @@ export default function Group({ groupId }) {
     currentToken,
     useUpdateToken,
     useTablePagination
-  } = usePagination({ pageSizeOptions: [2, 3, 4] }) // TODO: temp small page sizes for testing
+  } = usePagination()
 
   const { data, loading, refetch: loadGroup } = useQuery(
     LOAD_GROUP(groupFields.all, userFields.all),
