@@ -2,16 +2,12 @@ import React from 'react'
 import T from 'prop-types'
 import { ClientContext } from 'graphql-hooks'
 import { BrowserRouter } from 'react-router-dom'
-import get from 'lodash.get'
 
 import ThemeSwitcherProvider from './components/ThemeSwitcherProvider'
 import Admin from './components/Admin'
 import useGraphQLClient from './hooks/useGraphQLClient'
 import ErrorBoundary from './components/ErrorBoundary'
 import GraphQLErrorBoundary from './components/GraphQLErrorBoundary'
-
-// eslint-disable-next-line
-console.log('get', get)
 
 export default function Main({ token, serverUrl, basename }) {
   const [client, GraphQLErrorContextProvider] = useGraphQLClient(
