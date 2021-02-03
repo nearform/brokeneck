@@ -79,22 +79,7 @@ const mockUseQuery = (overrides = {}) => query => {
         }
       },
       users: {
-        data: [
-          {
-            objectId: 'user_alice',
-            displayName: 'Alice',
-            mailNickname: 'Alice123',
-            createdDateTime: '2020-11-29T18:04:56Z',
-            accountEnabled: true
-          },
-          {
-            objectId: 'user_charlie',
-            displayName: 'Charlie',
-            mailNickname: 'Charlie123',
-            createdDateTime: '2020-11-29T18:04:56Z',
-            accountEnabled: true
-          }
-        ],
+        data: [],
         nextPage: '234567'
       }
     }
