@@ -38,7 +38,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
       
-      - run: yarn install --frozen-lockfile
+      - run: npx lerna run bootstrap
       - run: npx lerna run lint
       - run: npx lerna run build
       - run: npx lerna run test
