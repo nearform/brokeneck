@@ -37,6 +37,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Cache node_modules
+        id: cache-node-modules
         uses: actions/cache@v2
         with:
           path: |
@@ -46,8 +47,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-
       
-      - run: lerna bootstrap
-      - run: lerna run lint
-      - run: lerna run build
-      - run: lerna run test
+      - run: npx lerna bootstrap
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+
+      - run: npx lerna run lint
+      - run: npx lerna run build
+      - run: npx lerna run test
 
