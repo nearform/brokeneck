@@ -23,18 +23,22 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
       - name: Cache
         uses: actions/cache@v2
         with:
           path: |
             node_modules
             */*/node_modules
-          key: ${{ runner.os }}-cache-${{ hashFiles('yarn.lock') }}
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-cache-
+            ${{ runner.os }}-
       
       - run: npx lerna bootstrap
       - run: npx lerna run lint
       - run: npx lerna run build
       - run: npx lerna run test
-
