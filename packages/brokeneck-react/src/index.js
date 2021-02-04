@@ -5,9 +5,9 @@ import { BrowserRouter } from 'react-router-dom'
 
 import ThemeSwitcherProvider from './components/ThemeSwitcherProvider'
 import Admin from './components/Admin'
-import useGraphQLClient from './hooks/useGraphQLClient'
 import ErrorBoundary from './components/ErrorBoundary'
 import GraphQLErrorBoundary from './components/GraphQLErrorBoundary'
+import useGraphQLClient from './hooks/useGraphQLClient'
 
 export default function Main({ token, serverUrl, basename }) {
   const [client, GraphQLErrorContextProvider] = useGraphQLClient(
