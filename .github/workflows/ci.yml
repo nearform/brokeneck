@@ -31,7 +31,7 @@ jobs:
             */*/node_modules
           key: ${{ runner.os }}-cache-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-
+            ${{ runner.os }}-cache-
       
       - run: npx lerna bootstrap
       - run: npx lerna run lint
