@@ -32,7 +32,7 @@ jobs:
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
 
@@ -42,12 +42,12 @@ jobs:
           path: |
             node_modules
             */*/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-${{ hashFiles('yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-
       
-      - run: npx lerna bootstrap
-      - run: npx lerna run lint
-      - run: npx lerna run build
-      - run: npx lerna run test
+      - run: lerna bootstrap
+      - run: lerna run lint
+      - run: lerna run build
+      - run: lerna run test
 
