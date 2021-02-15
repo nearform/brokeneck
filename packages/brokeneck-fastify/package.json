@@ -34,7 +34,7 @@
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^7.0.1",
-    "mercurius": "^6.4.0",
+    "mercurius": "^7.0.0",
     "pkg-dir": "^5.0.0",
     "point-of-view": "^4.7.0"
   },
