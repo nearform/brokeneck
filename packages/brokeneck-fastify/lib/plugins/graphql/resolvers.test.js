@@ -85,7 +85,7 @@ tap.test('resolvers', async t => {
 
       const result = await resolvers.Query.provider()
 
-      t.deepEqual(result, { name })
+      t.same(result, { name })
     })
   })
 

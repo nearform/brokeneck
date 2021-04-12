@@ -8402,10 +8402,10 @@ flatten@^1.0.2:
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
 
-fluent-schema@^1.0.5:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/fluent-schema/-/fluent-schema-1.1.0.tgz#fba75c606dece2fe90230acc8eacb7e964282b15"
-  integrity sha512-nj30FPdDFpoQmS3LtFbgozLpe+Y7cKBBK9ym564lHk1agUIwo4zV3dqygGe3l1NZek0uEtbz6EpCeNBt3wTcTQ==
+fluent-json-schema@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/fluent-json-schema/-/fluent-json-schema-2.0.4.tgz#85481631fdfb10b5e0a35e37c2662e5de100ee1b"
+  integrity sha512-SJKgDCCsCSfd7itgcCJ/94Zau03fVowqo7un7iqQVilAXMyz4C+6WGN3+2anIEtgFylzWyRvLw3pS+JmyoClOw==
   dependencies:
     deepmerge "^4.2.2"
 

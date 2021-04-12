@@ -29,7 +29,7 @@
     "fastify-cors": "^5.0.0",
     "fastify-plugin": "^3.0.0",
     "fastify-static": "^4.0.0",
-    "fluent-schema": "^1.0.5",
+    "fluent-json-schema": "^2.0.4",
     "graphql": "^15.4.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.11.0",

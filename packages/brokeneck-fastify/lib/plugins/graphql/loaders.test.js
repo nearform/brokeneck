@@ -29,7 +29,7 @@ tap.test('loaders', async t => {
 
     const result = await loaders.User.groups(queries)
 
-    t.deepEqual(result, groups)
+    t.same(result, groups)
   })
 
   t.test('Group.users', async t => {
@@ -54,6 +54,6 @@ tap.test('loaders', async t => {
 
     const result = await loaders.Group.users(queries, { reply })
 
-    t.deepEqual(result, users)
+    t.same(result, users)
   })
 })

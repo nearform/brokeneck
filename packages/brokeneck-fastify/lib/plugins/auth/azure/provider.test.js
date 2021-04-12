@@ -30,7 +30,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('returns the meta', async t => {
-    t.deepEqual(provider.meta, {
+    t.same(provider.meta, {
       name: 'azure',
       capabilities: {
         canSearchGroups: false
@@ -48,7 +48,7 @@ tap.test('azure provider', async t => {
         search: 'search'
       })
 
-      t.deepEqual(result, { data: users, nextPage: undefined })
+      t.same(result, { data: users, nextPage: undefined })
     })
 
     t.test('returns users', async t => {
@@ -61,7 +61,7 @@ tap.test('azure provider', async t => {
         search: 'search'
       })
 
-      t.deepEqual(result, { data: users, nextPage: undefined })
+      t.same(result, { data: users, nextPage: undefined })
     })
   })
 
@@ -87,7 +87,7 @@ tap.test('azure provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: undefined })
+      t.same(result, { data: groups, nextPage: undefined })
     })
 
     t.test('returns groups', async t => {
@@ -99,7 +99,7 @@ tap.test('azure provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: undefined })
+      t.same(result, { data: groups, nextPage: undefined })
     })
   })
 
@@ -190,7 +190,7 @@ tap.test('azure provider', async t => {
 
     const result = await provider.listGroupsForUser(user)
 
-    t.deepEqual(result, groupIds)
+    t.same(result, groupIds)
 
     sinon.assert.calledWith(azure.users.getMemberGroups, user.objectId)
 
@@ -208,7 +208,7 @@ tap.test('azure provider', async t => {
 
     const result = await provider.listUsersForGroup({ group })
 
-    t.deepEqual(result, { data: users, nextPage: undefined })
+    t.same(result, { data: users, nextPage: undefined })
 
     sinon.assert.calledWith(azure.sendOperationRequest, {
       groupId: group.objectId,
@@ -229,7 +229,7 @@ tap.test('azure provider', async t => {
       pageSize: 2
     })
 
-    t.deepEqual(result, { data: users, nextPage: undefined })
+    t.same(result, { data: users, nextPage: undefined })
 
     sinon.assert.calledWith(azure.sendOperationRequest, {
       nextLink: '2',

@@ -1,7 +1,7 @@
 'use strict'
 
 const envSchema = require('env-schema')
-const S = require('fluent-schema')
+const S = require('fluent-json-schema')
 
 const uiSchema = S.object()
   .prop('basename', S.string().default(''))
