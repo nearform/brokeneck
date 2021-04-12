@@ -27,7 +27,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('returns the meta', async t => {
-    t.deepEqual(provider.meta, {
+    t.same(provider.meta, {
       name: 'cognito',
       capabilities: {
         canSearchGroups: false
@@ -45,7 +45,7 @@ tap.test('cognito provider', async t => {
         search: 'search'
       })
 
-      t.deepEqual(result, { data: users, nextPage: undefined })
+      t.same(result, { data: users, nextPage: undefined })
     })
 
     t.test('without search', async t => {
@@ -56,7 +56,7 @@ tap.test('cognito provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: users, nextPage: undefined })
+      t.same(result, { data: users, nextPage: undefined })
     })
 
     t.test('returns users', async t => {
@@ -69,7 +69,7 @@ tap.test('cognito provider', async t => {
         search: 'search'
       })
 
-      t.deepEqual(result, { data: users, nextPage: undefined })
+      t.same(result, { data: users, nextPage: undefined })
     })
   })
 
@@ -98,7 +98,7 @@ tap.test('cognito provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: undefined })
+      t.same(result, { data: groups, nextPage: undefined })
     })
 
     t.test('returns users', async t => {
@@ -110,7 +110,7 @@ tap.test('cognito provider', async t => {
         pageSize: 2
       })
 
-      t.deepEqual(result, { data: groups, nextPage: undefined })
+      t.same(result, { data: groups, nextPage: undefined })
     })
   })
 
@@ -225,7 +225,7 @@ tap.test('cognito provider', async t => {
 
     const result = await provider.listUsersForGroup({ group })
 
-    t.deepEqual(result, { data: users, nextPage: undefined })
+    t.same(result, { data: users, nextPage: undefined })
 
     sinon.assert.calledWith(awsCognito.listUsersInGroup, sinon.match(group))
   })
