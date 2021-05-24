@@ -57,7 +57,7 @@
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/react-hooks": "^5.0.0",
+    "@testing-library/react-hooks": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
     "deepmerge": "^4.2.2",
