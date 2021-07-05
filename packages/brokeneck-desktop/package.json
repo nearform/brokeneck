@@ -17,7 +17,7 @@
     "@nearform/brokeneck-fastify": "^1.0.0-spinal.8",
     "dotenv": "^10.0.0",
     "electron-store": "^8.0.0",
-    "electron-util": "^0.16.0",
+    "electron-util": "^0.17.0",
     "fastify": "^3.8.0",
     "pkg-dir": "^5.0.0"
   },
