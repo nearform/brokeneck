@@ -20,7 +20,7 @@ tap.test('azure provider', async t => {
   })
 
   const options = {
-    tenantId: faker.random.uuid()
+    tenantId: faker.datatype.uuid()
   }
 
   const provider = new AzureProvider(options, null, { debug: sinon.stub() })
@@ -66,7 +66,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('returns user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const user = { id }
 
     azure.users.get = sinon.stub().resolves(user)
@@ -104,7 +104,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('returns group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const group = { id }
 
     azure.groups.get = sinon.stub().resolves(group)
@@ -117,7 +117,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('creates user', async t => {
-    const username = faker.random.uuid()
+    const username = faker.datatype.uuid()
     const password = faker.internet.password()
 
     const user = { username, password }
@@ -142,7 +142,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('updates user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const property = faker.random.word()
 
     const input = { property }
@@ -155,7 +155,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('creates group', async t => {
-    const groupName = faker.random.uuid()
+    const groupName = faker.datatype.uuid()
     const group = { groupName }
 
     azure.groups.create = sinon.stub().resolves(group)
@@ -168,7 +168,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('updates group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const property = faker.random.word()
 
     const input = { property }
@@ -181,7 +181,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('lists groups for user', async t => {
-    const userId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
     const user = { objectId: userId }
     const groupIds = faker.random.arrayElements()
 
@@ -200,7 +200,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('lists users for group', async t => {
-    const groupId = faker.random.uuid()
+    const groupId = faker.datatype.uuid()
     const group = { objectId: groupId }
     const users = faker.random.arrayElements()
 
@@ -217,7 +217,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('lists users for group pagination', async t => {
-    const groupId = faker.random.uuid()
+    const groupId = faker.datatype.uuid()
     const group = { objectId: groupId }
     const users = faker.random.arrayElements()
 
@@ -238,8 +238,8 @@ tap.test('azure provider', async t => {
   })
 
   t.test('add user to group', async t => {
-    const userId = faker.random.uuid()
-    const groupId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
+    const groupId = faker.datatype.uuid()
 
     azure.groups.addMember = sinon.stub().resolves()
 
@@ -251,8 +251,8 @@ tap.test('azure provider', async t => {
   })
 
   t.test('remove user from group', async t => {
-    const userId = faker.random.uuid()
-    const groupId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
+    const groupId = faker.datatype.uuid()
 
     azure.groups.removeMember = sinon.stub().resolves()
 
@@ -262,7 +262,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('delete user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     azure.users.deleteMethod = sinon.stub().resolves()
 
@@ -272,7 +272,7 @@ tap.test('azure provider', async t => {
   })
 
   t.test('delete group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     azure.groups.deleteMethod = sinon.stub().resolves()
 

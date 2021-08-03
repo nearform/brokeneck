@@ -74,7 +74,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('returns user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const user = { id }
 
     awsCognito.adminGetUser = stubAws(p => p.resolves(user))
@@ -115,7 +115,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('returns group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const group = { id }
 
     awsCognito.getGroup = stubAws(p => p.resolves({ Group: group }))
@@ -128,7 +128,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('creates user', async t => {
-    const Username = faker.random.uuid()
+    const Username = faker.datatype.uuid()
     const user = { Username }
 
     awsCognito.adminCreateUser = stubAws(p => p.resolves({ User: user }))
@@ -142,7 +142,7 @@ tap.test('cognito provider', async t => {
 
   t.test('user update', async t => {
     t.test('enables user', async () => {
-      const id = faker.random.uuid()
+      const id = faker.datatype.uuid()
       const input = { Enabled: true }
 
       awsCognito.adminEnableUser = stubAws(p => p.resolves())
@@ -156,7 +156,7 @@ tap.test('cognito provider', async t => {
     })
 
     t.test('disables user', async () => {
-      const id = faker.random.uuid()
+      const id = faker.datatype.uuid()
       const input = { Enabled: false }
 
       awsCognito.adminDisableUser = stubAws(p => p.resolves())
@@ -171,7 +171,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('creates group', async t => {
-    const GroupName = faker.random.uuid()
+    const GroupName = faker.datatype.uuid()
     const group = { GroupName }
 
     awsCognito.createGroup = stubAws(p => p.resolves({ Group: group }))
@@ -184,7 +184,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('edits group', async () => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const input = { property: faker.random.word() }
 
     awsCognito.updateGroup = stubAws(p => p.resolves())
@@ -198,7 +198,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('lists groups for user', async t => {
-    const Username = faker.random.uuid()
+    const Username = faker.datatype.uuid()
     const user = { Username }
     const groups = faker.random.arrayElements()
 
@@ -217,7 +217,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('lists users for group', async t => {
-    const GroupName = faker.random.uuid()
+    const GroupName = faker.datatype.uuid()
     const group = { GroupName }
     const users = faker.random.arrayElements()
 
@@ -231,8 +231,8 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('add user to group', async t => {
-    const userId = faker.random.uuid()
-    const groupId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
+    const groupId = faker.datatype.uuid()
 
     awsCognito.adminAddUserToGroup = stubAws(p => p.resolves())
 
@@ -245,8 +245,8 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('remove user from group', async t => {
-    const userId = faker.random.uuid()
-    const groupId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
+    const groupId = faker.datatype.uuid()
 
     awsCognito.adminRemoveUserFromGroup = stubAws(p => p.resolves())
 
@@ -259,7 +259,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('delete user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     awsCognito.adminDeleteUser = stubAws(p => p.resolves())
 
@@ -272,7 +272,7 @@ tap.test('cognito provider', async t => {
   })
 
   t.test('delete group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     awsCognito.deleteGroup = stubAws(p => p.resolves())
 
