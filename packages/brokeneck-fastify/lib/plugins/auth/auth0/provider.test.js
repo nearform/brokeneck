@@ -87,7 +87,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('returns user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const user = { id }
 
     auth0.getUser = sinon.stub().resolves(user)
@@ -158,7 +158,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('returns group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const group = { id }
 
     auth0.getRole = sinon.stub().resolves(group)
@@ -171,7 +171,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('creates user', async t => {
-    const username = faker.random.uuid()
+    const username = faker.datatype.uuid()
     const user = { username }
 
     auth0.createUser = sinon.stub().resolves(user)
@@ -184,7 +184,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('edits user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const input = { property: faker.random.word() }
 
     auth0.updateUser = sinon.stub().resolves()
@@ -195,7 +195,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('creates group', async t => {
-    const groupName = faker.random.uuid()
+    const groupName = faker.datatype.uuid()
     const group = { groupName }
 
     auth0.createRole = sinon.stub().resolves(group)
@@ -208,7 +208,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('edits group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
     const input = { property: faker.random.word() }
 
     auth0.updateRole = sinon.stub().resolves()
@@ -219,7 +219,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('lists groups for user', async t => {
-    const userId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
     const user = { user_id: userId }
     const groups = faker.random.arrayElements()
 
@@ -233,7 +233,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('lists users for group', async t => {
-    const groupId = faker.random.uuid()
+    const groupId = faker.datatype.uuid()
     const group = { id: groupId }
     const users = makeArrayOfRandomElements(2)
 
@@ -250,7 +250,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('lists users for group pagination: more pages', async t => {
-    const groupId = faker.random.uuid()
+    const groupId = faker.datatype.uuid()
     const group = { id: groupId }
     const users = makeArrayOfRandomElements(2)
 
@@ -268,7 +268,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('lists users for group pagination: no more pages', async t => {
-    const groupId = faker.random.uuid()
+    const groupId = faker.datatype.uuid()
     const group = { id: groupId }
     const users = makeArrayOfRandomElements(2)
 
@@ -286,8 +286,8 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('add user to group', async t => {
-    const userId = faker.random.uuid()
-    const groupId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
+    const groupId = faker.datatype.uuid()
 
     auth0.assignRolestoUser = sinon.stub().resolves()
 
@@ -301,8 +301,8 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('remove user from group', async t => {
-    const userId = faker.random.uuid()
-    const groupId = faker.random.uuid()
+    const userId = faker.datatype.uuid()
+    const groupId = faker.datatype.uuid()
 
     auth0.removeRolesFromUser = sinon.stub().resolves()
 
@@ -316,7 +316,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('delete user', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     auth0.deleteUser = sinon.stub().resolves()
 
@@ -326,7 +326,7 @@ tap.test('auth0 provider', async t => {
   })
 
   t.test('delete group', async t => {
-    const id = faker.random.uuid()
+    const id = faker.datatype.uuid()
 
     auth0.deleteRole = sinon.stub().resolves()
 
