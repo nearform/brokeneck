@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { Box, Typography } from '@material-ui/core'
+import T from 'prop-types'
 
 import GraphQLErrorContext from './GraphQLErrorContext'
 
@@ -23,4 +24,8 @@ export default function GraphQLErrorBoundary({ children }) {
   }
 
   return children
+}
+
+GraphQLErrorBoundary.propTypes = {
+  children: T.node.isRequired
 }
