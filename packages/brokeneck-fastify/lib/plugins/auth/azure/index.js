@@ -11,14 +11,15 @@ async function azure(fastify, options) {
 
   fastify.graphql.extendSchema(typeDefs)
 
-  const authResponse = await msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(
-    options.clientId,
-    options.secret,
-    options.tenantId,
-    {
-      tokenAudience: 'graph'
-    }
-  )
+  const authResponse =
+    await msRestNodeAuth.loginWithServicePrincipalSecretWithAuthResponse(
+      options.clientId,
+      options.secret,
+      options.tenantId,
+      {
+        tokenAudience: 'graph'
+      }
+    )
 
   fastify.decorate(
     'provider',

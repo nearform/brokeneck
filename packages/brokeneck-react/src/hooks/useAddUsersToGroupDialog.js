@@ -15,9 +15,10 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
   const userFields = useFields(TYPES.User)
   const [search, setSearch] = useState()
 
-  const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
-    setSearch
-  ])
+  const debouncedSetSearch = useMemo(
+    () => debounce(setSearch, 500),
+    [setSearch]
+  )
 
   useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch])
 
@@ -47,9 +48,10 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
     debouncedSetSearch(search)
   }
 
-  const getValueFromObject = useCallback(o => o?.[userFields.id], [
-    userFields.id
-  ])
+  const getValueFromObject = useCallback(
+    o => o?.[userFields.id],
+    [userFields.id]
+  )
 
   return useDialog({
     onConfirm: handleConfirm,
@@ -73,9 +75,8 @@ export default function useAddUsersToGroupDialog(groupId, onConfirm) {
         loading,
         renderInput: function Input(params) {
           // eslint-disable-next-line no-unused-vars
-          const { initialValue, ...metadata } = userFields.metadata[
-            userFields.id
-          ]
+          const { initialValue, ...metadata } =
+            userFields.metadata[userFields.id]
 
           return (
             <TextField

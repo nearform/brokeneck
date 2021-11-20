@@ -36,23 +36,20 @@ export default function Group({ groupId }) {
   const groupFields = useFields(TYPES.Group)
   const userFields = useFields(TYPES.User)
 
-  const {
-    pageSize,
-    currentToken,
-    useUpdateToken,
-    useTablePagination
-  } = usePagination()
+  const { pageSize, currentToken, useUpdateToken, useTablePagination } =
+    usePagination()
 
-  const { data, loading, refetch: loadGroup } = useQuery(
-    LOAD_GROUP(groupFields.all, userFields.all),
-    {
-      variables: {
-        id: groupId,
-        pageSize,
-        pageNumber: currentToken
-      }
+  const {
+    data,
+    loading,
+    refetch: loadGroup
+  } = useQuery(LOAD_GROUP(groupFields.all, userFields.all), {
+    variables: {
+      id: groupId,
+      pageSize,
+      pageNumber: currentToken
     }
-  )
+  })
 
   useUpdateToken(data?.group.users.nextPage)
 

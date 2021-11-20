@@ -55,9 +55,10 @@ Search.propTypes = {
 
 export default function useSearch(minLength = 3) {
   const [search, setSearch] = useState({ immediate: '', debounced: '' })
-  const debouncedSetSearch = useMemo(() => debounce(setSearch, 500), [
-    setSearch
-  ])
+  const debouncedSetSearch = useMemo(
+    () => debounce(setSearch, 500),
+    [setSearch]
+  )
 
   useEffect(() => () => debouncedSetSearch.cancel(), [debouncedSetSearch])
 

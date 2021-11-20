@@ -46,11 +46,10 @@ export default function ThemeSwitcherProvider({ children }) {
     [themeType]
   )
 
-  const providerValue = useMemo(() => ({ toggleThemeType, themeType, theme }), [
-    toggleThemeType,
-    themeType,
-    theme
-  ])
+  const providerValue = useMemo(
+    () => ({ toggleThemeType, themeType, theme }),
+    [toggleThemeType, themeType, theme]
+  )
 
   return (
     <ThemeProvider theme={theme}>

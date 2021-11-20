@@ -23,12 +23,13 @@ export default function User({ userId }) {
   const userFields = useFields(TYPES.User)
   const groupFields = useFields(TYPES.Group)
 
-  const { data, loading, refetch: loadUser } = useQuery(
-    LOAD_USER(userFields.all, groupFields.all),
-    {
-      variables: { id: userId }
-    }
-  )
+  const {
+    data,
+    loading,
+    refetch: loadUser
+  } = useQuery(LOAD_USER(userFields.all, groupFields.all), {
+    variables: { id: userId }
+  })
 
   const [addUserToGroupDialog, openAddUserToGroup] = useAddUserToGroupDialog(
     userId,
@@ -47,14 +48,12 @@ export default function User({ userId }) {
     text: 'Are you sure you want to delete this user?',
     action: 'Confirm'
   })
-  const [
-    confirmRemoveFromGroupDialog,
-    confirmRemoveFromGroup
-  ] = useConfirmDialog({
-    title: 'Remove from group',
-    text: 'Are you sure you want to remove user from group?',
-    action: 'Confirm'
-  })
+  const [confirmRemoveFromGroupDialog, confirmRemoveFromGroup] =
+    useConfirmDialog({
+      title: 'Remove from group',
+      text: 'Are you sure you want to remove user from group?',
+      action: 'Confirm'
+    })
   const [removeUserFromGroup] = useMutation(REMOVE_USER_FROM_GROUP)
   const [deleteUser] = useMutation(DELETE_USER)
 
