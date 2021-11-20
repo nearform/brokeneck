@@ -9594,10 +9594,10 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@^7.0.1:
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.1.tgz#579f4180b5da4520263e8713cc832942b48e1f1c"
-  integrity sha512-gceRaITVZ+cJH9sNHqx5tFwbzlLCVxtVZcusME8JYQ8Edy5mpGDOqD8QBCdMhpyo9a+JXddnujQ4rpY2Ff9SJA==
+husky@^7.0.0:
+  version "7.0.4"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.4.tgz#242048245dc49c8fb1bf0cc7cfb98dd722531535"
+  integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
 
 hyphenate-style-name@^1.0.3:
   version "1.0.4"
@@ -14159,9 +14159,9 @@ pnp-webpack-plugin@1.6.4:
     ts-pnp "^1.1.6"
 
 point-of-view@^4.7.0:
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-4.14.0.tgz#795419e1f36a14de55c964cea5f81816c52425ae"
-  integrity sha512-NaWn3oqCWnRj4SvKtYBAwWf2MI1d9/rY5wF93PAdnYq4AzdLqi/IAwTHTf1+Ul3Toi2JMqg6caSCd+eQnwqT3Q==
+  version "4.15.2"
+  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-4.15.2.tgz#edeb78a0dea71bb263238f5de70b8e8823392714"
+  integrity sha512-4HH/lJRBx8dzFjK5EiK+m459Bkw85GDuRnbk9qnxjQfUg0HYADQvJU73lLxZlHO2G4f9KvslOoTbdBx51mlDdg==
   dependencies:
     fastify-plugin "^3.0.0"
     hashlru "^2.3.0"
