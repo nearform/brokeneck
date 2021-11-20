@@ -35,7 +35,7 @@
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^8.0.0",
     "mercurius": "^8.0.0",
-    "pkg-dir": "^5.0.0",
+    "pkg-dir": "^6.0.1",
     "point-of-view": "^4.7.0"
   },
   "devDependencies": {

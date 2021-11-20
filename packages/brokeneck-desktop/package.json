@@ -19,7 +19,7 @@
     "electron-store": "^8.0.0",
     "electron-util": "^0.17.0",
     "fastify": "^3.8.0",
-    "pkg-dir": "^5.0.0"
+    "pkg-dir": "^6.0.1"
   },
   "devDependencies": {
     "electron": "^13.0.0",
