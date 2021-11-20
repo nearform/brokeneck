@@ -99,14 +99,14 @@ export default function Entities({
   const fields = useFields(entityName)
   const { search, Search } = useSearch()
 
-  const {
-    pageSize,
-    currentToken,
-    useUpdateToken,
-    useTablePagination
-  } = usePagination()
+  const { pageSize, currentToken, useUpdateToken, useTablePagination } =
+    usePagination()
 
-  const { data, loading, refetch: loadEntities } = useQuery(query(fields.all), {
+  const {
+    data,
+    loading,
+    refetch: loadEntities
+  } = useQuery(query(fields.all), {
     variables: {
       pageNumber: currentToken,
       pageSize,

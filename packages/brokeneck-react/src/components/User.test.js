@@ -28,60 +28,62 @@ const withProviders = (children, options) => {
   return withThemeSwitcher(withRouter(children, path))
 }
 
-const mockUseQuery = (overrides = {}) => query => {
-  let data = {}
+const mockUseQuery =
+  (overrides = {}) =>
+  query => {
+    let data = {}
 
-  if (query === LOAD_ROOT) {
-    data = mockRootContext
-  }
-
-  if (/query LoadUsers\(/.test(query)) {
-    data = {
-      users: { data: [], nextPage: '234567' }
+    if (query === LOAD_ROOT) {
+      data = mockRootContext
     }
-  }
 
-  if (/query LoadUser\(/.test(query)) {
-    data = {
-      user: {
-        Username: 'a_user',
-        Enabled: true,
-        UserStatus: 'FORCE_CHANGE_PASSWORD',
-        UserCreateDate: '2021-01-07T12:33:07.571Z',
-        UserLastModifiedDate: '2021-01-07T12:33:07.571Z',
-        groups: [
-          {
-            objectId: 'AnotherGroup',
-            createdDateTime: '2021-01-05T10:42:20.733Z',
-            users: { data: [], nextPage: '234567' }
-          }
-        ]
-      },
-      groups: { data: [], nextPage: '234567' }
-    }
-  }
-
-  if (/query LoadGroups\(/.test(query)) {
-    data = {
-      groups: { data: [], nextPage: '234567' }
-    }
-  }
-
-  if (/query LoadGroup\(/.test(query)) {
-    data = {
-      group: {
-        GroupName: 'AnotherGroup',
-        Description: 'Another group description',
-        CreationDate: '2021-01-05T10:42:20.733Z',
-        LastModifiedDate: '2021-01-05T10:42:20.733Z',
+    if (/query LoadUsers\(/.test(query)) {
+      data = {
         users: { data: [], nextPage: '234567' }
-      },
-      users: { data: [], nextPage: '234567' }
+      }
     }
-  }
 
-  return deepmerge({ data, loading: false }, overrides)
-}
+    if (/query LoadUser\(/.test(query)) {
+      data = {
+        user: {
+          Username: 'a_user',
+          Enabled: true,
+          UserStatus: 'FORCE_CHANGE_PASSWORD',
+          UserCreateDate: '2021-01-07T12:33:07.571Z',
+          UserLastModifiedDate: '2021-01-07T12:33:07.571Z',
+          groups: [
+            {
+              objectId: 'AnotherGroup',
+              createdDateTime: '2021-01-05T10:42:20.733Z',
+              users: { data: [], nextPage: '234567' }
+            }
+          ]
+        },
+        groups: { data: [], nextPage: '234567' }
+      }
+    }
+
+    if (/query LoadGroups\(/.test(query)) {
+      data = {
+        groups: { data: [], nextPage: '234567' }
+      }
+    }
+
+    if (/query LoadGroup\(/.test(query)) {
+      data = {
+        group: {
+          GroupName: 'AnotherGroup',
+          Description: 'Another group description',
+          CreationDate: '2021-01-05T10:42:20.733Z',
+          LastModifiedDate: '2021-01-05T10:42:20.733Z',
+          users: { data: [], nextPage: '234567' }
+        },
+        users: { data: [], nextPage: '234567' }
+      }
+    }
+
+    return deepmerge({ data, loading: false }, overrides)
+  }
 
 const mockMutation = jest.fn()
 
