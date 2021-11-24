@@ -14398,9 +14398,9 @@ pnp-webpack-plugin@1.6.4:
     ts-pnp "^1.1.6"
 
 point-of-view@^4.7.0:
-  version "4.15.2"
-  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-4.15.2.tgz#edeb78a0dea71bb263238f5de70b8e8823392714"
-  integrity sha512-4HH/lJRBx8dzFjK5EiK+m459Bkw85GDuRnbk9qnxjQfUg0HYADQvJU73lLxZlHO2G4f9KvslOoTbdBx51mlDdg==
+  version "4.15.3"
+  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-4.15.3.tgz#633b330e97c924b79d9bef47e4fc676ffeae3a2c"
+  integrity sha512-J8vWEwug8gvv5WpWpejNnUEj0JcPdU7BrOKOYFhREmBRePQQfCBO8vvCtwnL+jBrIWukbpOyUmFgU4CD77XrAw==
   dependencies:
     fastify-plugin "^3.0.0"
     hashlru "^2.3.0"
