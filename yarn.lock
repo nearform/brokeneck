@@ -36,9 +36,9 @@
     tslib "^2.0.0"
 
 "@azure/graph@^5.0.1":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@azure/graph/-/graph-5.0.2.tgz#dbfeb3a0bde82ed9b34381b5042a654dd88e4406"
-  integrity sha512-V/rG6maHOLf3NrV+PTJ822/9T5RCjlhtihN0oIS83ZvrYlGMjf9ut/83ovdk4ceLTkQrlubiJ/rw1ZihI0jQog==
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@azure/graph/-/graph-5.0.3.tgz#99b8d2f424a10a91c00eeaa92b54f22c876b80ed"
+  integrity sha512-/koQqteXhOIHxgQvtQoOf5ZyAE9AHN4u5IMQHm2MsTKgYLYvx4t3q72cLkv7KRXezCGZBget7xTjlLNNC1G4QQ==
   dependencies:
     "@azure/ms-rest-azure-js" "^2.0.0"
     "@azure/ms-rest-js" "^2.0.3"
