@@ -8087,7 +8087,7 @@ events@1.1.1:
   resolved "https://registry.yarnpkg.com/events/-/events-1.1.1.tgz#9ebdb7635ad099c70dcc4c2a1f5004288e8bd924"
   integrity sha1-nr23Y1rQmccNzEwqH1AEKI6L2SQ=
 
-events@^3.0.0:
+events@^3.0.0, events@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
   integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
@@ -8290,10 +8290,10 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-files@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-9.0.0.tgz#8a7744f2437f81f5ed3250ed9f1550de902fe54a"
-  integrity sha512-CvdFfHkC95B4bBBk36hcEmvdR2awOdhhVUYH6S/zrVj3477zven/fJMYg7121h4T1xHZC+tetUpubpAhxwI7hQ==
+extract-files@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/extract-files/-/extract-files-11.0.0.tgz#b72d428712f787eef1f5193aff8ab5351ca8469a"
+  integrity sha512-FuoE1qtbJ4bBVvv94CC7s0oTnKUGvQs+Rjf1L2SJFfS+HTVVjhPFtehPdQ0JiGPqVNfSSZvL5yzHHQq2Z4WNhQ==
 
 extract-zip@^1.0.3:
   version "1.7.0"
@@ -9293,12 +9293,13 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
 graphql-hooks@^5.0.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.1.1.tgz#5e85db8b6e16f29d4d9172c25096514b80ddcb63"
-  integrity sha512-s9T+eZ4i5/NyI65tqLKb0SHc3n0V+1xi1jwM0qO3c8sunJalG2Jvh9V0xsFNsakXxHcgD/XReUOGsz4lrwwv6w==
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.5.0.tgz#ed7ec4338d7999304ce37856b4c772573ed64860"
+  integrity sha512-9kyoAwGjqdg4pPk3x1Kaq8bfHjrO1Ss/3Yl5i/SQ110VXQk+wZfRkmn/Ss8ZEp88JL4Qu2+x8Id+RAUxu4TP9A==
   dependencies:
     dequal "^2.0.0"
-    extract-files "^9.0.0"
+    events "^3.3.0"
+    extract-files "^11.0.0"
 
 graphql-iso-date@^3.6.1:
   version "3.6.1"
