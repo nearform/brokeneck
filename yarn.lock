@@ -8397,9 +8397,9 @@ fast-safe-stringify@^2.0.8:
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
 fastify-cli@^2.5.1:
-  version "2.9.1"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.9.1.tgz#2b06bb8246e13648b432658a0bb1ede1683e2a24"
-  integrity sha512-K/ZWA6k4ormrNJMT2KiwuCfauOUugWZUnPjgtTNpyZ1+/2fuuGz0GKAKMDUvYWKMEgoPVR6uLQUEUCGvUold1w==
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.13.0.tgz#91d72a95f3fd713afd658484420920d74a8f302c"
+  integrity sha512-hNOWlQyht+DTHXxg/NaUeDSKZa5tl5dXunCE2mjbEDyS8pmMHKrbYQg+YHTFkUvdsoc/FG2IxtWYfaqD55XTxA==
   dependencies:
     blessed "^0.1.81"
     blessed-contrib "^4.8.18"
@@ -8407,7 +8407,7 @@ fastify-cli@^2.5.1:
     chokidar "^3.3.1"
     close-with-grace "^1.0.0"
     commist "^1.0.0"
-    dotenv "^8.2.0"
+    dotenv "^10.0.0"
     fastify "^3.0.0"
     generify "^4.0.0"
     help-me "^2.0.0"
