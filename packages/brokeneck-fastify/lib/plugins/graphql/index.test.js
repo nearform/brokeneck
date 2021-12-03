@@ -53,7 +53,7 @@ tap.test('graphql with mercurius', async t => {
       body: JSON.stringify({ query })
     })
 
-    t.same(JSON.parse(response.body), {
+    t.same(response.json(), {
       data: {
         provider: {
           name: 'test'
