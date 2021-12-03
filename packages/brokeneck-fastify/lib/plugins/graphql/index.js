@@ -2,7 +2,7 @@
 
 const fp = require('fastify-plugin')
 const mercurius = require('mercurius')
-const { makeExecutableSchema } = require('graphql-tools')
+const { makeExecutableSchema } = require('@graphql-tools/schema')
 
 const typeDefs = require('./typeDefs')
 const makeResolvers = require('./resolvers')

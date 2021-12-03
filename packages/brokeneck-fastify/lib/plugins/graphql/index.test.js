@@ -24,3 +24,41 @@ tap.test('graphql', async t => {
     sinon.assert.called(mercurius)
   })
 })
+
+tap.test('graphql with mercurius', async t => {
+  const graphql = require('./')
+
+  t.test('registers the plugin', async t => {
+    const fastify = Fastify()
+
+    fastify.decorate('provider', {
+      meta: {
+        name: 'test'
+      }
+    })
+    fastify.register(graphql)
+
+    const query = `
+      query {
+        provider {
+          name
+        }
+      }  
+    `
+
+    const response = await fastify.inject({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      url: '/graphql',
+      body: JSON.stringify({ query })
+    })
+
+    t.same(JSON.parse(response.body), {
+      data: {
+        provider: {
+          name: 'test'
+        }
+      }
+    })
+  })
+})
