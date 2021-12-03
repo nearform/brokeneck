@@ -12422,9 +12422,9 @@ meow@^8.0.0:
     yargs-parser "^20.2.3"
 
 mercurius@^8.0.0:
-  version "8.11.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-8.11.0.tgz#2ae7be46fd16668b2d8655299f2de60c77d7b399"
-  integrity sha512-+lJZiVXEsVD1bkvJq+WBV3FFmAfdY3IB6+wrVMjCss/1FOelmrv7HCrcW/iHj2dLVF/1Luub04Sj0sDtI0e1Lg==
+  version "8.11.2"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-8.11.2.tgz#39ccf7ef869dcd9ac9cbc4708f7c8f507dcca617"
+  integrity sha512-n8xSfEDcuQBFiVdL1ScXUxM1iKTxN3eVkVvK8+nF4eGguEnJPAXq/+dJrFalrhoLQ7xAZJ7qKwWeQlDzdVHDhQ==
   dependencies:
     "@types/isomorphic-form-data" "^2.0.0"
     events.on "^1.0.1"
@@ -12438,6 +12438,7 @@ mercurius@^8.0.0:
     p-map "^4.0.0"
     promise.allsettled "^1.0.4"
     readable-stream "^3.6.0"
+    safe-stable-stringify "^2.3.0"
     secure-json-parse "^2.4.0"
     single-user-cache "^0.6.0"
     tiny-lru "^7.0.6"
@@ -16168,7 +16169,7 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-safe-stable-stringify@^2.0.0:
+safe-stable-stringify@^2.0.0, safe-stable-stringify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.3.0.tgz#d09eb692386d7faa846d78922605c67cc0ab9c1c"
   integrity sha512-VFlmNrvZ44a0QnRY2yfEIUhbMh8BjTFWf2mRG/8mCEAKTfQYV8xxfn6P+00OLej0gznC5C+hfgcEF7AGrN5Stw==
