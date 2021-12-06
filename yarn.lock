@@ -5803,12 +5803,12 @@ commander@^8.3.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
   integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
-commist@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/commist/-/commist-1.1.0.tgz#17811ec6978f6c15ee4de80c45c9beb77cee35d5"
-  integrity sha512-rraC8NXWOEjhADbZe9QBNzLAN5Q3fsTPQtBV+fEVj6xKIgDgNiEVE6ZNfHpZOqfQ21YUzfVNUXLOEZquYvQPPg==
+commist@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/commist/-/commist-2.0.0.tgz#09b465b6bc9b0afd167b360c2d2c009cd9422c93"
+  integrity sha512-FOz6gc7VRNFV+SYjGv0ZPfgG1afGqJfKg2/aVtiDP6kF1ZPpo7NvUOGHuVNQ2YgMoCVglEUo0O3WzcD63yczVA==
   dependencies:
-    leven "^2.1.0"
+    leven "^3.1.0"
     minimist "^1.1.0"
 
 common-tags@^1.8.0:
@@ -8099,20 +8099,20 @@ fast-safe-stringify@^2.0.8:
   integrity sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==
 
 fastify-cli@^2.5.1:
-  version "2.13.0"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.13.0.tgz#91d72a95f3fd713afd658484420920d74a8f302c"
-  integrity sha512-hNOWlQyht+DTHXxg/NaUeDSKZa5tl5dXunCE2mjbEDyS8pmMHKrbYQg+YHTFkUvdsoc/FG2IxtWYfaqD55XTxA==
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-2.14.0.tgz#dd826d68e0e6208d112226af3d1cf7dc76d3a5a6"
+  integrity sha512-ahd+b4N60XAe7wklMR8gx2gF/SXPVioVrGT2K9Q6l/kUZdmdJu6Ps86qfgu44ZWYf7+02/pdXrXp/an5HDnXdg==
   dependencies:
     blessed "^0.1.81"
     blessed-contrib "^4.8.18"
     chalk "^4.1.0"
     chokidar "^3.3.1"
     close-with-grace "^1.0.0"
-    commist "^1.0.0"
+    commist "^2.0.0"
     dotenv "^10.0.0"
     fastify "^3.0.0"
     generify "^4.0.0"
-    help-me "^2.0.0"
+    help-me "^3.0.0"
     is-docker "^2.0.0"
     make-promises-safe "^5.0.0"
     pino-colada "^2.0.1"
@@ -8120,7 +8120,7 @@ fastify-cli@^2.5.1:
     pump "^3.0.0"
     resolve-from "^5.0.0"
     semver "^7.3.2"
-    split2 "^3.1.1"
+    split2 "^4.0.0"
     yargs-parser "^20.0.0"
 
 fastify-cors@^6.0.0:
@@ -9197,10 +9197,10 @@ he@^1.2.0:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-help-me@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/help-me/-/help-me-2.0.0.tgz#3636a446c391b651cafa4d2341c150c320dd6ae1"
-  integrity sha512-OzUoocuM+dMcquHe9fz6cJgpmhS/CW0gRFZiiGB0B5r+Lo/Pph3L/+/6ZhS0jjxXxgk8+LPxL2Lvq0x2ddKOmA==
+help-me@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/help-me/-/help-me-3.0.0.tgz#9803c81b5f346ad2bce2c6a0ba01b82257d319e8"
+  integrity sha512-hx73jClhyk910sidBB7ERlnhMlFsJJIBqSVMFDwPN8o2v9nmp5KgLq1Xz1Bf1fCMMZ6mPrX159iG0VLy/fPMtQ==
   dependencies:
     glob "^7.1.6"
     readable-stream "^3.6.0"
@@ -11626,11 +11626,6 @@ lerna@^4.0.0:
     "@lerna/version" "4.0.0"
     import-local "^3.0.2"
     npmlog "^4.1.2"
-
-leven@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/leven/-/leven-2.1.0.tgz#c2e7a9f772094dee9d34202ae8acce4687875580"
-  integrity sha1-wuep93IJTe6dNCAq6KzORoeHVYA=
 
 leven@^3.1.0:
   version "3.1.0"
@@ -16662,12 +16657,17 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
-split2@^3.0.0, split2@^3.1.1:
+split2@^3.0.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/split2/-/split2-3.2.2.tgz#bf2cf2a37d838312c249c89206fd7a17dd12365f"
   integrity sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==
   dependencies:
     readable-stream "^3.0.0"
+
+split2@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/split2/-/split2-4.1.0.tgz#101907a24370f85bb782f08adaabe4e281ecf809"
+  integrity sha512-VBiJxFkxiXRlUIeyMQi8s4hgvKCSjtknJv/LVYbrgALPwf5zSKmEwV9Lst25AkvMDnvxODugjdl6KZgwKM1WYQ==
 
 split@^1.0.0:
   version "1.0.1"
