@@ -4,8 +4,8 @@ const envSchema = require('env-schema')
 const S = require('fluent-json-schema')
 
 const uiSchema = S.object()
-  .prop('basename', S.string().default(''))
-  .prop('serverUrl', S.string().default('/graphql'))
+  .prop('basename', S.string())
+  .prop('serverUrl', S.string())
 
 const pluginSchema = S.object()
   .prop('ui', S.oneOf([uiSchema, S.boolean()]).default(false))
