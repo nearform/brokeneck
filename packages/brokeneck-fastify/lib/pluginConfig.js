@@ -2,10 +2,11 @@
 
 const envSchema = require('env-schema')
 const S = require('fluent-json-schema')
+const Ajv = require('ajv')
 
 const uiSchema = S.object()
-  .prop('basename', S.string())
-  .prop('serverUrl', S.string())
+  .prop('basename', S.string().default(''))
+  .prop('serverUrl', S.string().default('/graphql'))
 
 const pluginSchema = S.object()
   .prop('ui', S.oneOf([uiSchema, S.boolean()]).default(false))
@@ -42,7 +43,15 @@ const pluginSchema = S.object()
 function pluginConfig(data, schema) {
   return envSchema({
     data: typeof data === 'object' ? data : {},
-    schema: schema || pluginSchema
+    schema: schema || pluginSchema,
+    ajv: new Ajv({
+      allErrors: true,
+      removeAdditional: true,
+      useDefaults: true,
+      coerceTypes: true,
+      allowUnionTypes: true,
+      strictSchema: false
+    })
   })
 }
 
