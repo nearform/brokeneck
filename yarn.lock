@@ -4633,9 +4633,9 @@ avvio@^7.1.2:
     queue-microtask "^1.1.2"
 
 aws-sdk@^2.793.0:
-  version "2.1054.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1054.0.tgz#70196fcc90b066d892e6f848046542dd1f23a4ca"
-  integrity sha512-y8OAffen0uoKSnCZp4Nb1dDsUqOOfr+m68cL1lRW8c7g1FjugH3u7CZmAnlA7PxenZUpnSeN3yBtHqIZhkMT4w==
+  version "2.1055.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1055.0.tgz#07beb86650d5a313f7c899807c51b12b5e2f4117"
+  integrity sha512-99drH3mvXakw9we8Rs2cDQmi2pS7PVAC9pvTlB7lHPUwLYftMlko5cFMceZxvTHeyLkdvg98iNIHI3hbnzitoQ==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -4803,14 +4803,6 @@ babel-plugin-polyfill-corejs2@^0.3.0:
     "@babel/compat-data" "^7.13.11"
     "@babel/helper-define-polyfill-provider" "^0.3.0"
     semver "^6.1.1"
-
-babel-plugin-polyfill-corejs3@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-polyfill-corejs3/-/babel-plugin-polyfill-corejs3-0.4.0.tgz#0b571f4cf3d67f911512f5c04842a7b8e8263087"
-  integrity sha512-YxFreYwUfglYKdLUGvIF2nJEsGwj+RhWSX/ije3D2vQPOXuyMLMtg/cCGMDpOA7Nd+MwlNdnGODbd2EwUZPlsw==
-  dependencies:
-    "@babel/helper-define-polyfill-provider" "^0.3.0"
-    core-js-compat "^3.18.0"
 
 babel-plugin-polyfill-corejs3@^0.5.0:
   version "0.5.0"
@@ -6284,15 +6276,7 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
-core-js-compat@^3.18.0, core-js-compat@^3.20.0, core-js-compat@^3.20.2, core-js-compat@^3.6.2:
-  version "3.20.2"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.20.2.tgz#d1ff6936c7330959b46b2e08b122a8b14e26140b"
-  integrity sha512-qZEzVQ+5Qh6cROaTPFLNS4lkvQ6mBzE3R6A6EEpssj7Zr2egMHgsy4XapdifqJDGC9CBiNv7s+ejI96rLNQFdg==
-  dependencies:
-    browserslist "^4.19.1"
-    semver "7.0.0"
-
-core-js-compat@^3.20.0:
+core-js-compat@^3.20.0, core-js-compat@^3.20.2, core-js-compat@^3.6.2:
   version "3.20.2"
   resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.20.2.tgz#d1ff6936c7330959b46b2e08b122a8b14e26140b"
   integrity sha512-qZEzVQ+5Qh6cROaTPFLNS4lkvQ6mBzE3R6A6EEpssj7Zr2egMHgsy4XapdifqJDGC9CBiNv7s+ejI96rLNQFdg==
