@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nearform/brokeneck-fastify": "^1.0.0-spinal.8",
-    "dotenv": "^11.0.0",
+    "dotenv": "^13.0.1",
     "electron-store": "^8.0.0",
     "electron-util": "^0.17.0",
     "fastify": "^3.8.0",
