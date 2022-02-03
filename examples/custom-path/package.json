@@ -9,7 +9,7 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "dotenv": "^15.0.0",
+    "dotenv": "^16.0.0",
     "fastify-cli": "^2.5.1",
     "pkg-dir": "^5.0.0"
   },
