@@ -10601,9 +10601,9 @@ meow@^8.0.0:
     yargs-parser "^20.2.3"
 
 mercurius@^9.0.0:
-  version "9.1.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.1.0.tgz#ca2c0a012e88e523a3c564909435cfc05c5b9140"
-  integrity sha512-RU7Wu+64WEfSSOUZLkusAkpLzj0BN+tp0mWUznOwucrOGO1aWDwt0jsgae5nLCTh7yByH03r/X8uloIBa/dN5w==
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.2.0.tgz#d8dd649171bac8ee97a1db199f13a3034e3dd218"
+  integrity sha512-b/kX9AmA/WbBCJqYq59TaZrqy+6CJ+MRI4WYPGgyb4BvqxsYe48+B2bx1YHm2aLzTZf7uagzZ43qlQ+p86pulQ==
   dependencies:
     "@types/isomorphic-form-data" "^2.0.0"
     events.on "^1.0.1"
@@ -15945,12 +15945,7 @@ ws@^7, ws@^7.4.6, ws@^7.5.5:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.6.tgz#e59fc509fb15ddfb65487ee9765c5a51dec5fe7b"
   integrity sha512-6GLgCqo2cy2A2rjCNFlxQS6ZljG/coZfZXclldI8FB/1G3CCI36Zd8xy2HrFVACi8tfk5XrgLQEk+P0Tnz9UcA==
 
-ws@^8.0.0, ws@^8.2.2:
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.3.0.tgz#7185e252c8973a60d57170175ff55fdbd116070d"
-  integrity sha512-Gs5EZtpqZzLvmIM59w4igITU57lrtYVFneaa434VROv4thzJyV6UjIL3D42lslWlI+D4KzLYnxSwtfuiO79sNw==
-
-ws@^8.1.0:
+ws@^8.0.0, ws@^8.1.0, ws@^8.2.2:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/ws/-/ws-8.4.2.tgz#18e749868d8439f2268368829042894b6907aa0b"
   integrity sha512-Kbk4Nxyq7/ZWqr/tarI9yIt/+iNNFOjBXEWgTb4ydaNHBNGgvf2QHbS9fdfsndfjFlFwEd4Al+mw83YkaD10ZA==
