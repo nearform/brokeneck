@@ -10809,9 +10809,9 @@ meow@^8.0.0:
     yargs-parser "^20.2.3"
 
 mercurius@^9.0.0:
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.3.0.tgz#76e731acb92671c67f295ecbd511d1fba3432d78"
-  integrity sha512-hLdk0NpfGttjOaJQ2lxpwyo3BtAL2yyK4Rt+YfSIn8QrQ5QWdJ0tnMoqLgeDNjxMg8J6Q4BhrW4NxejGkiqOiQ==
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.3.2.tgz#000b31d30b715946c2b9f9e9dc5347750b0c14dd"
+  integrity sha512-4vuSRNBIJ2/5qCgl2v3TQbHswTldqqn62x8kSD9XaWyavl0kd0oKJ9Awy/WX39vkzNTHYHuVnU4Ujh7l8e2d6A==
   dependencies:
     "@types/isomorphic-form-data" "^2.0.0"
     events.on "^1.0.1"
