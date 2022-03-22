@@ -25,7 +25,7 @@
     "auth0": "^2.30.0",
     "aws-sdk": "^2.793.0",
     "ejs": "^3.1.5",
-    "env-schema": "^3.5.0",
+    "env-schema": "^4.0.0",
     "fastify": "^3.8.0",
     "fastify-cli": "^2.5.1",
     "fastify-cors": "^6.0.0",
