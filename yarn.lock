@@ -8069,9 +8069,9 @@ graceful-fs@^4.2.6, graceful-fs@^4.2.9:
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
 graphql-hooks@^5.0.0:
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.7.1.tgz#bf82fceb67ab3746ed6d69ec949a629c8a4cbf36"
-  integrity sha512-eIozTQa4NORbwHn7NrV7fcMQ73RZZdZj15m5cRg/KaWxMQV8wEgnF5swoY0r5htXzSUMmkrhWusFmaZCKjZ4kw==
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.9.0.tgz#fd27d1defcf2fd9f9eb87d46e2b836749dd6d6a7"
+  integrity sha512-X7T7ITcjgcq0nNlvsSakBM77GJMaR/ezMhJy+lnatFoZcOnRm7/Heqw+6e4H9N7nTKwdHKxZRTP9kLhU8ZCXWg==
   dependencies:
     dequal "^2.0.0"
     events "^3.3.0"
