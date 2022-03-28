@@ -2740,9 +2740,9 @@
     "@rollup/pluginutils" "^3.1.0"
 
 "@rollup/plugin-commonjs@^21.0.1":
-  version "21.0.2"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-21.0.2.tgz#0b9c539aa1837c94abfaf87945838b0fc8564891"
-  integrity sha512-d/OmjaLVO4j/aQX69bwpWPpbvI3TJkQuxoAk7BH8ew1PyoMBLTOuvJTjzG8oEoW7drIIqB0KCJtfFLu/2GClWg==
+  version "21.0.3"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-21.0.3.tgz#287896c64926ef3d7f0013708dcdcc1223576ef0"
+  integrity sha512-ThGfwyvcLc6cfP/MWxA5ACF+LZCvsuhUq7V5134Az1oQWsiC7lNpLT4mJI86WQunK7BYmpUiHmMk2Op6OAHs0g==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     commondir "^1.0.1"
@@ -4216,9 +4216,9 @@ avvio@^7.1.2:
     queue-microtask "^1.1.2"
 
 aws-sdk@^2.793.0:
-  version "2.1100.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1100.0.tgz#20bbabc12fbc316067ba02af66bf371a455af9e3"
-  integrity sha512-StLSQCYFmFPxjoMntIb+8jUZ0vzmq3xkrwG5e/4qU1bSGWCmhhjvz6c+4j38AnIy8MFV1+tV8RArbhLUEV2dGw==
+  version "2.1101.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1101.0.tgz#67b685436d909bbe5c608ca890a4abe1128dd573"
+  integrity sha512-7lyVb7GXGl8yyu954Qxf6vU6MrcgFlmKyTLBVXJyo3Phn1OB+qOExA55WtSC6gQiQ7e5TeWOn1RUHLg30ywTBA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -8069,9 +8069,9 @@ graceful-fs@^4.2.6, graceful-fs@^4.2.9:
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
 graphql-hooks@^5.0.0:
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.7.1.tgz#bf82fceb67ab3746ed6d69ec949a629c8a4cbf36"
-  integrity sha512-eIozTQa4NORbwHn7NrV7fcMQ73RZZdZj15m5cRg/KaWxMQV8wEgnF5swoY0r5htXzSUMmkrhWusFmaZCKjZ4kw==
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.9.0.tgz#fd27d1defcf2fd9f9eb87d46e2b836749dd6d6a7"
+  integrity sha512-X7T7ITcjgcq0nNlvsSakBM77GJMaR/ezMhJy+lnatFoZcOnRm7/Heqw+6e4H9N7nTKwdHKxZRTP9kLhU8ZCXWg==
   dependencies:
     dequal "^2.0.0"
     events "^3.3.0"
@@ -12169,9 +12169,9 @@ png-js@~0.1.0:
   integrity sha1-HMfCEjA6yr50Jj7DrHgAlYAkLZM=
 
 point-of-view@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-5.1.0.tgz#733a8637f17e18e28207be84dd1c337f1ee15a0c"
-  integrity sha512-jrQXgIAY4Lv30REMVeLA7vEkpLGREMPjxR4uiD+ysDlgtPqcJH9UBD8qBPBpAHH01XgTmjrle9U4gmjnLCr2XA==
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-5.2.0.tgz#ee40351c3921fcd8ae99b568f405d89081d37bdc"
+  integrity sha512-PYoeqEunutxZTmNih6NXXoz8xZZopzw2MWgBoKPLcofOJNagEoXVpzbHT30AkK/9ArKjJYrvV6iU8JAg87+VMw==
   dependencies:
     fastify-plugin "^3.0.0"
     hashlru "^2.3.0"
@@ -12740,9 +12740,9 @@ prettier-linter-helpers@^1.0.0:
     fast-diff "^1.1.2"
 
 prettier@^2.1.2, prettier@^2.2.1:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.0.tgz#12f8f504c4d8ddb76475f441337542fa799207d4"
-  integrity sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.1.tgz#d472797e0d7461605c1609808e27b80c0f9cfe17"
+  integrity sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==
 
 pretty-bytes@^5.3.0, pretty-bytes@^5.4.1:
   version "5.6.0"
