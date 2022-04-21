@@ -8122,9 +8122,9 @@ graceful-fs@^4.2.6, graceful-fs@^4.2.9:
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
 graphql-hooks@^5.0.0:
-  version "5.10.0"
-  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.10.0.tgz#310037427333724409298218742910c76808be08"
-  integrity sha512-lnrs4Djp2V9x0O1YF3TqKa18a9OYMgPY7lh+qK1WXzRiIYV/YI/G7/pYsoZzXySGxwQ/1rASNGpASAsdZKvn0A==
+  version "5.11.0"
+  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.11.0.tgz#eec6e77f73eded3ae412e224a753c9af8a32a2cd"
+  integrity sha512-N4WWAMUPZSyIRdxpwXzU+ae0MLrupBdoxBJ/5McQ+xfin+BwGqxHxTuMIfg9cKdb/qedpJ5n3UVNlLJfwcwAkA==
   dependencies:
     "@aws-crypto/sha256-universal" "^2.0.1"
     dequal "^2.0.0"
