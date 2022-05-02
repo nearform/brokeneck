@@ -12165,9 +12165,9 @@ png-js@~0.1.0:
   integrity sha1-HMfCEjA6yr50Jj7DrHgAlYAkLZM=
 
 point-of-view@^5.0.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-5.2.0.tgz#ee40351c3921fcd8ae99b568f405d89081d37bdc"
-  integrity sha512-PYoeqEunutxZTmNih6NXXoz8xZZopzw2MWgBoKPLcofOJNagEoXVpzbHT30AkK/9ArKjJYrvV6iU8JAg87+VMw==
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-5.2.1.tgz#f0068e1a54413d37ac3ec853e084af011a596770"
+  integrity sha512-CG+B1oGxjSZcguYAzqUn/gQn4SrB0wo+unpT7CLu/RIkhyLErKNnbUqHFTrEGR+TcINQyNJKRWHLkMNEFX8jtw==
   dependencies:
     fastify-plugin "^3.0.0"
     hashlru "^2.3.0"
