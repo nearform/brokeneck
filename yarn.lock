@@ -1542,6 +1542,11 @@
   resolved "https://registry.yarnpkg.com/@fastify/error/-/error-2.0.0.tgz#a9f94af56eb934f0ab1ce4ef9f0ced6ebf2319dc"
   integrity sha512-wI3fpfDT0t7p8E6dA2eTECzzOd+bZsZCJ2Hcv+Onn2b7ZwK3RwD27uW2QDaMtQhAfWQQP+WNK7nKf0twLsBf9w==
 
+"@fastify/error@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@fastify/error/-/error-3.0.0.tgz#bfcb7b33cec0196413083a91ef2edc7b2c88455b"
+  integrity sha512-dPRyT40GiHRzSCll3/Jn2nPe25+E1VXc9tDwRAIKwFCxd5Np5wzgz1tmooWG3sV0qKgrBibihVoCna2ru4SEFg==
+
 "@fastify/static@^5.0.0":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@fastify/static/-/static-5.0.1.tgz#6bb6b94c2b51d9fafb06261b79ed5da5038dd5a1"
@@ -10882,11 +10887,11 @@ meow@^8.0.0:
     yargs-parser "^20.2.3"
 
 mercurius@^9.0.0:
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.6.0.tgz#e3fe589b282eaf8c43c1b63a672f8a2609055e44"
-  integrity sha512-lU2xfc34CZhmZZ/E8QlicUJSktgYZ/VyeufbxI89SbVJy5/OEdzwZLRn5VBPMY+2DoZIFBsTwoUfw6WE2owrvQ==
+  version "9.7.0"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.7.0.tgz#4ee37fc66d91dcfae51a96d16beb30eb647a41e8"
+  integrity sha512-REsIVrMkzYeTEmQmLepi4b9rgVCruGl/u4NWbiO1g8eJuJwmVWyCknmQKj6vw+RFQM6IKJrhR2rqSOpGf7hHcA==
   dependencies:
-    "@fastify/error" "^2.0.0"
+    "@fastify/error" "^3.0.0"
     "@fastify/static" "^5.0.0"
     "@fastify/websocket" "^5.0.0"
     "@types/isomorphic-form-data" "^2.0.0"
@@ -10894,7 +10899,7 @@ mercurius@^9.0.0:
     fastify-plugin "^3.0.1"
     graphql "^16.0.0"
     graphql-jit "^0.7.3"
-    mqemitter "^4.4.1"
+    mqemitter "^5.0.0"
     p-map "^4.0.0"
     readable-stream "^3.6.0"
     safe-stable-stringify "^2.3.0"
@@ -11158,13 +11163,13 @@ module-not-found-error@^1.0.1:
   resolved "https://registry.yarnpkg.com/module-not-found-error/-/module-not-found-error-1.0.1.tgz#cf8b4ff4f29640674d6cdd02b0e3bc523c2bbdc0"
   integrity sha1-z4tP9PKWQGdNbN0CsOO8UjwrvcA=
 
-mqemitter@^4.4.1:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/mqemitter/-/mqemitter-4.5.0.tgz#ffe74cdf0e3e88b6f37a9dfe4bb7546ac5ae7aa8"
-  integrity sha512-Mp/zytFeIv6piJQkEKnncHcP4R/ErJc5C7dfonkhkNUT2LA/nTayrfNxbipp3M5iCJUTQSUtzfQAQA3XVcKz6w==
+mqemitter@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/mqemitter/-/mqemitter-5.0.0.tgz#ab7a14c92cf30493c5ca4714cc4ce6c56434cbf5"
+  integrity sha512-rqNRQhGgl0W/NV+Zrx0rpAUTZcSlAtivCVUmXBUPcFYt+AeDEpoJgy5eKlFWJP6xnatONL59WIFdV0W6niOMhw==
   dependencies:
     fastparallel "^2.3.0"
-    qlobber "^5.0.0"
+    qlobber "^7.0.0"
 
 ms@2.0.0:
   version "2.0.0"
@@ -13025,10 +13030,10 @@ q@^1.1.2, q@^1.5.1:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qlobber@^5.0.0:
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/qlobber/-/qlobber-5.0.3.tgz#24728d6ba5382d502c7e09f6860b95a9c71615cd"
-  integrity sha512-wW4GTZPePyh0RgOsM18oDyOUlXfurVRgoNyJfS+y7VWPyd0GYhQp5T2tycZFZjonH+hngxIfklGJhTP/ghidgQ==
+qlobber@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/qlobber/-/qlobber-7.0.0.tgz#ff53fcefae543b1b9d2c01e46ecdc2e6e6c8cddf"
+  integrity sha512-hQbAIJbrCMLWpjr8ozRmYDdMmU2tMu1bumL3LNxdFaF2Duq5EqcLD59+/F6hyO4ykJMccKhd65wkMRgr7UhgHw==
 
 qs@6.7.0:
   version "6.7.0"
