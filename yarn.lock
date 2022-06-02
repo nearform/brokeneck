@@ -1310,9 +1310,9 @@
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
 "@commitlint/cli@^17.0.0":
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-17.0.1.tgz#88c5ad3f297760ded589c3a33ed49321242e7ab0"
-  integrity sha512-5xT1G5pnynR0tk/ms8Ji7yr9lZCeQs4GLVVtyK/gw20w+enoLTVuRKKY9zg88hy9FoCycc/W8iip2xv3c8payg==
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-17.0.2.tgz#57c925fb5f09b8e4a83448d94db291ddf7aa58ee"
+  integrity sha512-Axe89Js0YzGGd4gxo3JLlF7yIdjOVpG1LbOorGc6PfYF+drBh14PvarSDLzyd2TNqdylUCq9wb9/A88ZjIdyhA==
   dependencies:
     "@commitlint/format" "^17.0.0"
     "@commitlint/lint" "^17.0.0"
@@ -6618,9 +6618,9 @@ electron-util@^0.17.0:
     new-github-issue-url "^0.2.1"
 
 electron@^19.0.1:
-  version "19.0.1"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-19.0.1.tgz#9370cb4d43db959bbe1dfa85ba582b3a012af5aa"
-  integrity sha512-zuhJVV7nTDFrRZ7uAIylSD0Eoi1xcUV4UzGfpWsREI4W5GsxNGyZQeqQDpg43w8+7oED812oDrGfPh5kb9rcQA==
+  version "19.0.2"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-19.0.2.tgz#48d744dc2dfae0a8590239c614db02f7bc0d6696"
+  integrity sha512-9RzS8wUpxY8dHFJRncro2mEIkCg9Vig1Q0iLu5y3dusEIDKcBRKoW9mVhUeqvZVZgb2SsTEowZBBdBhdL6/+aQ==
   dependencies:
     "@electron/get" "^1.14.1"
     "@types/node" "^16.11.26"
@@ -13836,9 +13836,9 @@ rollup-plugin-terser@^7.0.0:
     terser "^5.0.0"
 
 rollup@^2.34.1, rollup@^2.43.1:
-  version "2.75.4"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.75.4.tgz#c3518c326c98e508b628a93015a03a276c331f22"
-  integrity sha512-JgZiJMJkKImMZJ8ZY1zU80Z2bA/TvrL/7D9qcBCrfl2bP+HUaIw0QHUroB4E3gBpFl6CRFM1YxGbuYGtdAswbQ==
+  version "2.75.5"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.75.5.tgz#7985c1962483235dd07966f09fdad5c5f89f16d0"
+  integrity sha512-JzNlJZDison3o2mOxVmb44Oz7t74EfSd1SQrplQk0wSaXV7uLQXtVdHbxlcT3w+8tZ1TL4r/eLfc7nAbz38BBA==
   optionalDependencies:
     fsevents "~2.3.2"
 
