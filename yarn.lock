@@ -10911,9 +10911,9 @@ meow@^8.0.0:
     yargs-parser "^20.2.3"
 
 mercurius@^9.0.0:
-  version "9.7.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.7.0.tgz#4ee37fc66d91dcfae51a96d16beb30eb647a41e8"
-  integrity sha512-REsIVrMkzYeTEmQmLepi4b9rgVCruGl/u4NWbiO1g8eJuJwmVWyCknmQKj6vw+RFQM6IKJrhR2rqSOpGf7hHcA==
+  version "9.8.0"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-9.8.0.tgz#506dd7da07b3e67cd1fd83e923d1352d69447853"
+  integrity sha512-BNZItAUpEbHrnvMYBXyCzTeftPxubN8iJLr4SFKo0vDMZ0ZQUhPONuF6XAmKr+JcEYXMn3/V2J/FUixqVOnAqw==
   dependencies:
     "@fastify/error" "^3.0.0"
     "@fastify/static" "^5.0.0"
