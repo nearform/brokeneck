@@ -12298,13 +12298,21 @@ pkg-up@^3.1.0:
   dependencies:
     find-up "^3.0.0"
 
-point-of-view@^5.0.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-5.3.0.tgz#6924ea638e490d7481c7e9d4446ccb247d7612a5"
-  integrity sha512-KFUtK1DEX2HDJeisS2chdIBSxwSaV4fZ925A1V4K3PbTJbZeKK0UwPiPZQMTbsDd3G2azo76JWmhYdK1M2GLSA==
+"point-of-view-deprecated@npm:point-of-view@6.2.1":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-6.2.1.tgz#59757298df067b141bdb532b2746d903ce09ee86"
+  integrity sha512-u7LU7gM95OLG3Rzg68ep8VkcDwls5absmZfE/7GI6EvX1Jdf6Mm8AvU2cgklJ77b8zYksRAux6IHiuaGaNnEgA==
   dependencies:
     fastify-plugin "^3.0.0"
     hashlru "^2.3.0"
+
+point-of-view@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/point-of-view/-/point-of-view-6.3.0.tgz#2418f706c1221e46240555dd8bb74b42d43e60ea"
+  integrity sha512-Uj5pHMPKrPp3V2cO6ms7ONlFo65U70lqn3couAnxF+bgS3vTbI9PgsPfrFUrqAz0le8UwbFS+28gxCf7laAyxw==
+  dependencies:
+    point-of-view-deprecated "npm:point-of-view@6.2.1"
+    process-warning "^1.0.0"
 
 popper.js@1.16.1-lts:
   version "1.16.1-lts"
