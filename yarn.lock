@@ -4657,9 +4657,9 @@ avvio@^7.1.2:
     queue-microtask "^1.1.2"
 
 aws-sdk@^2.793.0:
-  version "2.1151.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1151.0.tgz#8fcb41c3b919842a7b4e5c4cd9e124f6439b5b67"
-  integrity sha512-VvyzXAmWrX+klvwzA+9gSTY7blDnZOTl0UTKrqmFL4K7tOLieGLYTUkpUegcPxCjYgEg7JwvYolYUnUKiHa4oA==
+  version "2.1158.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1158.0.tgz#924fb6dda1acecb1dc1c8901095cf64d6acdade4"
+  integrity sha512-uHYzZMGE+b50sWXaLhga4aD1SpB3+DEZclAkg9aYz2pDZlSDTOMh3uJ/ufsMBs7VcDKGS7mQRibCmCbwRGTIlg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
