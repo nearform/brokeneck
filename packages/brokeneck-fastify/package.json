@@ -27,7 +27,7 @@
     "ejs": "^3.1.5",
     "env-schema": "^5.0.0",
     "fastify": "^3.8.0",
-    "fastify-cli": "^3.1.0",
+    "fastify-cli": "^4.1.1",
     "fastify-cors": "^6.0.0",
     "fastify-plugin": "^3.0.0",
     "fastify-static": "^4.0.0",
