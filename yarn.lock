@@ -1724,16 +1724,6 @@
     "@types/node" "*"
     jest-mock "^27.5.1"
 
-"@jest/environment@^28.1.1", "@jest/environment@^28.1.2":
-  version "28.1.2"
-  resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-28.1.2.tgz#94a052c0c5f9f8c8e6d13ea6da78dbc5d7d9b85b"
-  integrity sha512-I0CR1RUMmOzd0tRpz10oUfaChBWs+/Hrvn5xYhMEF/ZqrDaaeHwS8yDBqEWCrEnkH2g+WE/6g90oBv3nKpcm8Q==
-  dependencies:
-    "@jest/fake-timers" "^28.1.2"
-    "@jest/types" "^28.1.1"
-    "@types/node" "*"
-    jest-mock "^28.1.1"
-
 "@jest/environment@^28.1.2":
   version "28.1.2"
   resolved "https://registry.yarnpkg.com/@jest/environment/-/environment-28.1.2.tgz#94a052c0c5f9f8c8e6d13ea6da78dbc5d7d9b85b"
@@ -1770,18 +1760,6 @@
     jest-message-util "^27.5.1"
     jest-mock "^27.5.1"
     jest-util "^27.5.1"
-
-"@jest/fake-timers@^28.1.1", "@jest/fake-timers@^28.1.2":
-  version "28.1.2"
-  resolved "https://registry.yarnpkg.com/@jest/fake-timers/-/fake-timers-28.1.2.tgz#d49e8ee4e02ba85a6e844a52a5e7c59c23e3b76f"
-  integrity sha512-xSYEI7Y0D5FbZN2LsCUj/EKRR1zfQYmGuAUVh6xTqhx7V5JhjgMcK5Pa0iR6WIk0GXiHDe0Ke4A+yERKE9saqg==
-  dependencies:
-    "@jest/types" "^28.1.1"
-    "@sinonjs/fake-timers" "^9.1.2"
-    "@types/node" "*"
-    jest-message-util "^28.1.1"
-    jest-mock "^28.1.1"
-    jest-util "^28.1.1"
 
 "@jest/fake-timers@^28.1.2":
   version "28.1.2"
@@ -7290,9 +7268,9 @@ eslint-plugin-node@^11.1.0:
     semver "^6.1.0"
 
 eslint-plugin-prettier@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.1.0.tgz#1cd4b3fadf3b3cdb30b1874b55e7f93f85eb43ad"
-  integrity sha512-A3AXIEfTnq3D5qDFjWJdQ9c4BLhw/TqhSR+6+SVaoPJBAWciFEuJiNQh275OnjRrAi7yssZzuWBRw66VG2g6UA==
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-4.2.1.tgz#651cbb88b1dab98bfd42f017a12fa6b2d993f94b"
+  integrity sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
