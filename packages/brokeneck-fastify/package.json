@@ -29,7 +29,7 @@
     "fastify": "^3.8.0",
     "fastify-cli": "^4.1.1",
     "fastify-cors": "^6.0.0",
-    "fastify-plugin": "^3.0.0",
+    "fastify-plugin": "^4.0.0",
     "fastify-static": "^4.0.0",
     "fluent-json-schema": "^3.0.0",
     "graphql": "^16.2.0",
