@@ -11,7 +11,7 @@
   "devDependencies": {
     "dotenv": "^16.0.0",
     "fastify-cli": "^5.0.0",
-    "pkg-dir": "^5.0.0"
+    "pkg-dir": "^7.0.0"
   },
   "lint-staged": {
     "**/*.js": [
