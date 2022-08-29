@@ -1,6 +1,6 @@
 'use strict'
 
-const cors = require('fastify-cors')
+const cors = require('@fastify/cors')
 
 const plugin = require('./lib/plugin')
 
