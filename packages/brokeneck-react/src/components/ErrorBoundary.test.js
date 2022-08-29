@@ -1,4 +1,5 @@
 import React from 'react'
+import T from 'prop-types'
 import { screen, render } from '@testing-library/react'
 
 import ErrorBoundary from './ErrorBoundary'
@@ -9,6 +10,10 @@ const ThrowError = ({ shouldThrow }) => {
   } else {
     return null
   }
+}
+
+ThrowError.propTypes = {
+  shouldThrow: T.func
 }
 
 beforeEach(() => {
