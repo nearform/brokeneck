@@ -19,6 +19,9 @@
   "dependencies": {
     "@azure/graph": "^5.0.1",
     "@azure/ms-rest-nodeauth": "^3.0.6",
+    "@fastify/cors": "^8.1.0",
+    "@fastify/static": "^6.5.0",
+    "@fastify/view": "^7.1.0",
     "@graphql-tools/schema": "^9.0.0",
     "@nearform/brokeneck-html": "^1.0.0-spinal.8",
     "ajv": "^8.8.2",
@@ -28,16 +31,13 @@
     "env-schema": "^5.0.0",
     "fastify": "^4.5.3",
     "fastify-cli": "^5.0.0",
-    "fastify-cors": "^6.0.0",
     "fastify-plugin": "^4.0.0",
-    "fastify-static": "^4.0.0",
     "fluent-json-schema": "^3.0.0",
     "graphql": "^16.2.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.11.0",
     "mercurius": "^9.0.0",
-    "pkg-dir": "^5.0.0",
-    "point-of-view": "^5.0.0"
+    "pkg-dir": "^5.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

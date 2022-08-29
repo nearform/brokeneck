@@ -21,7 +21,7 @@ async function ui(fastify, options) {
 
   logger.debug(`serving ui from ${root}`)
 
-  fastify.register(require('point-of-view'), {
+  fastify.register(require('@fastify/view'), {
     engine: {
       ejs: require('ejs')
     },
@@ -36,7 +36,7 @@ async function ui(fastify, options) {
 
   fastify.get(uiOptions.basename || '/', (_, reply) => reply.view('index.ejs'))
 
-  fastify.register(require('fastify-static'), {
+  fastify.register(require('@fastify/static'), {
     root,
     prefix: uiOptions.basename
   })
