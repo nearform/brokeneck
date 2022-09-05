@@ -11735,10 +11735,10 @@ meow@^8.0.0:
     type-fest "^0.18.0"
     yargs-parser "^20.2.3"
 
-mercurius@^10.4.0:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-10.5.0.tgz#4de87f7bba1f50d7bf38fe167d076125bb28d09b"
-  integrity sha512-OifAmfr3sixU1ShoeooP9Qn+oswgnzkiyd36aYBBFphBG4Xzel/XvSn/iXCefw+gtpD/52QO0obuiTXBLeXVjA==
+mercurius@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-11.0.0.tgz#f0bcb3ea69ce4567bbe010b446607854e32676b8"
+  integrity sha512-7t++ALNt9agIrc2hLhGes4ZIEwQ9zAz8hUmmTQojLNhuGCLDU7NKzcxKsX7UClBJewaQCORqlepE+k11Dsq6lg==
   dependencies:
     "@fastify/error" "^3.0.0"
     "@fastify/static" "^6.0.0"
