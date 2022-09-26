@@ -1,5 +1,3 @@
-import React, { useContext } from 'react'
-import { NavLink, useRouteMatch } from 'react-router-dom'
 import {
   AppBar,
   Box,
@@ -9,12 +7,14 @@ import {
   Tabs
 } from '@material-ui/core'
 import { Group as GroupIcon, Person as UserIcon } from '@material-ui/icons'
+import React, { useContext } from 'react'
+import { NavLink, useMatch } from 'react-router-dom'
 
 import MoonIcon from '../icons/moon'
 import SunIcon from '../icons/sun'
 
-import { ThemeSwitcherContext } from './ThemeSwitcherProvider'
 import Provider from './Provider'
+import { ThemeSwitcherContext } from './ThemeSwitcherProvider'
 
 const useStyles = makeStyles(theme => ({
   appBar: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 export default function Navigation() {
   const classes = useStyles()
   const { toggleThemeType, themeType } = useContext(ThemeSwitcherContext)
-  const isGroups = useRouteMatch('/groups')
+  const isGroups = useMatch('/groups/*')
 
   const currentTab = isGroups ? 'groups' : 'users'
 

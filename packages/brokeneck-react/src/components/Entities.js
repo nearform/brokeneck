@@ -1,5 +1,3 @@
-import React from 'react'
-import T from 'prop-types'
 import {
   Box,
   Button,
@@ -14,9 +12,11 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
+import T from 'prop-types'
+import React from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 
 import useFields, { TYPE_NAMES } from '../hooks/useFields'
 import usePagination from '../hooks/usePagination'
@@ -94,7 +94,6 @@ export default function Entities({
   query,
   useCreateEntityDialog
 }) {
-  const match = useRouteMatch()
   const classes = useStyles()
   const fields = useFields(entityName)
   const { search, Search } = useSearch()
@@ -182,7 +181,7 @@ export default function Entities({
                           className={classes.entityName}
                           color="secondary"
                           component={RouterLink}
-                          to={`${match.url}/${item[fields.id]}`}
+                          to={item[fields.id]}
                         >
                           <Typography>
                             {fields.format(field, item[field])}

@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Button,
   IconButton,
@@ -11,30 +10,33 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core'
-import T from 'prop-types'
-import { Link as RouterLink, useHistory } from 'react-router-dom'
-import { useQuery, useMutation } from 'graphql-hooks'
+import { useMutation, useQuery } from 'graphql-hooks'
 import startCase from 'lodash.startcase'
+import React from 'react'
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom'
 
-import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
 import {
   DELETE_GROUP,
   EDIT_GROUP,
   LOAD_GROUP,
   REMOVE_USER_FROM_GROUP
 } from '../graphql'
-import useFields from '../hooks/useFields'
+import useAddUsersToGroupDialog from '../hooks/useAddUsersToGroupDialog'
 import useConfirmDialog from '../hooks/useConfirmDialog'
-import usePagination from '../hooks/usePagination'
 import useEditEntityDialog from '../hooks/useEditEntityDialog'
+import useFields from '../hooks/useFields'
+import usePagination from '../hooks/usePagination'
 import TYPES from '../types'
 
 import Entity from './Entity'
 
-export default function Group({ groupId }) {
-  const history = useHistory()
+export default function Group() {
+  const params = useParams()
+  const navigate = useNavigate()
   const groupFields = useFields(TYPES.Group)
   const userFields = useFields(TYPES.User)
+
+  const { groupId } = params
 
   const { pageSize, currentToken, useUpdateToken, useTablePagination } =
     usePagination()
@@ -110,7 +112,7 @@ export default function Group({ groupId }) {
       }
     })
 
-    history.goBack()
+    navigate(-1)
   }
 
   return (
@@ -199,8 +201,4 @@ export default function Group({ groupId }) {
       {editGroupDialog}
     </Entity>
   )
-}
-
-Group.propTypes = {
-  groupId: T.string.isRequired
 }

@@ -1,8 +1,7 @@
-import React from 'react'
-import T from 'prop-types'
 import { Box, Button, Chip, Typography } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
-import { useQuery, useMutation } from 'graphql-hooks'
+import { useMutation, useQuery } from 'graphql-hooks'
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import {
   DELETE_USER,
@@ -10,18 +9,21 @@ import {
   LOAD_USER,
   REMOVE_USER_FROM_GROUP
 } from '../graphql'
-import useFields from '../hooks/useFields'
-import useConfirmDialog from '../hooks/useConfirmDialog'
 import useAddUserToGroupDialog from '../hooks/useAddUserToGroupDialog'
+import useConfirmDialog from '../hooks/useConfirmDialog'
 import useEditEntityDialog from '../hooks/useEditEntityDialog'
+import useFields from '../hooks/useFields'
 import TYPES from '../types'
 
 import Entity from './Entity'
 
-export default function User({ userId }) {
-  const history = useHistory()
+export default function User() {
+  const params = useParams()
+  const navigate = useNavigate()
   const userFields = useFields(TYPES.User)
   const groupFields = useFields(TYPES.Group)
+
+  const { userId } = params
 
   const {
     data,
@@ -87,7 +89,7 @@ export default function User({ userId }) {
       }
     })
 
-    history.goBack()
+    navigate(-1)
   }
 
   return (
@@ -142,8 +144,4 @@ export default function User({ userId }) {
       {editUserDialog}
     </Entity>
   )
-}
-
-User.propTypes = {
-  userId: T.string.isRequired
 }
