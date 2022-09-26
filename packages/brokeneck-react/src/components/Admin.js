@@ -1,17 +1,18 @@
-import React from 'react'
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom'
 import { Box, CircularProgress, makeStyles } from '@material-ui/core'
 import { useQuery } from 'graphql-hooks'
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { LOAD_ROOT } from '../graphql'
 
-import Users from './Users'
-import Groups from './Groups'
-import User from './User'
-import Group from './Group'
-import Navigation from './Navigation'
-import RootContext from './RootContext'
 import Footer from './Footer'
+import Group from './Group'
+import Groups from './Groups'
+import Navigation from './Navigation'
+import { RemoveTrailingSlash } from './RemoveTrailingSlash'
+import RootContext from './RootContext'
+import User from './User'
+import Users from './Users'
 
 const useGlobalStyles = makeStyles({
   '@global': {
@@ -28,7 +29,6 @@ const useGlobalStyles = makeStyles({
 
 export default function Admin() {
   useGlobalStyles()
-  const { pathname } = useLocation()
   const { data, loading } = useQuery(LOAD_ROOT)
 
   return (
@@ -39,23 +39,14 @@ export default function Admin() {
         <RootContext.Provider value={data}>
           <Navigation />
           <Box mx={2}>
-            <Switch>
-              {/* trim trailing slashes */}
-              <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
-              <Redirect from="/" exact to="/users" />
-              <Route path="/users" exact>
-                <Users />
-              </Route>
-              <Route path="/users/:userId">
-                {({ match }) => <User userId={match.params.userId} />}
-              </Route>
-              <Route path="/groups" exact>
-                <Groups />
-              </Route>
-              <Route path="/groups/:groupId">
-                {({ match }) => <Group groupId={match.params.groupId} />}
-              </Route>
-            </Switch>
+            <RemoveTrailingSlash />
+            <Routes>
+              <Route path="/" element={<Navigate replace to="/users" />} />
+              <Route path="/users" element={<Users />} />
+              <Route path="/users/:userId" element={<User />} />
+              <Route path="/groups" element={<Groups />} />
+              <Route path="/groups/:groupId" element={<Group />} />
+            </Routes>
           </Box>
         </RootContext.Provider>
       )}

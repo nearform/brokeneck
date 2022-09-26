@@ -1,5 +1,3 @@
-import React from 'react'
-import T from 'prop-types'
 import {
   Box,
   Breadcrumbs,
@@ -9,10 +7,12 @@ import {
   makeStyles,
   Typography
 } from '@material-ui/core'
+import T from 'prop-types'
+import React from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
-import Square from './Square'
 import EntityFields from './EntityFields'
+import Square from './Square'
 
 const useStyles = makeStyles(theme => ({
   spacing: {
@@ -45,7 +45,12 @@ export default function Entity({
           <Chip
             label={
               <Typography>
-                <Link component={RouterLink} color="inherit" to=".">
+                <Link
+                  component={RouterLink}
+                  color="inherit"
+                  to=".."
+                  relative="path"
+                >
                   {pluralName}
                 </Link>
               </Typography>

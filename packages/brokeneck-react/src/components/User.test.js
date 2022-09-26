@@ -1,12 +1,12 @@
-import React from 'react'
-import T from 'prop-types'
-import { screen, render, waitFor, fireEvent } from '@testing-library/react'
-import { useQuery } from 'graphql-hooks'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import deepmerge from 'deepmerge'
+import { useQuery } from 'graphql-hooks'
+import T from 'prop-types'
+import React from 'react'
 
-import mockRootContext from '../test-utils/mockRootContext'
-import { withThemeSwitcher, withRouter } from '../test-utils/providers'
 import { LOAD_ROOT } from '../graphql'
+import mockRootContext from '../test-utils/mockRootContext'
+import { withRouter, withThemeSwitcher } from '../test-utils/providers'
 
 import RootContext from './RootContext'
 import User from './User'
@@ -97,14 +97,15 @@ jest.mock('graphql-hooks', () => {
   }
 })
 
-const mockGoBack = jest.fn()
+const mockNavigate = jest.fn()
 
 jest.mock('react-router-dom', () => {
   const originalLib = jest.requireActual('react-router-dom')
 
   return {
     ...originalLib,
-    useHistory: jest.fn().mockImplementation(() => ({ goBack: mockGoBack })),
+    useNavigate: jest.fn().mockImplementation(() => mockNavigate),
+    useParams: jest.fn().mockImplementation(() => ({ userId: '1234' })),
     useQuery: jest.fn()
   }
 })
@@ -117,7 +118,7 @@ describe('user', () => {
   it('should render user component', () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<User userId="1234" />), {
+    render(withProviders(<User />), {
       wrapper: RootContextWrapper
     })
 
@@ -129,7 +130,7 @@ describe('user', () => {
   it('should open delete dialog when "Delete user" clicked', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<User userId="1234" />), {
+    render(withProviders(<User />), {
       wrapper: RootContextWrapper
     })
     screen.getByRole('button', { name: /Delete user/i }).click()
@@ -141,7 +142,7 @@ describe('user', () => {
   it('should delete user when "Delete user" dialog submitted', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<User userId="1234" />), {
+    render(withProviders(<User />), {
       wrapper: RootContextWrapper
     })
     screen.getByRole('button', { name: /Delete user/i }).click()
@@ -160,13 +161,13 @@ describe('user', () => {
       )
     )
 
-    expect(mockGoBack).toHaveBeenCalled()
+    expect(mockNavigate).toHaveBeenCalledWith(-1)
   })
 
   it('should open dialog when remove user from group icon button clicked', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<User userId="1234" />), {
+    render(withProviders(<User />), {
       wrapper: RootContextWrapper
     })
 
@@ -182,7 +183,7 @@ describe('user', () => {
     const mockRefetch = jest.fn()
     useQuery.mockImplementation(mockUseQuery({ refetch: mockRefetch }))
 
-    render(withProviders(<User userId="1234" />), {
+    render(withProviders(<User />), {
       wrapper: RootContextWrapper
     })
 

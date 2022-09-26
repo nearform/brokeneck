@@ -1,15 +1,15 @@
-import React from 'react'
-import T from 'prop-types'
-import { screen, render, waitFor, fireEvent, act } from '@testing-library/react'
-import { useQuery } from 'graphql-hooks'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import deepmerge from 'deepmerge'
+import { useQuery } from 'graphql-hooks'
+import T from 'prop-types'
+import React from 'react'
 
-import mockRootContext from '../test-utils/mockRootContext'
-import { withThemeSwitcher, withRouter } from '../test-utils/providers'
 import { LOAD_ROOT } from '../graphql'
+import mockRootContext from '../test-utils/mockRootContext'
+import { withRouter, withThemeSwitcher } from '../test-utils/providers'
 
-import RootContext from './RootContext'
 import Group from './Group'
+import RootContext from './RootContext'
 
 const RootContextWrapper = ({ children }) => {
   return (
@@ -102,14 +102,15 @@ jest.mock('graphql-hooks', () => {
   }
 })
 
-const mockGoBack = jest.fn()
+const mockNavigate = jest.fn()
 
 jest.mock('react-router-dom', () => {
   const originalLib = jest.requireActual('react-router-dom')
 
   return {
     ...originalLib,
-    useHistory: jest.fn().mockImplementation(() => ({ goBack: mockGoBack })),
+    useNavigate: jest.fn().mockImplementation(() => mockNavigate),
+    useParams: jest.fn().mockImplementation(() => ({ groupId: '1234' })),
     useQuery: jest.fn()
   }
 })
@@ -122,7 +123,7 @@ describe('Group', () => {
   it('should render Group component', () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
 
@@ -134,7 +135,7 @@ describe('Group', () => {
   it('should open add dialog when "Add users" clicked', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
     screen.getByRole('button', { name: /Add users/i }).click()
@@ -148,7 +149,7 @@ describe('Group', () => {
   it('should add selected user when "Add users" dialog submitted', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
     screen.getByRole('button', { name: /Add users/i }).click()
@@ -188,7 +189,7 @@ describe('Group', () => {
   it('should open delete dialog when "Delete group" clicked', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
     screen.getByRole('button', { name: /Delete group/i }).click()
@@ -200,7 +201,7 @@ describe('Group', () => {
   it('should delete group when "Delete group" dialog submitted', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
     screen.getByRole('button', { name: /Delete group/i }).click()
@@ -219,13 +220,13 @@ describe('Group', () => {
       )
     )
 
-    expect(mockGoBack).toHaveBeenCalled()
+    expect(mockNavigate).toHaveBeenCalledWith(-1)
   })
 
   it('should open dialog when remove user from group icon button clicked', async () => {
     useQuery.mockImplementation(mockUseQuery())
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
     screen
@@ -240,7 +241,7 @@ describe('Group', () => {
     const mockRefetch = jest.fn()
     useQuery.mockImplementation(mockUseQuery({ refetch: mockRefetch }))
 
-    render(withProviders(<Group groupId="1234" />), {
+    render(withProviders(<Group />), {
       wrapper: RootContextWrapper
     })
     screen
