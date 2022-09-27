@@ -8623,10 +8623,10 @@ graceful-fs@^4.2.6, graceful-fs@^4.2.9:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.9.tgz#041b05df45755e587a24942279b9d113146e1c96"
   integrity sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==
 
-graphql-hooks@^5.0.0:
-  version "5.11.4"
-  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-5.11.4.tgz#8c31a17bea6f0face4f40dc257974dd0a7efbe03"
-  integrity sha512-GbXmqNhi+ViAOsy1IH8/BbKlMExV5IjXQRaUTN7k5agJxxzWdjQVqujj7XeZ44itIe/rR0fOaQ3ub0U3HSHTWg==
+graphql-hooks@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-hooks/-/graphql-hooks-6.0.0.tgz#e0cd1c94fad701806597fb9eabc1e3f987614e5c"
+  integrity sha512-LfoQIGMRZnXyAZ1PBUv3JkUSLpF+3FpftgVlFO5/QrmEGyCEECud1yP0v4gMclVGQZabjImFjtkojHVBTKvuEQ==
   dependencies:
     "@aws-crypto/sha256-browser" "^2.0.1"
     buffer "^6.0.3"
