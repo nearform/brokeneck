@@ -32,7 +32,7 @@
     "fastify": "^4.5.3",
     "fastify-cli": "^5.0.0",
     "fastify-plugin": "^4.0.0",
-    "fluent-json-schema": "^3.0.0",
+    "fluent-json-schema": "^4.0.0",
     "graphql": "^16.2.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.11.0",
