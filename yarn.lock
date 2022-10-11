@@ -4733,11 +4733,11 @@ atomically@^1.7.0:
   integrity sha512-Xcz9l0z7y9yQ9rdDaxlmaI4uJHf/T8g9hOEzJcsEqX2SjCj4J20uK7+ldkDHMbpJDK76wF7xEIgxc/vSlsfw5w==
 
 auth0@^2.30.0:
-  version "2.42.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-2.42.0.tgz#8202f94ce438b7b3081a29ce7325e08662a9268d"
-  integrity sha512-IiA224CoqjPF9Pnx0R80wQZBGlXMia69s7lQHg328Oe2mngdp6Qi32DaIKkkVtJb8FuMleWMgI+zmbwW0znhYw==
+  version "2.43.0"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-2.43.0.tgz#acf771fe22262db74b7059454ea57cfb4dcb2ed8"
+  integrity sha512-zeEdcu3TbAl6eTFVnB3/OSSQL7kqtlhQwYGOSyVIa5TQKRN/F4zXHt6XTrm+foMHNzmahCmj2r0wD8hG0py6oQ==
   dependencies:
-    axios "^0.26.1"
+    axios "^0.27.2"
     form-data "^3.0.1"
     jsonwebtoken "^8.5.1"
     jwks-rsa "^1.12.1"
@@ -4818,12 +4818,13 @@ axios@^0.21.1:
   dependencies:
     follow-redirects "^1.14.0"
 
-axios@^0.26.1:
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
-  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+axios@^0.27.2:
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
+  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
   dependencies:
-    follow-redirects "^1.14.8"
+    follow-redirects "^1.14.9"
+    form-data "^4.0.0"
 
 axobject-query@^2.2.0:
   version "2.2.0"
@@ -8148,12 +8149,12 @@ fluent-json-schema@^4.0.0:
   dependencies:
     "@fastify/deepmerge" "^1.1.0"
 
-follow-redirects@^1.0.0, follow-redirects@^1.14.0, follow-redirects@^1.14.8:
+follow-redirects@^1.0.0, follow-redirects@^1.14.0:
   version "1.15.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.1.tgz#0ca6a452306c9b276e4d3127483e29575e207ad5"
   integrity sha512-yLAMQs+k0b2m7cVxpS1VKJVvoz7SS9Td1zss3XRwXj+ZDH00RJgnuLx7E44wx02kQLrdM3aOOy+FpzS7+8OizA==
 
-follow-redirects@^1.10.0:
+follow-redirects@^1.10.0, follow-redirects@^1.14.9:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
