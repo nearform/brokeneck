@@ -1,11 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import T from 'prop-types'
-import {
-  createMuiTheme,
-  CssBaseline,
-  ThemeProvider,
-  useMediaQuery
-} from '@material-ui/core'
+import { CssBaseline, ThemeProvider, useMediaQuery } from '@material-ui/core'
+import { createTheme } from '@material-ui/core/styles'
 
 import themeObject from '../theme'
 
@@ -35,7 +31,7 @@ export default function ThemeSwitcherProvider({ children }) {
 
   const theme = useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           type: themeType,
           ...themeObject.palettes[themeType]
