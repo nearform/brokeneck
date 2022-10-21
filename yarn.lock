@@ -11803,9 +11803,9 @@ meow@^8.0.0:
     yargs-parser "^20.2.3"
 
 mercurius@^11.0.0:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-11.0.1.tgz#5e97252dbc7606e6777200cdda0d363e8ff44494"
-  integrity sha512-gas4uY4QaUi98icFOYT3oGVYqg0QZNGpaO9Nz/K148vD9/PcYLdVLnuzbjciqO5DpxHK0PpgoQywdNLt+A371A==
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-11.1.0.tgz#e7f13f0bd360ab0b233d5ad1a8f49b07eaba992c"
+  integrity sha512-Y4iBmuEmuWe3eSXINTa8aXpTAvW4iqN0G0HJRsHlFe3snpwyQXw77ne/UnzMBg548Z/YrEGJ1JndHXKXh7X8MQ==
   dependencies:
     "@fastify/error" "^3.0.0"
     "@fastify/static" "^6.0.0"
@@ -14798,12 +14798,7 @@ safe-regex2@^2.0.0:
   dependencies:
     ret "~0.2.0"
 
-safe-stable-stringify@^2.0.0, safe-stable-stringify@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.3.1.tgz#ab67cbe1fe7d40603ca641c5e765cb942d04fc73"
-  integrity sha512-kYBSfT+troD9cDA85VDnHZ1rpHC50O0g1e6WlGHVCz/g+JS+9WKLj+XwFYyR8UbrZN8ll9HUpDAAddY58MGisg==
-
-safe-stable-stringify@^2.3.1:
+safe-stable-stringify@^2.0.0, safe-stable-stringify@^2.3.0, safe-stable-stringify@^2.3.1:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.4.0.tgz#95fadb1bcf8057a1363e11052122f5da36a69215"
   integrity sha512-eehKHKpab6E741ud7ZIMcXhKcP6TSIezPkNZhy5U8xC6+VvrRdUA2tMgxGxaGl4cz7c2Ew5+mg5+wNB16KQqrA==
