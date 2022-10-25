@@ -3355,14 +3355,6 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@rollup/pluginutils@^4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
-  integrity sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==
-  dependencies:
-    estree-walker "^2.0.1"
-    picomatch "^2.2.2"
-
 "@rollup/pluginutils@^5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-5.0.1.tgz#63def51f5a76dadd984689d33c7f000164152a97"
@@ -4810,9 +4802,9 @@ avvio@^8.2.0:
     fastq "^1.6.1"
 
 aws-sdk@^2.793.0:
-  version "2.1238.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1238.0.tgz#4d67f7c9f2a3d293b94b6f78a15651e8fd886778"
-  integrity sha512-DCXAj98lFW0y2Ickm0MbXnxzbG5IDrhBXs6Wx+vscrYNFRjy7JGau9HACY8aFoesMQz8PzNmJKR82Dg2NsGvDg==
+  version "2.1239.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1239.0.tgz#606e4fb0345da86db801538e13925828a9acbb31"
+  integrity sha512-746OlzNxjaMux93cTr5//WyY8t2HwRuJOO41qKDhXmklZibFDBc/3v/8CYzb1jsEYy77AO2J045+TkP9N10Wcw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -7652,7 +7644,7 @@ estree-walker@^1.0.1:
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-1.0.1.tgz#31bc5d612c96b704106b477e6dd5d8aa138cb700"
   integrity sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==
 
-estree-walker@^2.0.1, estree-walker@^2.0.2:
+estree-walker@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
