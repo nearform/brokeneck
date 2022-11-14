@@ -7111,9 +7111,9 @@ env-paths@^2.2.0, env-paths@^2.2.1:
   integrity sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==
 
 env-schema@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-5.1.0.tgz#825d880070872c01152ae40a888d1c0c92c05864"
-  integrity sha512-hbu+aC1nddO+tPPgw/guQRNY5CzkgplFu1WbmdiQimy4lcwPCteuKFvxF9uHSU/HkXNlIWR+WC0B53VG21aOxQ==
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/env-schema/-/env-schema-5.1.1.tgz#8af691a784d787bceb4b2229729204294f5e7f46"
+  integrity sha512-3jftabBd44XEYFCZjLg5Ris/7DKz09AJClvJEJXh8eciBPbKXSzdgwLZqpqA1lKmNkHFiAqr7JAqTToU80mDew==
   dependencies:
     ajv "^8.0.0"
     dotenv "^16.0.0"
