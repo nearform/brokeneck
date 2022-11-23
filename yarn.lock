@@ -1596,9 +1596,9 @@
     send "^0.18.0"
 
 "@fastify/view@^7.1.0":
-  version "7.1.2"
-  resolved "https://registry.yarnpkg.com/@fastify/view/-/view-7.1.2.tgz#7cf5bd4930b72522382646bd9e58577a08df21fc"
-  integrity sha512-45aVeHcnyFy4o8Q7rbBO3ZRN/j8SL+NMEERBJZtRjUph8esOK1v6COmSsBD4p6t6x1OGFPVM48Rw+3qWygm/LA==
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/@fastify/view/-/view-7.2.0.tgz#e3401d6f3c2792c49eedfeb398997d0557a730c0"
+  integrity sha512-DgBm3tMVOhm32PS7T8W4PjtyZqBW3IfHTAsZBylj8jEp75Fj6uGVak2dbT4VDIoUS6mW53qJRU7qx9FY2rZtFA==
   dependencies:
     fastify-plugin "^4.0.0"
     hashlru "^2.3.0"
