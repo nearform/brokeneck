@@ -8010,9 +8010,9 @@ fast-uri@^2.0.0, fast-uri@^2.1.0:
   integrity sha512-qKRta6N7BWEFVlyonVY/V+BMLgFqktCUV0QjT259ekAIlbVrMaFnFLxJ4s/JPl4tou56S1BzPufI60bLe29fHA==
 
 fastify-cli@^5.0.0:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-5.6.1.tgz#ed07f4349f4dc58d4daba4916cd4ee126ca3c298"
-  integrity sha512-yd4rlYvKa6fRdp7KNjTCkYRtEKdXtbMqOdHGTGtl6UTD4pdeHiOqQb3NHKI7mQLxAv8+B8C16xTWaEPTiZfAKA==
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/fastify-cli/-/fastify-cli-5.7.0.tgz#2075f794c7023ea4a50b961ae5f901832d8d5209"
+  integrity sha512-mLQfyA1oAtK70voA9eYnYVVKAuKdSWkfcrj93EmX2b+sAMynPIbItqAajBXrPCMvARPgdJ3aHSANdyY8OLFhWg==
   dependencies:
     "@fastify/deepmerge" "^1.2.0"
     chalk "^4.1.2"
@@ -8021,6 +8021,7 @@ fastify-cli@^5.0.0:
     commist "^3.0.0"
     dotenv "^16.0.0"
     fastify "^4.0.0"
+    fastify-plugin "^4.0.0"
     generify "^4.0.0"
     help-me "^4.0.1"
     is-docker "^2.0.0"
