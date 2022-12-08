@@ -4851,9 +4851,9 @@ avvio@^8.2.0:
     fastq "^1.6.1"
 
 aws-sdk@^2.793.0:
-  version "2.1269.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1269.0.tgz#8f3e6379e39b41fa9ba459d13b37ec47aae482b9"
-  integrity sha512-M8pOxsIjVms3d4o89dcpNTceXTpLU4DahRXH3uddCL9ctfuOmdRKkRvKJIRVMWPQlHWdi8gW1TC+3uCrhDPN8Q==
+  version "2.1270.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1270.0.tgz#af620a7603e49128f05f2cd3200bf46cc41a6bc7"
+  integrity sha512-Dyvcv/cMQxS5ed7wpeDuTZSzRg0ut6bSngHOC+jPiSUyf3LqJI2MnrJMNfcsiVg034bxDVLL5BRI/LfLZc0Ygg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
