@@ -25,7 +25,7 @@
     "@graphql-tools/schema": "^9.0.0",
     "@nearform/brokeneck-html": "^1.0.0-spinal.8",
     "ajv": "^8.8.2",
-    "auth0": "^2.30.0",
+    "auth0": "^3.0.1",
     "aws-sdk": "^2.793.0",
     "ejs": "^3.1.5",
     "env-schema": "^5.0.0",
