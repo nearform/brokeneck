@@ -2943,15 +2943,6 @@
     prop-types "^15.7.2"
     react-is "^16.8.0 || ^17.0.0"
 
-"@mercuriusjs/subscription-client@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@mercuriusjs/subscription-client/-/subscription-client-0.1.0.tgz#1e8490cd9b02daebd37560bff1536e5772765668"
-  integrity sha512-ivqMmSQ4kwroK/uUZVwOnd5QEAsjrEy/EqSsEqhtEObA/Zqkc44Fgi543Mml3XjoGopY1y1rJYQSl/gzfyfgrw==
-  dependencies:
-    "@fastify/error" "^3.0.0"
-    secure-json-parse "^2.4.0"
-    ws "^8.2.2"
-
 "@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3":
   version "2.1.8-no-fsevents.3"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8-no-fsevents.3.tgz#323d72dd25103d0c4fbdce89dadf574a787b1f9b"
@@ -12046,15 +12037,14 @@ meow@^8.0.0:
     type-fest "^0.18.0"
     yargs-parser "^20.2.3"
 
-mercurius@^11.0.0:
-  version "11.5.0"
-  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-11.5.0.tgz#07b2c6fbe0136ae23a1ad315361ae996586e7af7"
-  integrity sha512-e2ZGC9OyX8eY7Dt/gUrTvzjVDojXECgv4dkjOz7Mux80V0D8ZC7im2cuywsInIQw6pEK1/p8WeVzuIADdWAJag==
+mercurius@^12.0.0:
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/mercurius/-/mercurius-12.0.0.tgz#b998606145426a7510289de11e981f22fa91ed2f"
+  integrity sha512-ORe/0eFuUq5lFMF1c8hdEQz44MdK4A8gMbJr8US3BakHBeYbbFDWGskhHkYmaZkx2ka0NJh+iMasWiL07kAoHg==
   dependencies:
     "@fastify/error" "^3.0.0"
     "@fastify/static" "^6.0.0"
     "@fastify/websocket" "^7.0.0"
-    "@mercuriusjs/subscription-client" "^0.1.0"
     fastify-plugin "^4.2.0"
     graphql "^16.0.0"
     graphql-jit "^0.7.3"
@@ -12062,9 +12052,9 @@ mercurius@^11.0.0:
     p-map "^4.0.0"
     readable-stream "^4.0.0"
     safe-stable-stringify "^2.3.0"
-    secure-json-parse "^2.4.0"
+    secure-json-parse "^2.7.0"
     single-user-cache "^0.6.0"
-    tiny-lru "^8.0.1"
+    tiny-lru "^10.0.0"
     undici "^5.0.0"
     ws "^8.2.2"
 
@@ -15162,10 +15152,10 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.0.0"
 
-secure-json-parse@^2.4.0, secure-json-parse@^2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/secure-json-parse/-/secure-json-parse-2.5.0.tgz#f929829df2adc7ccfb53703569894d051493a6ac"
-  integrity sha512-ZQruFgZnIWH+WyO9t5rWt4ZEGqCKPwhiw+YbzTwpmT9elgLrLcfuyUiSnwwjUiVy9r4VM3urtbNF1xmEh9IL2w==
+secure-json-parse@^2.4.0, secure-json-parse@^2.5.0, secure-json-parse@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/secure-json-parse/-/secure-json-parse-2.7.0.tgz#5a5f9cd6ae47df23dba3151edd06855d47e09862"
+  integrity sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -16263,11 +16253,6 @@ tiny-lru@^10.0.0:
   version "10.0.1"
   resolved "https://registry.yarnpkg.com/tiny-lru/-/tiny-lru-10.0.1.tgz#aaf5d22207e641ed1b176ac2e616d6cc2fc9ef66"
   integrity sha512-Vst+6kEsWvb17Zpz14sRJV/f8bUWKhqm6Dc+v08iShmIJ/WxqWytHzCTd6m88pS33rE2zpX34TRmOpAJPloNCA==
-
-tiny-lru@^8.0.1:
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/tiny-lru/-/tiny-lru-8.0.2.tgz#812fccbe6e622ded552e3ff8a4c3b5ff34a85e4c"
-  integrity sha512-ApGvZ6vVvTNdsmt676grvCkUCGwzG9IqXma5Z07xJgiC5L7akUMof5U8G2JTI9Rz/ovtVhJBlY6mNhEvtjzOIg==
 
 tiny-warning@^1.0.2:
   version "1.0.3"
