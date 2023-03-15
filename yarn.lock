@@ -4161,9 +4161,9 @@ atomically@^1.7.0:
   integrity sha512-Xcz9l0z7y9yQ9rdDaxlmaI4uJHf/T8g9hOEzJcsEqX2SjCj4J20uK7+ldkDHMbpJDK76wF7xEIgxc/vSlsfw5w==
 
 auth0@^3.0.1:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/auth0/-/auth0-3.2.0.tgz#6008b4ae99f36f57f3b11c4765cde476641d9e60"
-  integrity sha512-yc0SWBYKD097X21d0vCc1NDrhCi+OM96/VlziDJeYMv6OlfUJPyWf8u9pthMkQxjmvq+BKu2fwxoMXDx0XRdUQ==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/auth0/-/auth0-3.3.0.tgz#19a58c46c0b45fdc0d21b1995b8322bd9147fa03"
+  integrity sha512-9QZlktuIpYcnp5Y43xtTrPRFi0qUDVLGtJNOeG3W6JkDfUx4Qu80mB8nI4lMuhWUGx21ls7lZMG7DXHJI1C4Ug==
   dependencies:
     axios "^0.27.2"
     form-data "^3.0.1"
